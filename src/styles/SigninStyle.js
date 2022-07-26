@@ -32,6 +32,7 @@ export const SigninUserInfo = styled.p`
 `;
 
 export const EmailCheckBtn = styled.input`
+  position : absolute;
   margin-left: -85px;
   width: 86px;
   height: 34px;
@@ -40,7 +41,7 @@ export const EmailCheckBtn = styled.input`
   border: 1px solid #ffa724;
   background-color: #ffffff;
   color: #ffa724;
-
+  top : 168px;
   &:active {
     color: #dddddd;
     border: 1px solid #dddddd;
@@ -73,7 +74,7 @@ export const SigninBottomBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
-  margin-top: 111px;
+  margin-top: 90px;
 
   &:active {
     background-color: #b1d0ff;
@@ -113,5 +114,5 @@ export const NextSigninPetBtn = styled.button`
   border: none;
   color: #848484;
   font-size: 18px;
-  margin-bottom: -39px;
+  position : absolute;
 `;

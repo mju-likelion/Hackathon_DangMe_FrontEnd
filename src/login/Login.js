@@ -17,7 +17,7 @@ import {
   GoToHome,
   ArrowStyled,
 } from "../styles/LoginStlye";
-
+ 
 const Login = () => {
   const navigate = useNavigate();
   const goToHome = () => {

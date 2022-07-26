@@ -27,11 +27,12 @@ const Signin = () => {
         <SigninUserTitle>회원가입</SigninUserTitle>
       </TopWrap>
       <SigninBar src={userInfobar} alt="userInfobar" />
-      <form>
-        <SigninUserInfoBox>
-          <SigninUserInfo>아이디(이메일)</SigninUserInfo>
+      <SigninUserInfo>아이디(이메일)</SigninUserInfo>
           <SigninUserInfoInput placeholder="이메일 주소"></SigninUserInfoInput>
           <EmailCheckBtn type="submit" value="중복확인" />
+      <form>
+        <SigninUserInfoBox>
+          
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>비밀번호</SigninUserInfo>
