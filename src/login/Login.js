@@ -17,8 +17,10 @@ import {
   GoToHome,
   ArrowStyled,
 } from "../styles/LoginStlye";
- 
+import { useState } from "react";
+import axios from "axios";
 const Login = () => {
+  const [user,setUserId]=useState({user_name:null,password:null});
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -26,17 +28,35 @@ const Login = () => {
   const gotoSignIn = () => {
     navigate("/signin");
   };
+  const putInfo=(e,type)=>{
+    setUserId(
+  {
+          ...user,
+        [type]:e.target.value,
+  }
+    )
+    
+  }
+  const handleLogin=async(e)=>{
+    const response=await axios.post('/auth/login', user)
+    response.then(response => {
+      const { token } = response.data;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      goToHome();
+  }).catch((error)=>alert(error));
+}
+
   return (
     <LoginStyled>
       <LogoStyled>
         <img alt="logo" src={logo} />
       </LogoStyled>
       <FormStyled>
-        <InputStyled type="text" placeholder="이메일" />
-        <InputStyled type="text" placeholder="비밀번호" />
+        <InputStyled onBlur={(e)=>{putInfo(e,'user_name')}} type="text" placeholder="이메일" />
+        <InputStyled onBlur={(e)=>{putInfo(e,'password')}} type="password" placeholder="비밀번호" maxLength={14} />
 
         <ForgotPassword>비밀번호를 잊으셨나요?</ForgotPassword>
-        <LoginBtn>로그인</LoginBtn>
+        <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
       </FormStyled>
 
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
