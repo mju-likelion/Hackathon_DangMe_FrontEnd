@@ -15,6 +15,7 @@ import {
 import { userInfo } from "../atoms/SigninAtom";
 import {useRecoilState} from 'recoil';
 import {useRef} from 'react';
+import axios from "axios";
 const Signin = () => {
   const [userinfo,setUserInfo]=useRecoilState(userInfo);
   const userEmail=useRef();
@@ -22,7 +23,13 @@ const Signin = () => {
   const userConfirmPw=useRef();
   const userName=useRef();
   const userPhone=useRef();
-
+  const navigate = useNavigate();
+  const toDogInfo = () => {
+    navigate("/signin/doginfo");
+  };
+  const goPrev = () => {
+    navigate(-1);
+  };
   //이메일 형식 체크
   const email_check=(email)=> {
     var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -58,6 +65,9 @@ const Signin = () => {
    function printEmailAlert(){
      alert('올바른 이메일 형식을 입력해주세요.');
    }
+   function printEmailDupAlert(){
+    alert('이미 가입된 회원입니다.')
+   }
    function printPwAlert(){
      alert('비밀번호는 숫자+영문자+특수문자 조합으로 6자리 이상 입력해주세요.');
    }
@@ -68,10 +78,11 @@ const Signin = () => {
      alert('올바른 핸드폰 번호 형식을 입력해주세요.');
    }
 
-   //회원가입 유저 정보란 올바르게 기입 됐는가 체크
+    //회원가입 유저 정보란 올바르게 기입 됐는가 체크
     const confirmUserInfo=(e)=>{
     e.preventDefault();
     if(!email_check(userEmail.current.value)) printEmailAlert();
+    else if(!checkEmailDuplication(userEmail.current.value))printEmailDupAlert();
     else if(!pw_check(userPw.current.value)) printPwAlert();
     else if(!confirmPw_check(userConfirmPw.current.value))printConfirmPwAlert();
     else if(!phone_check(userPhone.current.value))printPhoneAlert();
@@ -83,13 +94,26 @@ const Signin = () => {
     }});
     toDogInfo()};
    }
-  const navigate = useNavigate();
-  const toDogInfo = () => {
-    navigate("/signin/doginfo");
-  };
-  const goPrev = () => {
-    navigate(-1);
-  };
+  
+
+  //이메일 중복여부 검사
+  const checkEmailDuplication=(Email)=>{
+    const response=axios('url',Email);
+    response.then(()=>{
+      return true;
+    }).catch(()=>{
+      return false;
+    });   
+  }
+
+  //중복확인 버튼 눌렀을 때 이벤트 관리
+  const confirmEmailDup=(e)=>{
+    e.preventDefault();
+    const Email=userEmail.current.value;
+    if(!email_check(Email))printEmailAlert();
+    else if(!checkEmailDuplication(Email))printEmailDupAlert();
+    else alert('사용 가능한 이메일입니다.');
+  }
   return (
     <SigninStyled>
       <TopWrap>
@@ -101,7 +125,7 @@ const Signin = () => {
           <SigninUserInfoInput 
           ref={userEmail} 
           placeholder="이메일 주소"/>
-          <EmailCheckBtn type="submit" value="중복확인" />
+          <EmailCheckBtn onClick={confirmEmailDup} type="submit" value="중복확인" />
       <form>
         <SigninUserInfoBox>
           

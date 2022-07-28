@@ -34,8 +34,8 @@ const SigninDogInfo = () => {
       }
       );
   }
-  const handleSignin=()=>{
-    axios.post('/auth/register',userinfo)
+  const handleSignin=async()=>{
+    await axios.post('/auth/register',userinfo)
     .then(function (response){
       console.log("회원가입 성공!");
       alert(response.data);
