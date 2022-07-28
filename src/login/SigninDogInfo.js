@@ -34,17 +34,15 @@ const SigninDogInfo = () => {
       }
       );
   }
-  const handleSignin=async()=>{
-    await axios.post('/auth/register',userinfo)
+  const handleSignin=()=>{
+    axios.post('/auth/register',userinfo)
     .then(function (response){
-      console.log("회원가입 성공!");
-      alert(response.data);
+      alert(response.data.data);
       navigate('/');
     })
     .catch(function (error){
       console.log(error);
     });
-    console.log(userinfo);
   }
   return (
     <SigninStyled>

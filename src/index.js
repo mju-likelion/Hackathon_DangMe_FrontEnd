@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 axios.defaults.baseURL = '';
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 root.render(
   <BrowserRouter>
   <RecoilRoot>

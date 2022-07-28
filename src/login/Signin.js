@@ -82,15 +82,15 @@ const Signin = () => {
     const confirmUserInfo=(e)=>{
     e.preventDefault();
     if(!email_check(userEmail.current.value)) printEmailAlert();
-    else if(!checkEmailDuplication(userEmail.current.value))printEmailDupAlert();
+    //else if(!checkEmailDuplication(userEmail.current.value))printEmailDupAlert();
     else if(!pw_check(userPw.current.value)) printPwAlert();
     else if(!confirmPw_check(userConfirmPw.current.value))printConfirmPwAlert();
     else if(!phone_check(userPhone.current.value))printPhoneAlert();
     else{setUserInfo(()=>{return {
-      'user_name':userEmail.current.value,
+      'user_name':userName.current.value,
       'password':userPw.current.value,
-      'phone_num':userConfirmPw.current.value,
-      'email':userPhone.current.value
+      'phone_num':userPhone.current.value,
+      'email':userEmail.current.value
     }});
     toDogInfo()};
    }
@@ -98,12 +98,7 @@ const Signin = () => {
 
   //이메일 중복여부 검사
   const checkEmailDuplication=(Email)=>{
-    const response=axios('url',Email);
-    response.then(()=>{
-      return true;
-    }).catch(()=>{
-      return false;
-    });   
+    
   }
 
   //중복확인 버튼 눌렀을 때 이벤트 관리
@@ -111,8 +106,16 @@ const Signin = () => {
     e.preventDefault();
     const Email=userEmail.current.value;
     if(!email_check(Email))printEmailAlert();
-    else if(!checkEmailDuplication(Email))printEmailDupAlert();
-    else alert('사용 가능한 이메일입니다.');
+    else{
+      const response=axios.post('/api/emailsame',{
+        'email': Email
+      });
+      response.then(()=>{
+      alert('사용 가능한 이메일입니다.');
+    }).catch((e)=>{
+      console.log(e)
+    });   
+    }
   }
   return (
     <SigninStyled>

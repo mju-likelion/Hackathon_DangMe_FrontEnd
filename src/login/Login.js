@@ -20,7 +20,7 @@ import {
 import { useState } from "react";
 import axios from "axios";
 const Login = () => {
-  const [user,setUserId]=useState({user_name:null,password:null});
+  const [user,setUserId]=useState({email:null,password:null});
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -37,11 +37,11 @@ const Login = () => {
     )
     
   }
-  const handleLogin=async(e)=>{
-    const response=await axios.post('/auth/login', user)
+  const handleLogin=(e)=>{
+    const response=axios.post('/auth/login', user)
     response.then(response => {
       const { token } = response.data;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common['Authorization'] = `${token}`;
       goToHome();
   }).catch((error)=>alert(error));
 }
@@ -52,7 +52,7 @@ const Login = () => {
         <img alt="logo" src={logo} />
       </LogoStyled>
       <FormStyled>
-        <InputStyled onBlur={(e)=>{putInfo(e,'user_name')}} type="text" placeholder="이메일" />
+        <InputStyled onBlur={(e)=>{putInfo(e,'email')}} type="text" placeholder="이메일" />
         <InputStyled onBlur={(e)=>{putInfo(e,'password')}} type="password" placeholder="비밀번호" maxLength={14} />
 
         <ForgotPassword>비밀번호를 잊으셨나요?</ForgotPassword>
