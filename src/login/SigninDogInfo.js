@@ -21,47 +21,47 @@ import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
 import { PetImgPrev } from "./../styles/SigninStyle";
+import {useForm} from 'react-hook-form';
 const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
 const SigninDogInfo = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const navigate = useNavigate();
   const petImg = useRef();
   const [fileImg, setFileImg] = useState("");
-
+  const {
+    register,
+    handleSubmit,
+    formState: {isSubmitting },
+  }=useForm();
   const goPrev = () => {
     navigate(-1);
   };
   const goToHome = () => {
     navigate("/home");
   };
-
+  const onSubmit=(data)=>{
+    setUserInfo({
+      ...userinfo,
+      'petName':data.petName,
+      'age':data.age,
+      'weight':data.weight,
+      'dogBreed':data.dogBreed
+    })
+    console.log(userinfo);
+    handleSignin();
+  }
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
     formData.append("petimg",event.target.files[0]);
-    await axios({
-      method: "post",
-      url: "auth/dogdata/imgadd",
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
   };
-  const putInfo = (event, type) => {
-    setUserInfo({
-      ...userinfo,
-      [type]: event.target.value,
-    });
-  };
-  const handleSignin = (e) => {
-    e.preventDefault();
+  const handleSignin = () => {
     formData.append('data',JSON.stringify(userinfo));
     console.log(formData.get('data'));
     axios
       .post("/auth/register", formData)
       .then(function (response) {
         alert(response.data.data);
-        navigate("/");
+        goToHome();
       })
       .catch(function (error) {
         console.log(error);
@@ -98,47 +98,39 @@ const SigninDogInfo = () => {
           사진 변경하기
         </SigninPetimgBtn>
       )}
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <SigninUserInfoBox>
           <SigninUserInfo>이름</SigninUserInfo>
           <SigninUserInfoInput
             placeholder="반려견 이름"
-            onBlur={(e) => {
-              putInfo(e, "petName");
-            }}
+            {...register('petName')}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>나이</SigninUserInfo>
           <SigninUserInfoInput
             placeholder="반려견 나이"
-            onBlur={(e) => {
-              putInfo(e, "age");
-            }}
+            {...register('age')}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>품종</SigninUserInfo>
           <SigninUserInfoInput
             placeholder="반려견 품종"
-            onBlur={(e) => {
-              putInfo(e, "dogBreed");
-            }}
+            {...register('dogBreed')}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>몸무게</SigninUserInfo>
           <SigninUserInfoInput
             placeholder="반려견 몸무게"
-            onBlur={(e) => {
-              putInfo(e, "weight");
-            }}
+            {...register('weight')}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
-        <NextSigninPetBtn onClick={handleSignin}>
+        <NextSigninPetBtn >
           다음에 입력하기
         </NextSigninPetBtn>
-        <SigninBottomBtn onClick={handleSignin}>완료</SigninBottomBtn>
+        <SigninBottomBtn disabled={isSubmitting}>완료</SigninBottomBtn>
       </form>
     </SigninStyled>
   );

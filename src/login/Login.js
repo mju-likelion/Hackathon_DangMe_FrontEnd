@@ -19,8 +19,15 @@ import {
 } from "../styles/LoginStlye";
 import { useState } from "react";
 import axios from "axios";
+import {useForm} from 'react-hook-form';
+import { userInfo } from "../atoms/SigninAtom";
 const Login = () => {
   const [user,setUserId]=useState({email:null,password:null});
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  }=useForm();
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -28,16 +35,11 @@ const Login = () => {
   const gotoSignIn = () => {
     navigate("/signin");
   };
-  const putInfo=(e,type)=>{
-    setUserId(
-  {
-          ...user,
-        [type]:e.target.value,
-  }
-    )
-  }
-  const handleLogin=(e)=>{
-    e.preventDefault();
+  const onSubmit=(data)=>{
+    setUserId({
+      'email' : data.email,
+      'password' : data.password
+    });
     const response=axios.post('/auth/login', user)
     response.then(response => {
     const { token } = response.data;
@@ -46,19 +48,20 @@ const Login = () => {
     alert('로그인에 성공하였습니다.');
     goToHome();
   }).catch((error)=>alert(error));
-}
+  
+  }
 
   return (
     <LoginStyled>
       <LogoStyled>
         <img alt="logo" src={logo} />
       </LogoStyled>
-      <FormStyled>
-        <InputStyled onBlur={(e)=>{putInfo(e,'email')}} type="text" placeholder="이메일" />
-        <InputStyled onBlur={(e)=>{putInfo(e,'password')}} type="password" placeholder="비밀번호" maxLength={14} />
+      <FormStyled onSubmit={handleSubmit(onSubmit)}>
+        <InputStyled {...register('email')} type="email" placeholder="이메일" />
+        <InputStyled {...register('password')} type="password" placeholder="비밀번호" maxLength={14} />
 
         <ForgotPassword>비밀번호를 잊으셨나요?</ForgotPassword>
-        <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
+        <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
 
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
