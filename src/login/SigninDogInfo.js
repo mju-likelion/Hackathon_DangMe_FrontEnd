@@ -21,7 +21,7 @@ import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
 import { PetImgPrev } from "./../styles/SigninStyle";
-
+const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
 const SigninDogInfo = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const navigate = useNavigate();
@@ -37,9 +37,7 @@ const SigninDogInfo = () => {
 
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
-    //console.log(event.target.files[0]);
-    const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
-    formData.append("petimg", event.target.files[0]);
+    formData.append("petimg",event.target.files[0]);
     await axios({
       method: "post",
       url: "auth/dogdata/imgadd",
@@ -55,9 +53,12 @@ const SigninDogInfo = () => {
       [type]: event.target.value,
     });
   };
-  const handleSignin = () => {
+  const handleSignin = (e) => {
+    e.preventDefault();
+    formData.append('data',JSON.stringify(userinfo));
+    console.log(formData.get('data'));
     axios
-      .post("/auth/register", userinfo)
+      .post("/auth/register", formData)
       .then(function (response) {
         alert(response.data.data);
         navigate("/");
