@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { screen } from "@testing-library/react";
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -14,14 +15,16 @@ const GlobalStyle = createGlobalStyle`
 }
     *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
-      width : 428;
-      height : 926;
+      width : 428px;
       font-family: 'Pretendard';
+      @media screen and (max-width: 428px) {
+        width: 100%;
+    }
     }
     body{
-      
+
     };
     button{
       cursor: pointer;

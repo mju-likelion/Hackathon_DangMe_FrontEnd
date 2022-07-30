@@ -8,16 +8,23 @@ export const TopWrap = styled.div`
   margin-top: 30px;
 `;
 
+export const PrevArrowImg = styled.img`
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+`;
+
 export const SigninUserTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline-block;
+  display: inline;
   margin-left: 135px;
 `;
 
 export const SigninBar = styled.img`
   display: block;
   margin: 40px 182px 45px 156px;
+  width: 64px;
 `;
 
 export const SigninUserInfoBox = styled.div`
@@ -66,7 +73,7 @@ export const SigninUserInfoInput = styled.input`
   }
 `;
 
-export const SigninBottomBtn = styled.button`
+export const SigninNextBtn = styled.button`
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -74,7 +81,26 @@ export const SigninBottomBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
-  margin-top: 90px;
+  margin-top: 111px;
+  margin-left: 8px;
+
+  &:active {
+    background-color: #b1d0ff;
+  }
+`;
+
+//중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
+
+export const SigninCompleteBtn = styled.button`
+  width: 360px;
+  height: 60px;
+  background-color: #3385ff;
+  border-radius: 30px;
+  font-size: 24px;
+  color: #ffffff;
+  border: none;
+  margin-top: 11px;
+  margin-left: 8px;
 
   &:active {
     background-color: #b1d0ff;
@@ -84,24 +110,24 @@ export const SigninBottomBtn = styled.button`
 export const SigninPetTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline-block;
+  display: inline;
   margin-left: 105px;
 `;
 
 export const SigninPetimgTxt = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #848484;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 `;
 
 export const PetimgPrevBox = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #848484;
+  background-color: #dddddd;
   margin-left: 143px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 `;
 
 export const PetImgPrev = styled.img`
@@ -123,15 +149,15 @@ export const SigninPetimgBtn = styled.button`
   border: none;
   text-align: center;
   display: block;
-  font-size: 14px;
-  margin-left: 143px;
-  margin-bottom: 40px;
+  font-size: 16px;
+  margin-left: 142px;
+  margin-bottom: 20px;
 `;
 
-export const NextSigninPetBtn = styled.button`
+/* export const NextSigninPetBtn = styled.button`
   background-color: #ffffff;
   border: none;
   color: #848484;
   font-size: 18px;
   position: absolute;
-`;
+`; */

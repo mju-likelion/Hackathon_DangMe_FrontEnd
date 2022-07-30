@@ -3,6 +3,7 @@ import petInfobar from "../img/petInfobar.png";
 import { useNavigate } from "react-router-dom";
 import {
   TopWrap,
+  PrevArrowImg,
   SigninPetTitle,
   SigninStyled,
   SigninBar,
@@ -12,7 +13,7 @@ import {
   SigninUserInfoBox,
   SigninUserInfo,
   SigninUserInfoInput,
-  SigninBottomBtn,
+  SigninCompleteBtn,
   NextSigninPetBtn,
   PetimgPrevBox,
 } from "../styles/SigninStyle";
@@ -37,15 +38,7 @@ const SigninDogInfo = () => {
 
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
-    formData.append("petimg",event.target.files[0]);
-    await axios({
-      method: "post",
-      url: "auth/dogdata/imgadd",
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    formData.append("petimg", event.target.files[0]);
   };
   const putInfo = (event, type) => {
     setUserInfo({
@@ -55,8 +48,8 @@ const SigninDogInfo = () => {
   };
   const handleSignin = (e) => {
     e.preventDefault();
-    formData.append('data',JSON.stringify(userinfo));
-    console.log(formData.get('data'));
+    formData.append("data", JSON.stringify(userinfo));
+    console.log(formData.get("data"));
     axios
       .post("/auth/register", formData)
       .then(function (response) {
@@ -74,7 +67,7 @@ const SigninDogInfo = () => {
   return (
     <SigninStyled>
       <TopWrap>
-        <img src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
         <SigninPetTitle>반려견 정보 입력</SigninPetTitle>
       </TopWrap>
       <SigninBar src={petInfobar} alt="petInfobar" />
@@ -135,10 +128,7 @@ const SigninDogInfo = () => {
             }}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
-        <NextSigninPetBtn onClick={handleSignin}>
-          다음에 입력하기
-        </NextSigninPetBtn>
-        <SigninBottomBtn onClick={handleSignin}>완료</SigninBottomBtn>
+        <SigninCompleteBtn onClick={handleSignin}>완료</SigninCompleteBtn>
       </form>
     </SigninStyled>
   );

@@ -4,18 +4,20 @@ import { useNavigate } from "react-router-dom";
 import {
   SigninStyled,
   TopWrap,
+  PrevArrowImg,
   SigninUserTitle,
   SigninBar,
   SigninUserInfoBox,
   EmailCheckBtn,
   SigninUserInfo,
   SigninUserInfoInput,
-  SigninBottomBtn,
+  SigninNextBtn,
 } from "../styles/SigninStyle";
 import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
 import { useRef } from "react";
 import axios from "axios";
+
 const Signin = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const userEmail = useRef();
@@ -66,6 +68,10 @@ const Signin = () => {
   function printEmailAlert() {
     alert("올바른 이메일 형식을 입력해주세요.");
   }
+  function printEmailCheckAlert() {
+    //이메일 중복 체크 버튼 안 눌렀을 때 체크 로직 추가하기
+    alert("이메일 중복 체크 먼저 진행해주세요.");
+  }
   function printEmailDupAlert() {
     alert("이미 가입된 회원입니다.");
   }
@@ -83,7 +89,6 @@ const Signin = () => {
   const confirmUserInfo = (e) => {
     e.preventDefault();
     if (!email_check(userEmail.current.value)) printEmailAlert();
-    //else if(!checkEmailDuplication(userEmail.current.value))printEmailDupAlert();
     else if (!pw_check(userPw.current.value)) printPwAlert();
     else if (!confirmPw_check(userConfirmPw.current.value))
       printConfirmPwAlert();
@@ -125,7 +130,7 @@ const Signin = () => {
   return (
     <SigninStyled>
       <TopWrap>
-        <img src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
         <SigninUserTitle>회원가입</SigninUserTitle>
       </TopWrap>
       <SigninBar src={userInfobar} alt="userInfobar" />
@@ -164,7 +169,7 @@ const Signin = () => {
             ref={userPhone}
           />
         </SigninUserInfoBox>
-        <SigninBottomBtn onClick={confirmUserInfo}>다음</SigninBottomBtn>
+        <SigninNextBtn onClick={confirmUserInfo}>다음</SigninNextBtn>
       </form>
     </SigninStyled>
   );
