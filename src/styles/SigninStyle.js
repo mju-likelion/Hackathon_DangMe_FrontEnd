@@ -32,7 +32,7 @@ export const SigninUserInfo = styled.p`
 `;
 
 export const EmailCheckBtn = styled.input`
-  position : absolute;
+  position: absolute;
   margin-left: -85px;
   width: 86px;
   height: 34px;
@@ -41,7 +41,7 @@ export const EmailCheckBtn = styled.input`
   border: 1px solid #ffa724;
   background-color: #ffffff;
   color: #ffa724;
-  top : 168px;
+  top: 168px;
   &:active {
     color: #dddddd;
     border: 1px solid #dddddd;
@@ -88,19 +88,38 @@ export const SigninPetTitle = styled.p`
   margin-left: 105px;
 `;
 
-export const SigninPetimg = styled.p`
+export const SigninPetimgTxt = styled.p`
   font-size: 20px;
   font-weight: 600;
   color: #848484;
   margin-bottom: 20px;
 `;
 
-export const SigninPetimgBtn = styled.button`
+export const PetimgPrevBox = styled.div`
   width: 100px;
   height: 100px;
-  background-color: #848484;
   border-radius: 50%;
-  color: #ffffff;
+  background-color: #848484;
+  margin-left: 143px;
+  margin-bottom: 5px;
+`;
+
+export const PetImgPrev = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+export const SigninPetimgInput = styled.input`
+  display: none;
+`;
+
+export const SigninPetimgBtn = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: #ffffff;
+  color: #848484;
   border: none;
   text-align: center;
   display: block;
@@ -114,5 +133,5 @@ export const NextSigninPetBtn = styled.button`
   border: none;
   color: #848484;
   font-size: 18px;
-  position : absolute;
+  position: absolute;
 `;
