@@ -35,14 +35,16 @@ const Login = () => {
         [type]:e.target.value,
   }
     )
-    
   }
   const handleLogin=(e)=>{
+    e.preventDefault();
     const response=axios.post('/auth/login', user)
     response.then(response => {
-      const { token } = response.data;
-      axios.defaults.headers.common['Authorization'] = `${token}`;
-      goToHome();
+    const { token } = response.data;
+    console.log(token);
+    axios.defaults.headers.common['Authorization'] = `${token}`;
+    alert('로그인에 성공하였습니다.');
+    goToHome();
   }).catch((error)=>alert(error));
 }
 
