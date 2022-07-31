@@ -37,6 +37,7 @@ export const EmailCheckBtn = styled.input`
   width: 86px;
   height: 34px;
   font-size: 15px;
+  text-align: center;
   border-radius: 30px;
   border: 1px solid #ffa724;
   background-color: #ffffff;

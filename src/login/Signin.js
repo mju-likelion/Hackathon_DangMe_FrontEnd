@@ -11,6 +11,7 @@ import {
   SigninUserInfo,
   SigninUserInfoInput,
   SigninBottomBtn,
+  errorsStyled
 } from "../styles/SigninStyle";
 import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
@@ -79,6 +80,11 @@ const Signin = () => {
         });
     }
   };
+  const errorStyled={
+    position : 'absolute',
+    color : 'red',
+    fontSize : '14px'
+  }
   return (
     <SigninStyled>
       <TopWrap>
@@ -94,8 +100,8 @@ const Signin = () => {
           message: "이메일 형식에 맞게 입력해주세요"
         }}
       )}/>
-      <EmailCheckBtn  onClick={confirmEmailDup}type="submit" value="중복확인" />
-      {errors.email && <p>{errors.email.message}</p>}
+      <EmailCheckBtn  onClick={confirmEmailDup} value="중복확인" />
+      {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
         <SigninUserInfoBox></SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>비밀번호</SigninUserInfo>
@@ -108,7 +114,7 @@ const Signin = () => {
                 minLength : 6
             })}
             />
-          {errors.password && <p>영문, 숫자, 특수문자를 포함해주세요</p>}
+          {errors.password && <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>}
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>비밀번호 확인</SigninUserInfo>
@@ -117,7 +123,7 @@ const Signin = () => {
             {...register('confirmPassword',{
           validate : value=>value===getValues('password'),
         })}/>
-        {errors.confirmPassword&&<p>'같은 비밀번호를 입력해주세요'</p>}
+        {errors.confirmPassword&&<p style={errorStyled}>같은 비밀번호를 입력해주세요</p>}
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>이름</SigninUserInfo>
@@ -132,9 +138,9 @@ const Signin = () => {
                 value : /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
                 message : "'-'를 제외한 숫자만 입력해주세요"
             }})} />
-            {errors.Phone&&<p>{errors.Phone.message}</p>}
+            {errors.phoneNum&&<p style={errorStyled}>{errors.phoneNum.message}</p>}
         </SigninUserInfoBox>
-        <SigninBottomBtn disabled={isSubmitting}>다음</SigninBottomBtn >
+        <SigninBottomBtn type='submit' disabled={isSubmitting}>다음</SigninBottomBtn >
       </form >
     </SigninStyled>
   );
