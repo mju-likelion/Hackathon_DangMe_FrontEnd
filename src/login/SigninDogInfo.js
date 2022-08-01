@@ -59,10 +59,10 @@ const SigninDogInfo = () => {
     formData.append('data',JSON.stringify(userinfo));
     console.log(formData.get('data'));
     axios
-      .post("/auth/register", formData)
+      .post("auth/dogdata/imgadd", formData)
       .then(function (response) {
         alert(response.data.data);
-        goToHome();
+        navigate('./');
       })
       .catch(function (error) {
         console.log(error);
