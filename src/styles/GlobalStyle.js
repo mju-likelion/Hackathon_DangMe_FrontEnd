@@ -16,9 +16,10 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width : 428;
-      height : 926;
       font-family: 'Pretendard';
+      @media screen and (max-width : 428px){
+        width : 100%;        
+      }
     }
     body{
       
