@@ -1,13 +1,26 @@
+import * as styles from "./styles/NavStyles";
+import homeIcon from "./img/home.png";
+import searchIcon from "./img/search.png";
+import calendarIcon from "./img/calendar.png";
+import mypageIcon from "./img/my.png";
 
-import * as styles from './styles/NavStyles';
-const ButtomNav=()=>{
-    return(
-        <styles.styledNav>
-            <styles.styledLink to='/'>Home</styles.styledLink>
-            <styles.styledLink to='/map'>Map</styles.styledLink>
-            <styles.styledLink to='/reservationHistory'>reservationHistory</styles.styledLink>
-            <styles.styledLink to='/mypage'>mypage</styles.styledLink>
-        </styles.styledNav>
-    )
-}
+const ButtomNav = () => {
+  return (
+    <styles.styledNav>
+      <styles.styledLink to="/home">
+        <styles.styledLinkImg src={homeIcon} alt="HOME" />
+      </styles.styledLink>
+      <styles.styledLink to="/map">
+        <styles.styledLinkImg src={searchIcon} alt="search" />
+      </styles.styledLink>
+      <styles.styledLink to="/reservationHistory">
+        <styles.styledLinkImg src={calendarIcon} alt="calender" />
+      </styles.styledLink>
+      <styles.styledLink to="/mypage">
+        {" "}
+        <styles.styledLinkImg src={mypageIcon} alt="myPage" />
+      </styles.styledLink>
+    </styles.styledNav>
+  );
+};
 export default ButtomNav;
