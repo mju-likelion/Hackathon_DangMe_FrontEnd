@@ -10,8 +10,9 @@ import {
   EmailCheckBtn,
   SigninUserInfo,
   SigninUserInfoInput,
-  SigninBottomBtn,
-  errorsStyled
+  SigninNextBtn,
+  PrevArrowImg,
+  BarDiv
 } from "../styles/SigninStyle";
 import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
@@ -25,6 +26,9 @@ const Signin = () => {
     formState: { errors, isSubmitting },
     getValues,
   }=useForm();
+  const handleChange=()=>{
+    console.log(getValues('phoneNum'));
+  }
   const navigate = useNavigate();
   const toDogInfo = () => {
     navigate("/signin/doginfo");
@@ -86,13 +90,16 @@ const Signin = () => {
     fontSize : '14px'
   }
   return (
-    <SigninStyled>
+    <div>
       <TopWrap>
-        <img src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
         <SigninUserTitle>회원가입</SigninUserTitle>
       </TopWrap>
+      <BarDiv>
+        <SigninBar src={userInfobar} alt="userInfobar" />
+      </BarDiv>
        <form onSubmit={handleSubmit(onSubmit)}>
-      <SigninBar src={userInfobar} alt="userInfobar" />
+       <SigninStyled>
       <SigninUserInfo>아이디(이메일)</SigninUserInfo>
       <SigninUserInfoInput placeholder="이메일 주소" {...register('email',{
         pattern: {
@@ -114,7 +121,7 @@ const Signin = () => {
                 minLength : 6
             })}
             />
-          {errors.password && <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>}
+      {errors.password && <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>}
         </SigninUserInfoBox>
         <SigninUserInfoBox>
           <SigninUserInfo>비밀번호 확인</SigninUserInfo>
@@ -132,6 +139,7 @@ const Signin = () => {
         <SigninUserInfoBox>
           <SigninUserInfo>핸드폰 번호</SigninUserInfo>
           <SigninUserInfoInput
+            onChange={handleChange}
             placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
             {...register("phoneNum",{
               pattern : {
@@ -139,10 +147,13 @@ const Signin = () => {
                 message : "'-'를 제외한 숫자만 입력해주세요"
             }})} />
             {errors.phoneNum&&<p style={errorStyled}>{errors.phoneNum.message}</p>}
+          
         </SigninUserInfoBox>
-        <SigninBottomBtn type='submit' disabled={isSubmitting}>다음</SigninBottomBtn >
+      </SigninStyled>
+        <SigninNextBtn  type='submit' disabled={isSubmitting}>다음</SigninNextBtn>
       </form >
-    </SigninStyled>
+    
+    </div>
   );
 };
 export default Signin;

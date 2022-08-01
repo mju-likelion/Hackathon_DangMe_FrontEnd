@@ -4,9 +4,11 @@ export const LoginStyled = styled.div`
   text-align: center;
 `;
 
-export const LogoStyled = styled.div`
+export const LogoStyled = styled.img`
+  width: 55px;
+  height: 38px;
   margin-top: 151px;
-  margin-bottom: 104px;
+  margin-bottom: 155px;
 `;
 export const FormStyled = styled.form``;
 
@@ -15,7 +17,7 @@ export const InputStyled = styled.input`
   width: 360px;
   height: 56px;
   margin: 0 auto;
-  margin-top: 12px;
+  margin-bottom: 12px;
   border-radius: 30px;
   border: 1px solid #dddddd;
   padding: 28px;
@@ -28,14 +30,14 @@ export const InputStyled = styled.input`
   }
 `;
 
-export const ForgotPassword = styled.p`
-  position: absolute;
+/* export const ForgotPassword = styled.p`
+  //position: absolute;
   right: 39px;
   display: inline;
   font-size: 14px;
   color: #848484;
   margin-top: 15px;
-`;
+`; */
 
 export const LoginBtn = styled.button`
   display: block;
@@ -44,7 +46,7 @@ export const LoginBtn = styled.button`
   font-size: 20px;
   font-weight: 700;
   margin: 0 auto;
-  margin-top: 63px;
+  margin-top: 42px;
   border-radius: 28px/28px;
   background-color: #ffa724;
   color: white;
@@ -53,13 +55,13 @@ export const LoginBtn = styled.button`
 // InputStyled이랑 겹치는데 어떻게 해결...?
 
 export const SignInEmail = styled.p`
-  margin-top: 30px;
+  margin-top: 42px;
   margin-bottom: 50px;
   color: #848484;
   font-size: 16px;
 `;
 
-export const HrStyled = styled.div`
+/* export const HrStyled = styled.div`
   display: flex;
   flex-basis: 100%;
   align-items: center;
@@ -67,7 +69,6 @@ export const HrStyled = styled.div`
   font-size: 16px;
   margin: 8px 0px;
   margin-bottom: 0;
-
   &::before,
   &::after {
     content: "";
@@ -78,20 +79,18 @@ export const HrStyled = styled.div`
     line-height: 0px;
     margin: 0px 16px;
   }
-`;
+`; */
 
-export const SimpleLoginKaKao = styled.img`
+/* export const SimpleLoginKaKao = styled.img`
   margin-top: 60px;
   margin-right: 30px;
 `;
-
 export const SimpleLoginNaver = styled.img`
   margin-top: 60px;
-`;
+`; */
 
 export const GoToHome = styled.div`
-  margin-top: 28px;
-  position: relative;
+  margin-top: 176px;
   font-size: 16px;
   color: #848484;
 `;

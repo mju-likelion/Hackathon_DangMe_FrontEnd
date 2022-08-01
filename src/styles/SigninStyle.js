@@ -8,17 +8,31 @@ export const TopWrap = styled.div`
   margin-top: 30px;
 `;
 
+export const PrevArrowImg = styled.img`
+  position : absolute;
+  margin-top : 2px;
+  left:31px;
+  width: 18px;
+  height: 18px;
+`;
+
 export const SigninUserTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline-block;
-  margin-left: 135px;
+  text-align: center;
 `;
 
 export const SigninBar = styled.img`
-  display: block;
-  margin: 40px 182px 45px 156px;
+
+  margin-top : 40px;
+  margin-bottom: 45px;
+  width: 64px;
+  
 `;
+
+export const BarDiv=styled.div`
+  text-align : center;
+`
 
 export const SigninUserInfoBox = styled.div`
   margin-bottom: 34px;
@@ -32,12 +46,12 @@ export const SigninUserInfo = styled.p`
 `;
 
 export const EmailCheckBtn = styled.input`
+  text-align: center;
   position: absolute;
   margin-left: -85px;
   width: 86px;
   height: 34px;
   font-size: 15px;
-  text-align: center;
   border-radius: 30px;
   border: 1px solid #ffa724;
   background-color: #ffffff;
@@ -55,11 +69,9 @@ export const SigninUserInfoInput = styled.input`
   border: 0;
   border-bottom: 1px solid #dddddd;
   font-size: 18px;
-
   &::placeholder {
     color: #dddddd;
   }
-
   &:focus {
     color: #000000;
     outline: none;
@@ -67,7 +79,8 @@ export const SigninUserInfoInput = styled.input`
   }
 `;
 
-export const SigninBottomBtn = styled.button`
+export const SigninNextBtn = styled.button`
+  display : block;
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -75,8 +88,27 @@ export const SigninBottomBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
-  margin-top: 90px;
+  margin : auto;
+  margin-top: 111px;
+ 
+  &:active {
+    background-color: #b1d0ff;
+  }
+`;
 
+//중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
+
+export const SigninCompleteBtn = styled.button`
+  display : block;
+  width: 360px;
+  height: 60px;
+  background-color: #3385ff;
+  border-radius: 30px;
+  font-size: 24px;
+  color: #ffffff;
+  border: none;
+  margin : auto;
+  margin-top: 11px;
   &:active {
     background-color: #b1d0ff;
   }
@@ -85,24 +117,25 @@ export const SigninBottomBtn = styled.button`
 export const SigninPetTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline-block;
+  display: inline;
   margin-left: 105px;
 `;
 
 export const SigninPetimgTxt = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #848484;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  text-align: center;
 `;
 
 export const PetimgPrevBox = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #848484;
-  margin-left: 143px;
-  margin-bottom: 5px;
+  background-color: #dddddd;
+  margin : auto;
+  margin-bottom: 20px;
 `;
 
 export const PetImgPrev = styled.img`
@@ -124,15 +157,15 @@ export const SigninPetimgBtn = styled.button`
   border: none;
   text-align: center;
   display: block;
-  font-size: 14px;
-  margin-left: 143px;
-  margin-bottom: 40px;
+  font-size: 16px;
+  margin : auto;
+  margin-bottom: 20px;
 `;
 
-export const NextSigninPetBtn = styled.button`
+/* export const NextSigninPetBtn = styled.button`
   background-color: #ffffff;
   border: none;
   color: #848484;
   font-size: 18px;
   position: absolute;
-`;
+`; */

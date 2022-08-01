@@ -3,7 +3,7 @@ import petInfobar from "../img/petInfobar.png";
 import { useNavigate } from "react-router-dom";
 import {
   TopWrap,
-  SigninPetTitle,
+  SigninUserTitle,
   SigninStyled,
   SigninBar,
   SigninPetimgTxt,
@@ -12,9 +12,10 @@ import {
   SigninUserInfoBox,
   SigninUserInfo,
   SigninUserInfoInput,
-  SigninBottomBtn,
-  NextSigninPetBtn,
+  SigninCompleteBtn,
   PetimgPrevBox,
+  BarDiv,
+  PrevArrowImg
 } from "../styles/SigninStyle";
 import axios from "axios";
 import { userInfo } from "../atoms/SigninAtom";
@@ -72,12 +73,14 @@ const SigninDogInfo = () => {
     petImg.current.click();
   };
   return (
-    <SigninStyled>
+    <div>
       <TopWrap>
-        <img src={arrow} alt="arrow_prev" onClick={goPrev} />
-        <SigninPetTitle>반려견 정보 입력</SigninPetTitle>
+        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <SigninUserTitle>반려견 정보 입력</SigninUserTitle>
       </TopWrap>
+      <BarDiv>
       <SigninBar src={petInfobar} alt="petInfobar" />
+      </BarDiv>
       <SigninPetimgTxt>반려견 사진 등록</SigninPetimgTxt>
       <PetimgPrevBox>
         {fileImg && <PetImgPrev alt="preview" src={fileImg} />}
@@ -99,6 +102,7 @@ const SigninDogInfo = () => {
         </SigninPetimgBtn>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
+        <SigninStyled>
         <SigninUserInfoBox>
           <SigninUserInfo>이름</SigninUserInfo>
           <SigninUserInfoInput
@@ -127,12 +131,10 @@ const SigninDogInfo = () => {
             {...register('weight')}
           ></SigninUserInfoInput>
         </SigninUserInfoBox>
-        <NextSigninPetBtn >
-          다음에 입력하기
-        </NextSigninPetBtn>
-        <SigninBottomBtn disabled={isSubmitting}>완료</SigninBottomBtn>
+        </SigninStyled>
+        <SigninCompleteBtn disabled={isSubmitting}>완료</SigninCompleteBtn>
       </form>
-    </SigninStyled>
+    </div>
   );
 };
 
