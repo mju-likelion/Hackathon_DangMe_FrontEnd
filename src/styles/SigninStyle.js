@@ -9,7 +9,9 @@ export const TopWrap = styled.div`
 `;
 
 export const PrevArrowImg = styled.img`
-  vertical-align: top;
+  position: absolute;
+  margin-top: 2px;
+  left: 31px;
   width: 18px;
   height: 18px;
 `;
@@ -17,14 +19,17 @@ export const PrevArrowImg = styled.img`
 export const SigninUserTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline;
-  margin-left: 135px;
+  text-align: center;
 `;
 
 export const SigninBar = styled.img`
-  display: block;
-  margin: 40px 182px 45px 156px;
+  margin-top: 40px;
+  margin-bottom: 45px;
   width: 64px;
+`;
+
+export const BarDiv = styled.div`
+  text-align: center;
 `;
 
 export const SigninUserInfoBox = styled.div`
@@ -39,6 +44,7 @@ export const SigninUserInfo = styled.p`
 `;
 
 export const EmailCheckBtn = styled.input`
+  text-align: center;
   position: absolute;
   margin-left: -85px;
   width: 86px;
@@ -74,6 +80,7 @@ export const SigninUserInfoInput = styled.input`
 `;
 
 export const SigninNextBtn = styled.button`
+  display: block;
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -81,8 +88,8 @@ export const SigninNextBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
+  margin: auto;
   margin-top: 111px;
-  margin-left: 8px;
 
   &:active {
     background-color: #b1d0ff;
@@ -92,6 +99,7 @@ export const SigninNextBtn = styled.button`
 //중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
 
 export const SigninCompleteBtn = styled.button`
+  display: block;
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -99,8 +107,8 @@ export const SigninCompleteBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
+  margin: auto;
   margin-top: 11px;
-  margin-left: 8px;
 
   &:active {
     background-color: #b1d0ff;
@@ -110,8 +118,7 @@ export const SigninCompleteBtn = styled.button`
 export const SigninPetTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline;
-  margin-left: 105px;
+  text-align: center;
 `;
 
 export const SigninPetimgTxt = styled.p`
@@ -119,6 +126,7 @@ export const SigninPetimgTxt = styled.p`
   font-weight: 600;
   color: #848484;
   margin-bottom: 25px;
+  text-align: center;
 `;
 
 export const PetimgPrevBox = styled.div`
@@ -126,7 +134,7 @@ export const PetimgPrevBox = styled.div`
   height: 100px;
   border-radius: 50%;
   background-color: #dddddd;
-  margin-left: 143px;
+  margin: auto;
   margin-bottom: 20px;
 `;
 
@@ -150,7 +158,7 @@ export const SigninPetimgBtn = styled.button`
   text-align: center;
   display: block;
   font-size: 16px;
-  margin-left: 142px;
+  margin: auto;
   margin-bottom: 20px;
 `;
 

@@ -6,17 +6,22 @@ import {
   FormStyled,
   LogoStyled,
   InputStyled,
-  ForgotPassword,
   LoginBtn,
   SignInEmail,
-  HrStyled,
   GoToHome,
   ArrowStyled,
 } from "../styles/LoginStlye";
 import { useState } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { userInfo } from "../atoms/SigninAtom";
 const Login = () => {
   const [user, setUserId] = useState({ email: null, password: null });
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -24,15 +29,12 @@ const Login = () => {
   const gotoSignIn = () => {
     navigate("/signin");
   };
-  const putInfo = (e, type) => {
+  const onSubmit = (data) => {
     setUserId({
-      ...user,
-      [type]: e.target.value,
+      email: data.email,
+      password: data.password,
     });
-  };
-  //비밀번호, 이메일 틀렸을 때 alert창 보여주게끔 추가 -> 서버 api 수정 요청
-  const handleLogin = (e) => {
-    e.preventDefault();
+    //비밀번호, 이메일 틀렸을 때 alert창 보여주게끔 추가 -> 서버 api 수정 요청
     const response = axios.post("/auth/login", user);
     response
       .then((response) => {
@@ -49,23 +51,14 @@ const Login = () => {
     <LoginStyled>
       <LogoStyled alt="logo" src={logo} />
       <FormStyled>
+        <InputStyled {...register("email")} type="email" placeholder="이메일" />
         <InputStyled
-          onBlur={(e) => {
-            putInfo(e, "email");
-          }}
-          type="text"
-          placeholder="이메일"
-        />
-        <InputStyled
-          onBlur={(e) => {
-            putInfo(e, "password");
-          }}
+          {...register("password")}
           type="password"
           placeholder="비밀번호"
           maxLength={14}
         />
-
-        <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
+        <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
 
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>

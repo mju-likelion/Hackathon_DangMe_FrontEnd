@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       margin: 0 auto;
       padding: 0;
-      width : 428px;
       font-family: 'Pretendard';
       @media screen and (max-width: 428px) {
         width: 100%;
