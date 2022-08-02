@@ -6,6 +6,7 @@ import MyPage from './pages/Mypage';
 import Signin from './login/Signin';
 import Login from './login/Login';
 import SigninDogInfo from './login/SigninDogInfo';
+import SearchAddress from './address/SearchAddress';
 function App() {
   return (
     <div>
@@ -17,6 +18,7 @@ function App() {
         <Route path='/map' element={<Map/>}/>
         <Route path='/reservationHistory' element={<ReservationHistory/>}/>
         <Route path='/mypage' element={<MyPage/>}/>
+        <Route path='/searchAddress' element={<SearchAddress/>}/>
       </Routes>
       
     </div>
