@@ -23,16 +23,15 @@ export const SigninUserTitle = styled.p`
 `;
 
 export const SigninBar = styled.img`
-
-  margin-top : 40px;
+  margin-top: 40px;
   margin-bottom: 45px;
   width: 64px;
-  
 `;
 
-export const BarDiv=styled.div`
-  text-align : center;
-`
+export const BarDiv = styled.div`
+  text-align: center;
+`;
+
 
 export const SigninUserInfoBox = styled.div`
   margin-bottom: 34px;
@@ -95,7 +94,6 @@ export const SigninNextBtn = styled.button`
     background-color: #b1d0ff;
   }
 `;
-
 //중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
 
 export const SigninCompleteBtn = styled.button`
@@ -117,8 +115,7 @@ export const SigninCompleteBtn = styled.button`
 export const SigninPetTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  display: inline;
-  margin-left: 105px;
+  text-align: center;
 `;
 
 export const SigninPetimgTxt = styled.p`

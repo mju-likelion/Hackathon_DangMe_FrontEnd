@@ -13,6 +13,7 @@ import {
 } from "../styles/LoginStlye";
 import { useState } from "react";
 import axios from "axios";
+
 import {useForm} from 'react-hook-form';
 import { userInfo } from "../atoms/SigninAtom";
 const Login = () => {
@@ -22,6 +23,8 @@ const Login = () => {
     handleSubmit,
     formState: { isSubmitting },
   }=useForm();
+
+
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -42,9 +45,7 @@ const Login = () => {
     alert('로그인에 성공하였습니다.');
     goToHome();
   }).catch((error)=>alert(error));
-  
   }
-
   return (
     <LoginStyled>
       <LogoStyled alt="logo" src={logo}/>
@@ -53,9 +54,7 @@ const Login = () => {
         <InputStyled {...register('password')} type="password" placeholder="비밀번호" maxLength={14} />
         <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
-
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
-
       <GoToHome onClick={goToHome}>
         <span>어플 둘러보기</span>
         <ArrowStyled alt="arrow" src={arrow} />
