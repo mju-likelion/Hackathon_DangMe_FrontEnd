@@ -22,7 +22,7 @@ import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
 import { PetImgPrev } from "./../styles/SigninStyle";
-import {useForm} from 'react-hook-form';
+import { useForm } from "react-hook-form";
 const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
 const SigninDogInfo = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
@@ -34,6 +34,7 @@ const SigninDogInfo = () => {
     handleSubmit,
     formState: {isSubmitting },
   }=useForm();
+
   const goPrev = () => {
     navigate(-1);
   };
