@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import foot from '../img/foot.png'
 export const AddressPositionBox = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
@@ -61,4 +62,30 @@ export const LocationImg=styled.img`
 export const LocationText=styled.span`
     color : white;
     margin-right :171px;
+`
+
+export const TipBox=styled.div`
+    margin-top : 30px;
+    margin-left : 56px;
+`
+
+export const TipTitle=styled.h2`
+    
+`
+
+export const TipStyled=styled.div`
+    margin-top : 12px;
+`
+
+export const TipEx=styled.p`
+    color : #848484;
+`
+
+export const TipList=styled.li`
+    margin-bottom : 6px;
+   
+`
+
+export const TipMark=styled.ul`
+    list-style-image: foot;
 `
