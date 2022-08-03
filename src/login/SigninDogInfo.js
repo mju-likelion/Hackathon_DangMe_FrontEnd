@@ -54,7 +54,9 @@ const SigninDogInfo = () => {
   }
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
-    formData.append("petimg",event.target.files[0]);
+    setUserInfo({...userinfo,
+      'petImg' : event.target.files[0],
+      })
   };
   const handleSignin = () => {
     formData.append('data',JSON.stringify(userinfo));
