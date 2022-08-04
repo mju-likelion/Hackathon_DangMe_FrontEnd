@@ -17,7 +17,6 @@ const ButtomNav = () => {
         <styles.styledLinkImg src={calendarIcon} alt="calendar" />
       </styles.styledLink>
       <styles.styledLink to="/mypage">
-        {" "}
         <styles.styledLinkImg src={mypageIcon} alt="myPage" />
       </styles.styledLink>
     </styles.styledNav>

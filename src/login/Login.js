@@ -13,6 +13,7 @@ import {
 } from "../styles/LoginStlye";
 import { useState } from "react";
 import axios from "axios";
+
 import { useForm } from "react-hook-form";
 import { userInfo } from "../atoms/SigninAtom";
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm();
+
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -34,7 +36,6 @@ const Login = () => {
       email: data.email,
       password: data.password,
     });
-    //비밀번호, 이메일 틀렸을 때 alert창 보여주게끔 추가 -> 서버 api 수정 요청
     const response = axios.post("/auth/login", user);
     response
       .then((response) => {
@@ -46,7 +47,6 @@ const Login = () => {
       })
       .catch((error) => alert(error));
   };
-
   return (
     <LoginStyled>
       <LogoStyled alt="logo" src={logo} />
@@ -60,9 +60,7 @@ const Login = () => {
         />
         <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
-
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
-
       <GoToHome onClick={goToHome}>
         <span>어플 둘러보기</span>
         <ArrowStyled alt="arrow" src={arrow} />

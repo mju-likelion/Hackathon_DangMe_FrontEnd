@@ -13,6 +13,7 @@ export const userInfo = atom({
       weight: null,
       dogBreed: null,
       note: null,
+      petImg:null
     },
   ],
 });

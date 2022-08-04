@@ -5,7 +5,7 @@ import {
   HomeReservInfoBtn,
   HomeReservBox,
   HomeReservTitle,
-  HomeReservInfo,
+  HomeReservInfoBox,
   HomeReservBtn,
   UserPositionBox,
   UserPositionIcon,
@@ -14,12 +14,26 @@ import {
   PetShopListBox,
   PetShopListTitle,
   PetShopListSubTitle,
-  PetShopList,
+  PetShopInfoBox,
+  PetShopInfoImg,
+  PetShopInfoName,
+  PetShopInfoAddress,
+  PetShopInfoClosed,
+  HomeReservInfoImg,
+  HomeReservInfoShop,
+  HomeReservInfoName,
+  HomeReservInfoDate,
+  HomeReservInfoAny,
+  HomeReservInfoListWrap,
+  PetShopInfoListWrap,
 } from "../styles/HomeStyle";
 import positionIcon from "../img/positionIcon.png";
 import positionSet from "../img/positionSet.png";
 import { HomeStyled } from "./../styles/HomeStyle";
 import nextIcon from "../img/arrow_next_home.png";
+import petImg from "../img/pet.png";
+import petShopImg from "../img/petShop.png";
+import petImg2 from "../img/pet2.png";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -43,14 +57,45 @@ const Home = () => {
             onClick={goToReservHistory}
           />
         </HomeReservTitleBox>
-        <HomeReservInfo>댕댕이 정보 1</HomeReservInfo>
-        <HomeReservInfo>댕댕이 정보 2</HomeReservInfo>
+        <HomeReservInfoListWrap>
+          <HomeReservInfoBox>
+            <HomeReservInfoImg src={petImg} alt="pet" />
+            <HomeReservInfoName>결이</HomeReservInfoName>
+            <HomeReservInfoShop>멍멍 미용실</HomeReservInfoShop>
+            <HomeReservInfoDate>07/29 14:20</HomeReservInfoDate>
+          </HomeReservInfoBox>
+          <HomeReservInfoBox>
+            {/*예약 내역 없을 때*/}
+            <HomeReservInfoImg src={petImg2} alt="pet" />
+            <HomeReservInfoName>박둥둥</HomeReservInfoName>
+            <HomeReservInfoAny>예약 내역이 없습니다</HomeReservInfoAny>
+          </HomeReservInfoBox>
+        </HomeReservInfoListWrap>
       </HomeReservBox>
       <HomeReservBtn>미용 예약하기</HomeReservBtn>
       <PetShopListBox>
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
-        <PetShopList>리스트 영역1</PetShopList>
+        <PetShopInfoListWrap>
+          <PetShopInfoBox>
+            <PetShopInfoImg src={petShopImg} alt="petshop" />
+            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
+            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
+            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
+          </PetShopInfoBox>
+          <PetShopInfoBox>
+            <PetShopInfoImg src={petShopImg} alt="petshop" />
+            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
+            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
+            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
+          </PetShopInfoBox>
+          <PetShopInfoBox>
+            <PetShopInfoImg src={petShopImg} alt="petshop" />
+            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
+            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
+            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
+          </PetShopInfoBox>
+        </PetShopInfoListWrap>
       </PetShopListBox>
       <Routes>
         <Route path="/*" element={<ButtomNav />} />

@@ -69,7 +69,6 @@ export const SignInEmail = styled.p`
   font-size: 16px;
   margin: 8px 0px;
   margin-bottom: 0;
-
   &::before,
   &::after {
     content: "";
@@ -86,7 +85,6 @@ export const SignInEmail = styled.p`
   margin-top: 60px;
   margin-right: 30px;
 `;
-
 export const SimpleLoginNaver = styled.img`
   margin-top: 60px;
 `; */

@@ -3,7 +3,7 @@ import petInfobar from "../img/petInfobar.png";
 import { useNavigate } from "react-router-dom";
 import {
   TopWrap,
-  SigninPetTitle,
+  SigninUserTitle,
   SigninStyled,
   SigninBar,
   SigninPetimgTxt,
@@ -34,6 +34,7 @@ const SigninDogInfo = () => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm();
+
   const goPrev = () => {
     navigate(-1);
   };
@@ -53,17 +54,16 @@ const SigninDogInfo = () => {
   };
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
-    formData.append("petimg", event.target.files[0]);
+    setUserInfo({ ...userinfo, petImg: event.target.files[0] });
   };
-  const handleSignin = (e) => {
-    e.preventDefault();
+  const handleSignin = () => {
     formData.append("data", JSON.stringify(userinfo));
     console.log(formData.get("data"));
     axios
-      .post("/auth/register", formData)
+      .post("auth/dogdata/imgadd", formData)
       .then(function (response) {
         alert(response.data.data);
-        goToHome();
+        navigate("./");
       })
       .catch(function (error) {
         console.log(error);
@@ -77,7 +77,7 @@ const SigninDogInfo = () => {
     <div>
       <TopWrap>
         <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
-        <SigninPetTitle>반려견 정보 입력</SigninPetTitle>
+        <SigninUserTitle>반려견 정보 입력</SigninUserTitle>
       </TopWrap>
       <BarDiv>
         <SigninBar src={petInfobar} alt="petInfobar" />
