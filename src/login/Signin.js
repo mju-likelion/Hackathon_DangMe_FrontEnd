@@ -18,7 +18,6 @@ import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-
 const Signin = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const {
@@ -105,7 +104,16 @@ const Signin = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <SigninStyled>
           <SigninUserInfo>아이디(이메일)</SigninUserInfo>
-          <SigninUserInfoInput placeholder="이메일 주소" />
+          <SigninUserInfoInput
+            placeholder="이메일 주소"
+            {...register("email", {
+              pattern: {
+                value:
+                  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                message: "이메일 형식에 맞게 입력해주세요",
+              },
+            })}
+          />
           <EmailCheckBtn onClick={confirmEmailDup} value="중복확인" />
           <SigninUserInfoBox></SigninUserInfoBox>
           <SigninUserInfoBox>
@@ -142,6 +150,7 @@ const Signin = () => {
           <SigninUserInfoBox>
             <SigninUserInfo>핸드폰 번호</SigninUserInfo>
             <SigninUserInfoInput
+              onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
               {...register("phoneNum", {
                 pattern: {

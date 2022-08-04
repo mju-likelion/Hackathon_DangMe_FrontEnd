@@ -8,13 +8,13 @@ const ButtomNav = () => {
   return (
     <styles.styledNav>
       <styles.styledLink to="/home">
-        <styles.styledLinkImg src={homeIcon} alt="HOME" />
+        <styles.styledLinkImg src={homeIcon} alt="home" />
       </styles.styledLink>
       <styles.styledLink to="/map">
         <styles.styledLinkImg src={searchIcon} alt="search" />
       </styles.styledLink>
       <styles.styledLink to="/reservationHistory">
-        <styles.styledLinkImg src={calendarIcon} alt="calender" />
+        <styles.styledLinkImg src={calendarIcon} alt="calendar" />
       </styles.styledLink>
       <styles.styledLink to="/mypage">
         {" "}

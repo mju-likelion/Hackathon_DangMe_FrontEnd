@@ -23,7 +23,7 @@ import nextIcon from "../img/arrow_next_home.png";
 const Home = () => {
   const navigate = useNavigate();
 
-  const goReservHistory = () => {
+  const goToReservHistory = () => {
     navigate("/ReservationHistory");
   };
 
@@ -40,7 +40,7 @@ const Home = () => {
           <HomeReservInfoBtn
             src={nextIcon}
             alt="goReservHistory"
-            onClick={goReservHistory}
+            onClick={goToReservHistory}
           />
         </HomeReservTitleBox>
         <HomeReservInfo>댕댕이 정보 1</HomeReservInfo>
@@ -51,7 +51,6 @@ const Home = () => {
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
         <PetShopList>리스트 영역1</PetShopList>
-        <PetShopList>리스트 영역2</PetShopList>
       </PetShopListBox>
       <Routes>
         <Route path="/*" element={<ButtomNav />} />

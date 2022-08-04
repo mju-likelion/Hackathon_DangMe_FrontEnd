@@ -102,3 +102,11 @@ export const PetShopList = styled.div`
   width: 376px;
   height: 110px;
 `;
+
+export const PetShopInfoImg = styled.img``;
+
+export const PetShopInfoName = styled.p``;
+
+export const PetShopInfoAddress = styled.p``;
+
+export const PetShopInfoClosed = styled.p``;

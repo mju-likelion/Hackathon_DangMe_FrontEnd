@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <LoginStyled>
       <LogoStyled alt="logo" src={logo} />
-      <FormStyled>
+      <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <InputStyled {...register("email")} type="email" placeholder="이메일" />
         <InputStyled
           {...register("password")}
