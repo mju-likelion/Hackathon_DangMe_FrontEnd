@@ -58,7 +58,7 @@ export const HomeReservInfoListWrap = styled.div`
   overflow-x: auto;
   margin-top: 20px;
 `;
-//예약 현황 리스트 형식으로 변경 -> 사용자 dog info도 받아와야함^^;;
+
 export const HomeReservInfoBox = styled.div`
   margin-right: 12px;
   width: 145px;
@@ -144,7 +144,6 @@ export const PetShopInfoListWrap = styled.div`
   padding-bottom: 92px;
 `;
 
-//내 주변 샵 리스트도 외부API 연결 후에 리스트 형식으로 변경해주기
 export const PetShopInfoBox = styled.div`
   position: relative;
   margin: 0 0 12px 0;

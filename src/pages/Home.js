@@ -31,9 +31,8 @@ import positionIcon from "../img/positionIcon.png";
 import positionSet from "../img/positionSet.png";
 import { HomeStyled } from "./../styles/HomeStyle";
 import nextIcon from "../img/arrow_next_home.png";
-import petImg from "../img/pet.png";
-import petShopImg from "../img/petShop.png";
-import petImg2 from "../img/pet2.png";
+import tempData from "../data/tempData";
+import tempPetData from "../data/tempPetData";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -58,18 +57,23 @@ const Home = () => {
           />
         </HomeReservTitleBox>
         <HomeReservInfoListWrap>
-          <HomeReservInfoBox>
-            <HomeReservInfoImg src={petImg} alt="pet" />
-            <HomeReservInfoName>결이</HomeReservInfoName>
-            <HomeReservInfoShop>멍멍 미용실</HomeReservInfoShop>
-            <HomeReservInfoDate>07/29 14:20</HomeReservInfoDate>
-          </HomeReservInfoBox>
-          <HomeReservInfoBox>
-            {/*예약 내역 없을 때*/}
-            <HomeReservInfoImg src={petImg2} alt="pet" />
-            <HomeReservInfoName>박둥둥</HomeReservInfoName>
-            <HomeReservInfoAny>예약 내역이 없습니다</HomeReservInfoAny>
-          </HomeReservInfoBox>
+          {tempPetData.map((pet) => (
+            <HomeReservInfoBox>
+              <HomeReservInfoImg src={pet.petImg} />
+              {pet.reservDate === "" ? (
+                <>
+                  <HomeReservInfoName style={{ color: "#000000" }}>
+                    {pet.petName}
+                  </HomeReservInfoName>
+                  <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
+                </>
+              ) : (
+                <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
+              )}
+              <HomeReservInfoShop>{pet.petShopName}</HomeReservInfoShop>
+              <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate>
+            </HomeReservInfoBox>
+          ))}
         </HomeReservInfoListWrap>
       </HomeReservBox>
       <HomeReservBtn>미용 예약하기</HomeReservBtn>
@@ -77,24 +81,14 @@ const Home = () => {
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
         <PetShopInfoListWrap>
-          <PetShopInfoBox>
-            <PetShopInfoImg src={petShopImg} alt="petshop" />
-            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
-            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
-            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
-          </PetShopInfoBox>
-          <PetShopInfoBox>
-            <PetShopInfoImg src={petShopImg} alt="petshop" />
-            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
-            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
-            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
-          </PetShopInfoBox>
-          <PetShopInfoBox>
-            <PetShopInfoImg src={petShopImg} alt="petshop" />
-            <PetShopInfoName>멍멍 미용실</PetShopInfoName>
-            <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
-            <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
-          </PetShopInfoBox>
+          {tempData.map((petShop) => (
+            <PetShopInfoBox>
+              <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
+              <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
+              <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
+              <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
+            </PetShopInfoBox>
+          ))}
         </PetShopInfoListWrap>
       </PetShopListBox>
       <Routes>
