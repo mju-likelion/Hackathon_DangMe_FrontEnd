@@ -111,7 +111,11 @@ const Signin = () => {
               },
             })}
           />
-          <EmailCheckBtn onClick={confirmEmailDup} value="중복확인" />
+          <EmailCheckBtn
+            onClick={confirmEmailDup}
+            value="중복확인"
+            type="button"
+          />
           {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
           <SigninUserInfoBox></SigninUserInfoBox>
           <SigninUserInfoBox>
@@ -119,9 +123,11 @@ const Signin = () => {
             <SigninUserInfoInput
               type="password"
               placeholder="6자 이상~14자 이하"
+              minLength={6}
+              maxLength={14}
               {...register('password', {
                 validate: pw_check,
-                maxLength: 12,
+                maxLength: 14,
                 minLength: 6,
               })}
             />
@@ -130,9 +136,11 @@ const Signin = () => {
             )}
           </SigninUserInfoBox>
           <SigninUserInfoBox>
-            <SigninUserInfo>비밀번호 확인</SigninUserInfo>
             <SigninUserInfoInput
               type="password"
+              placeholder="비밀번호 확인"
+              minLength={6}
+              maxLength={14}
               {...register('confirmPassword', {
                 validate: (value) => value === getValues('password'),
               })}
@@ -150,6 +158,7 @@ const Signin = () => {
             <SigninUserInfoInput
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
+              maxLength={11}
               {...register('phoneNum', {
                 pattern: {
                   value: /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
