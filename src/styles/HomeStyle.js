@@ -52,16 +52,60 @@ export const HomeReservInfoBtn = styled.img`
   margin-left: 238px;
 `;
 
-//예약 현황 리스트 형식으로 변경 -> 사용자 dog info도 받아와야함^^;;
-export const HomeReservInfo = styled.div`
+export const HomeReservInfoListWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
   margin-top: 20px;
+`;
+
+export const HomeReservInfoBox = styled.div`
   margin-right: 12px;
   width: 145px;
   height: 165px;
   border: 1px solid #dddddd;
   border-radius: 30px;
   background: #ffffff;
-  display: inline-block;
+  flex-shrink: 0;
+`;
+
+export const HomeReservInfoImg = styled.img`
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+  margin-top: 12px;
+`;
+
+export const HomeReservInfoName = styled.p`
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  color: #ffa724;
+  margin-bottom: 4px;
+  margin-top: 12px;
+`;
+
+export const HomeReservInfoShop = styled.p`
+  font-weight: 600;
+  font-size: 13px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 4px;
+`;
+
+export const HomeReservInfoDate = styled.p`
+  font-size: 13px;
+  color: #000000;
+  text-align: center;
+`;
+
+export const HomeReservInfoAny = styled.p`
+  font-size: 13px;
+  color: #848484;
+  text-align: center;
+  margin-top: 12px;
 `;
 
 export const HomeReservBtn = styled.button`
@@ -73,7 +117,7 @@ export const HomeReservBtn = styled.button`
   font-weight: 700;
   font-size: 16px;
   color: #ffffff;
-  margin: 20px 137px 40px 111px;
+  margin: 20px 137px 40px 137px;
 `;
 
 export const PetShopListBox = styled.div`
@@ -93,12 +137,56 @@ export const PetShopListSubTitle = styled.p`
   margin: 20px 0 20px 26px;
 `;
 
-//내 주변 샵 리스트도 외부API 연결 후에 리스트 형식으로 변경해주기
-export const PetShopList = styled.div`
-  margin: 20px 26px 12px 0;
+export const PetShopInfoListWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 92px;
+`;
+
+export const PetShopInfoBox = styled.div`
+  position: relative;
+  margin: 0 0 12px 0;
   border: 1px solid #dddddd;
   border-radius: 20px;
   background: #ffffff;
   width: 376px;
   height: 110px;
+`;
+
+export const PetShopInfoImg = styled.img`
+  margin-top: 12px;
+  margin-left: 12px;
+  margin-bottom: 12px;
+  width: 112px;
+  height: 86px;
+  border-radius: 10px;
+`;
+
+export const PetShopInfoName = styled.p`
+  position: absolute;
+  top: 14px;
+  left: 136px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  width: 60%;
+`;
+
+export const PetShopInfoAddress = styled.p`
+  position: absolute;
+  left: 136px;
+  top: 39px;
+  font-size: 12px;
+  color: #848484;
+  width: 60%;
+`;
+
+export const PetShopInfoClosed = styled.p`
+  position: absolute;
+  left: 136px;
+  top: 79px;
+  font-size: 14px;
+  color: #000000;
+  width: 60%;
 `;
