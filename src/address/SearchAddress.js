@@ -25,7 +25,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { DaumPostcodeEmbed } from 'react-daum-postcode';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-
 const { kakao } = window;
 
 const SearchAddress = () => {
@@ -44,6 +43,23 @@ const SearchAddress = () => {
     setTimeout(() => {
       navigate('/location');
     }, 500);
+  };
+  const onSuccess = (position) => {
+    setUserAddress({
+      coordinateX: position.coords.latitude,
+      coordinateY: position.coords.longitude,
+    });
+    navigate('/location');
+  };
+  const onError = () => {
+    setUserAddress({
+      coordinateX: 37.22488354862069,
+      coordinateY: 127.1877995370437,
+    });
+    navigate('/location');
+  };
+  const allowGPS = () => {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
   };
   const handleComplete = (data) => {
     setUserAddress({
@@ -74,7 +90,9 @@ const SearchAddress = () => {
           <SearchBox>
             <UserLocationDiv>
               <LocationImg src={location} alt="locationImg" />
-              <LocationText onClick={goMap}>현재 위치로 설정하기</LocationText>
+              <LocationText onClick={allowGPS}>
+                현재 위치로 설정하기
+              </LocationText>
               <img src={nextIcon} alt="nextArrow" />
             </UserLocationDiv>
             <DaumPostcodeEmbed

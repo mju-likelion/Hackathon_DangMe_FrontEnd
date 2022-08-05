@@ -20,7 +20,7 @@ import {
 import axios from 'axios';
 import { userInfo } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { PetImgPrev } from './../styles/SigninStyle';
 import { useForm } from 'react-hook-form';
 const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
@@ -34,13 +34,15 @@ const SigninDogInfo = () => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm();
-
+  useEffect(() => {
+    console.log(userinfo);
+  }, [userinfo]);
   const goPrev = () => {
     navigate(-1);
   };
-  const goToHome = () => {
-    navigate('/home');
-  };
+  const userPromise = new Promise((res, rej) => {
+    setUserInfo({});
+  });
   const onSubmit = (data) => {
     setUserInfo({
       ...userinfo,
@@ -50,15 +52,17 @@ const SigninDogInfo = () => {
       dogBreed: data.dogBreed,
     });
     console.log(userinfo);
+    console.log(data);
     handleSignin();
   };
-  const onImgChange = async (event) => {
+  const onImgChange = (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
     formData.append('petimg', event.target.files[0]);
   };
   const handleSignin = () => {
-    formData.append('data', JSON.stringify(userinfo));
-    console.log(userinfo);
+    for (let [key, value] of Object.entries(userinfo)) {
+      formData.append(key, value);
+    }
     axios
       .post('auth/register', formData)
       .then(function (response) {
