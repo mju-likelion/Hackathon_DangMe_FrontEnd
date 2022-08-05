@@ -1,7 +1,7 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const userInfo = atom({
-  key: "userinfo",
+  key: 'userinfo',
   default: [
     {
       userName: null,
@@ -13,7 +13,18 @@ export const userInfo = atom({
       weight: null,
       dogBreed: null,
       note: null,
-      petImg:null
+      petimg: null,
+    },
+  ],
+});
+
+export const userLocation = atom({
+  key: 'userLocation',
+  default: [
+    {
+      address: null,
+      coordinateX: null,
+      coordinateY: null,
     },
   ],
 });

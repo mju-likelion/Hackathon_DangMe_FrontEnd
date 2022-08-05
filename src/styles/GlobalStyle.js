@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { screen } from "@testing-library/react";
+import { createGlobalStyle } from 'styled-components';
+import { screen } from '@testing-library/react';
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -18,15 +18,9 @@ const GlobalStyle = createGlobalStyle`
       margin: 0 auto;
       padding: 0;
       font-family: 'Pretendard';
-<<<<<<< HEAD
-      @media screen and (max-width : 428px){
-        width : 100%;        
-      }
-=======
       @media screen and (max-width: 428px) {
         width: 100%;
     }
->>>>>>> origin/feature/mainPage
     }
     body{
 

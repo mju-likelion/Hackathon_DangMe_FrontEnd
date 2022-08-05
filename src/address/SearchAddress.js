@@ -1,69 +1,91 @@
-import {AddressPositionBox,
-TopWrap,
-PrevArrowImg,
-SearchAddressTitle,
-SearchAddressInput,
-SearchImgStyled,
-SearchBox,
-LocationImg,
-UserLocationDiv,
-LocationText,
-TipBox,
-TipTitle,
-TipStyled,
-TipList,
-TipEx,
-TipMark
+/* global kakao */
+import {
+  AddressPositionBox,
+  TopWrap,
+  PrevArrowImg,
+  SearchAddressTitle,
+  SearchAddressInput,
+  SearchImgStyled,
+  SearchBox,
+  LocationImg,
+  UserLocationDiv,
+  LocationText,
+  TipBox,
+  TipTitle,
+  TipStyled,
+  TipList,
+  TipEx,
+  TipMark,
 } from '../styles/AddressStyle';
 import prevIcon from '../img/arrow_prev_address.png';
 import SearchImg from '../img/search_white.png';
 import location from '../img/location.png';
 import nextIcon from '../img/arrow_next_white.png';
-import { useNavigate } from 'react-router-dom';
-const SearchAddress=()=>{
-    const navigate=useNavigate();
-    const goPrev = () => {
-        navigate(-1);
-      };
-    return(
-        <div>
-            <AddressPositionBox>
-            <TopWrap>
-                <PrevArrowImg src={prevIcon} alt="prevBtn" onClick={goPrev} />
-                
-                <SearchAddressTitle>주소검색</SearchAddressTitle>
-                <SearchBox>
-                    <SearchImgStyled src={SearchImg} alt="searchImg"/>
-                    <SearchAddressInput placeholder='지번, 도로명, 건물명 검색'/>
-                    <UserLocationDiv>
-                       <LocationImg src={location} alt="locationImg"/>
-                       <LocationText>현재 위치로 설정하기</LocationText>
-                       <img src={nextIcon} alt="nextArrow"/>
-                    </UserLocationDiv>
-                </SearchBox>
-            </TopWrap>
-                
-            </AddressPositionBox>
-            <TipBox>
-                <TipTitle>검색 TIP</TipTitle>
-                <TipMark>
-                    <TipStyled>
-                    <TipList>도로명+건물번호</TipList>
-                    <TipEx>예)댕댕로123</TipEx>
-                    </TipStyled>
-                    <TipStyled>
-                    <TipList>동/읍/면/리 + 번지</TipList>
-                    <TipEx>예)댕댕동 12-3</TipEx>
-                    </TipStyled>
-                    <TipStyled>
-                    <TipList>건물명, 아파트명</TipList>
-                    <TipEx>예)댕댕로아파트 123동</TipEx>
-                    </TipStyled>
-                </TipMark>
+import { useNavigate, Link } from 'react-router-dom';
+import { DaumPostcodeEmbed } from 'react-daum-postcode';
+import { userLocation } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
 
-            </TipBox>
-        </div>
-    )   
-}
+const { kakao } = window;
+
+const SearchAddress = () => {
+  const [userAddress, setUserAddress] = useRecoilState(userLocation);
+  const navigate = useNavigate();
+  const goPrev = () => {
+    navigate(-1);
+  };
+  const goMap = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserAddress({
+        coordinateX: position.coords.latitude,
+        coordinateY: position.coords.longitude,
+      });
+    });
+    setTimeout(() => {
+      navigate('/location');
+    }, 500);
+  };
+  const handleComplete = (data) => {
+    setUserAddress({
+      ...userAddress,
+      address: data.address,
+    });
+    geocoder.addressSearch(data.address, handleCoordinate);
+    console.log(data.address);
+  };
+  var geocoder = new kakao.maps.services.Geocoder();
+
+  var handleCoordinate = function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      setUserAddress({
+        ...userAddress,
+        coordinateX: result[0].road_address.x,
+        coordinateY: result[0].road_address.y,
+      });
+    }
+  };
+
+  return (
+    <div>
+      <AddressPositionBox>
+        <TopWrap>
+          <PrevArrowImg src={prevIcon} alt="prevBtn" onClick={goPrev} />
+          <SearchAddressTitle>주소검색</SearchAddressTitle>
+          <SearchBox>
+            <UserLocationDiv>
+              <LocationImg src={location} alt="locationImg" />
+              <LocationText onClick={goMap}>현재 위치로 설정하기</LocationText>
+              <img src={nextIcon} alt="nextArrow" />
+            </UserLocationDiv>
+            <DaumPostcodeEmbed
+              style={{ marginTop: '20px', height: '800px' }}
+              onComplete={handleComplete}
+            />
+          </SearchBox>
+        </TopWrap>
+      </AddressPositionBox>
+    </div>
+  );
+};
 
 export default SearchAddress;
