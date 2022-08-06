@@ -32,27 +32,22 @@ const SigninDogInfo = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting },
   } = useForm();
   useEffect(() => {
-    console.log(userinfo);
-  }, [userinfo]);
+    const subscription = watch((value, { name }) => {
+      setUserInfo({
+        ...userinfo,
+        [name]: value.name,
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
   const goPrev = () => {
     navigate(-1);
   };
-  const userPromise = new Promise((res, rej) => {
-    setUserInfo({});
-  });
   const onSubmit = (data) => {
-    setUserInfo({
-      ...userinfo,
-      petName: data.petName,
-      age: data.age,
-      weight: data.weight,
-      dogBreed: data.dogBreed,
-    });
-    console.log(userinfo);
-    console.log(data);
     handleSignin();
   };
   const onImgChange = (event) => {
@@ -62,8 +57,10 @@ const SigninDogInfo = () => {
   const handleSignin = () => {
     for (let [key, value] of Object.entries(userinfo)) {
       formData.append(key, value);
+      console.log(formData.get(key));
     }
-    axios
+    console.log(formData.get('petimg'));
+    /*axios
       .post('auth/register', formData)
       .then(function (response) {
         alert(response.data.data);
@@ -71,7 +68,7 @@ const SigninDogInfo = () => {
       })
       .catch(function (error) {
         console.log(formData.get('petimg'));
-      });
+      });*/
   };
   const onImgInputBtnClick = (e) => {
     e.preventDefault();
