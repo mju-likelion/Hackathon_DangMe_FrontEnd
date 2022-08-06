@@ -37,10 +37,13 @@ const SigninDogInfo = () => {
   } = useForm();
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      setUserInfo({
-        ...userinfo,
-        [name]: value.name,
+      setUserInfo((previnfo) => {
+        return {
+          ...previnfo,
+          [name]: value[name],
+        };
       });
+      console.log(name, value[name]);
     });
     return () => subscription.unsubscribe();
   }, [watch]);
@@ -57,8 +60,9 @@ const SigninDogInfo = () => {
   const handleSignin = () => {
     for (let [key, value] of Object.entries(userinfo)) {
       formData.append(key, value);
-      console.log(formData.get(key));
+      console.log(key, value);
     }
+
     console.log(formData.get('petimg'));
     /*axios
       .post('auth/register', formData)
