@@ -64,7 +64,7 @@ const SigninDogInfo = () => {
     }
 
     console.log(formData.get('petimg'));
-    /*axios
+    axios
       .post('auth/register', formData)
       .then(function (response) {
         alert(response.data.data);
@@ -72,7 +72,7 @@ const SigninDogInfo = () => {
       })
       .catch(function (error) {
         console.log(formData.get('petimg'));
-      });*/
+      });
   };
   const onImgInputBtnClick = (e) => {
     e.preventDefault();

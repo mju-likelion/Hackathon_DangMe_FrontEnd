@@ -71,7 +71,7 @@ const Signin = () => {
     e.preventDefault();
     const Email = getValues('email');
     if (!email_check(Email)) alert('올바른 이메일 형식으로 입력해주세요');
-    /*else {
+    else {
       const response = axios.post('/auth/emailsame', {
         email: Email,
       });
@@ -82,7 +82,7 @@ const Signin = () => {
         .catch((e) => {
           alert('이미 가입된 사용자입니다.');
         });
-    }*/
+    }
   };
   const errorStyled = {
     position: 'absolute',

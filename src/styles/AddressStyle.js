@@ -65,31 +65,29 @@ export const LocationText = styled.span`
   margin-right: 17px;
 `;
 
-export const TipBox = styled.div`
-  margin-top: 30px;
-  margin-left: 56px;
-`;
-
-export const TipTitle = styled.h2``;
-
-export const TipStyled = styled.div`
-  margin-top: 12px;
-`;
-
-export const TipEx = styled.p`
-  color: #848484;
-`;
-
-export const TipList = styled.li`
-  margin-bottom: 6px;
-`;
-
-export const TipMark = styled.ul`
-  list-style-image: url('../img/foot.png');
-`;
-
 export const AddressBox = styled.div`
   width: 100%;
   height: 240px;
-  position: relative;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 20% 20% 0% 0%;
+  text-align: center;
+`;
+
+export const AddressBtn = styled.button`
+  margin-top: 30px;
+  width: 360px;
+  height: 56px;
+  border-radius: 30px;
+  border-style: none;
+  background-color: #3385ff;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+export const AddressText = styled.p`
+  margin-top: 35px;
+  font-weight: 600;
+  font-size: 20px;
 `;
