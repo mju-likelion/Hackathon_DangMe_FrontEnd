@@ -62,12 +62,14 @@ const SearchAddress = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   };
   const handleComplete = (data) => {
-    setUserAddress({
-      ...userAddress,
-      address: data.address,
+    setUserAddress((prevAddress) => {
+      return {
+        ...prevAddress,
+        address: data.address,
+      };
     });
-    geocoder.addressSearch(data.address, handleCoordinate);
     console.log(data.address);
+    navigate('/home');
   };
   var geocoder = new kakao.maps.services.Geocoder();
 

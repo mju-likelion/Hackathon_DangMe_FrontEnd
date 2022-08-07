@@ -22,7 +22,7 @@ export const userLocation = atom({
   key: 'userLocation',
   default: [
     {
-      address: null,
+      address: '경기 용인시 처인구 명지로 116',
       coordinateX: null,
       coordinateY: null,
     },

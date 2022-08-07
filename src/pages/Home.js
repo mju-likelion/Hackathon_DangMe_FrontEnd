@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import ButtomNav from "../ButtomNav";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import ButtomNav from '../ButtomNav';
 import {
   HomeReservTitleBox,
   HomeReservInfoBtn,
@@ -26,25 +26,31 @@ import {
   HomeReservInfoAny,
   HomeReservInfoListWrap,
   PetShopInfoListWrap,
-} from "../styles/HomeStyle";
-import positionIcon from "../img/positionIcon.png";
-import positionSet from "../img/positionSet.png";
-import { HomeStyled } from "./../styles/HomeStyle";
-import nextIcon from "../img/arrow_next_home.png";
-import tempData from "../data/tempData";
-import tempPetData from "../data/tempPetData";
+} from '../styles/HomeStyle';
+import positionIcon from '../img/positionIcon.png';
+import positionSet from '../img/positionSet.png';
+import { HomeStyled } from './../styles/HomeStyle';
+import nextIcon from '../img/arrow_next_home.png';
+import tempData from '../data/tempData';
+import tempPetData from '../data/tempPetData';
+import { userLocation } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
 const Home = () => {
   const navigate = useNavigate();
-
+  const [userlocation, setUserLocation] = useRecoilState(userLocation);
   const goToReservHistory = () => {
-    navigate("/ReservationHistory");
+    navigate('/ReservationHistory');
   };
-
+  const goSearchAddress = () => {
+    navigate('/searchAddress');
+  };
   return (
     <HomeStyled>
       <UserPositionBox>
         <UserPositionIcon src={positionIcon} alt="position_icon" />
-        <UserPositionText>경기도 용인시 처인구 역북동</UserPositionText>
+        <UserPositionText onClick={goSearchAddress}>
+          {userlocation.address}
+        </UserPositionText>
         <UserPositionSetBtn src={positionSet} />
       </UserPositionBox>
       <HomeReservBox>
@@ -60,9 +66,9 @@ const Home = () => {
           {tempPetData.map((pet) => (
             <HomeReservInfoBox>
               <HomeReservInfoImg src={pet.petImg} />
-              {pet.reservDate === "" ? (
+              {pet.reservDate === '' ? (
                 <>
-                  <HomeReservInfoName style={{ color: "#000000" }}>
+                  <HomeReservInfoName style={{ color: '#000000' }}>
                     {pet.petName}
                   </HomeReservInfoName>
                   <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
