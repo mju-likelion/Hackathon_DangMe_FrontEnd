@@ -20,7 +20,7 @@ import {
 import axios from "axios";
 import { userInfo } from "../atoms/SigninAtom";
 import { useRecoilState } from "recoil";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { PetImgPrev } from "./../styles/SigninStyle";
 import { useForm } from "react-hook-form";
 import nonePetImg from "../img/nonePetImg.png";
@@ -34,9 +34,21 @@ const SigninDogInfo = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting },
   } = useForm();
-
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      setUserInfo((previnfo) => {
+        return {
+          ...previnfo,
+          [name]: value[name],
+        };
+      });
+      console.log(name, value[name]);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
   const goPrev = () => {
     navigate(-1);
   };
@@ -57,16 +69,20 @@ const SigninDogInfo = () => {
     formData.append("petimg", event.target.files[0]);
   };
   const handleSignin = () => {
-    formData.append("data", JSON.stringify(userinfo));
-    console.log(formData.get("data"));
+    for (let [key, value] of Object.entries(userinfo)) {
+      formData.append(key, value);
+      console.log(key, value);
+    }
+
+    console.log(formData.get("petimg"));
     axios
       .post("auth/register", formData)
       .then(function (response) {
         alert(response.data.data);
-        navigate("./");
+        navigate("/");
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(formData.get("petimg"));
       });
   };
   const onImgInputBtnClick = (e) => {

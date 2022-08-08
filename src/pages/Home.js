@@ -41,13 +41,30 @@ const Home = () => {
   const navigate = useNavigate();
   const [petShopList, setPetShopList] = useState([]);
 
+  /*   useEffect(() => {
+    axios
+      .get("api/coordinate/shop-dis")
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []); */
+
   useEffect(() => {
-    axios.get("").then((response) => {
-      console.log(response);
-      console.log(response.data);
-      setPetShopList(response.data);
-    });
-  });
+    const fetchPetShops = async () => {
+      try {
+        const response = await axios.get("api/coordinate/shop-dis");
+        console.log(response);
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchPetShops();
+  }, []);
 
   const goToReservHistory = () => {
     navigate("/ReservationHistory");

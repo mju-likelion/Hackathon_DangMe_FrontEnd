@@ -45,7 +45,7 @@ const Login = () => {
         alert("로그인에 성공하였습니다.");
         goToHome();
       })
-      .catch((error) => alert(error));
+      .catch((error) => alert(error.response.data));
   };
   return (
     <LoginStyled>
