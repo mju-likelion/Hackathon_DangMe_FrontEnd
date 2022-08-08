@@ -23,6 +23,8 @@ import { useRecoilState } from "recoil";
 import { useRef, useState } from "react";
 import { PetImgPrev } from "./../styles/SigninStyle";
 import { useForm } from "react-hook-form";
+import nonePetImg from "../img/nonePetImg.png";
+
 const formData = new FormData(); //이미지 서버 전달위한 FormData객체 생성
 const SigninDogInfo = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
@@ -38,9 +40,7 @@ const SigninDogInfo = () => {
   const goPrev = () => {
     navigate(-1);
   };
-  const goToHome = () => {
-    navigate("/home");
-  };
+
   const onSubmit = (data) => {
     setUserInfo({
       ...userinfo,
@@ -54,13 +54,13 @@ const SigninDogInfo = () => {
   };
   const onImgChange = async (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
-    setUserInfo({ ...userinfo, petImg: event.target.files[0] });
+    formData.append("petimg", event.target.files[0]);
   };
   const handleSignin = () => {
     formData.append("data", JSON.stringify(userinfo));
     console.log(formData.get("data"));
     axios
-      .post("auth/dogdata/imgadd", formData)
+      .post("auth/register", formData)
       .then(function (response) {
         alert(response.data.data);
         navigate("./");
@@ -84,7 +84,11 @@ const SigninDogInfo = () => {
       </BarDiv>
       <SigninPetimgTxt>반려견 사진 등록</SigninPetimgTxt>
       <PetimgPrevBox>
-        {fileImg && <PetImgPrev alt="preview" src={fileImg} />}
+        {fileImg ? (
+          <PetImgPrev alt="preview" src={fileImg} />
+        ) : (
+          <PetImgPrev alt="preview" src={nonePetImg} />
+        )}
       </PetimgPrevBox>
       <SigninPetimgInput
         type="file"

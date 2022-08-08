@@ -4,7 +4,7 @@ export const HomeStyled = styled.div``;
 
 export const UserPositionBox = styled.div`
   background-color: #ffa724;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 30px 30px;
   height: 76px;
   padding-top: 30.5px;
 `;
@@ -118,6 +118,10 @@ export const HomeReservBtn = styled.button`
   font-size: 16px;
   color: #ffffff;
   margin: 20px 137px 40px 137px;
+
+  &:active {
+    background-color: #b1d0ff;
+  }
 `;
 
 export const PetShopListBox = styled.div`

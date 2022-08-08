@@ -33,11 +33,28 @@ import { HomeStyled } from "./../styles/HomeStyle";
 import nextIcon from "../img/arrow_next_home.png";
 import tempData from "../data/tempData";
 import tempPetData from "../data/tempPetData";
+import defaultPetImg from "../img/defaultPetImg.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const Home = () => {
   const navigate = useNavigate();
+  const [petShopList, setPetShopList] = useState([]);
+
+  useEffect(() => {
+    axios.get("").then((response) => {
+      console.log(response);
+      console.log(response.data);
+      setPetShopList(response.data);
+    });
+  });
 
   const goToReservHistory = () => {
     navigate("/ReservationHistory");
+  };
+
+  const goToReservation = () => {
+    navigate("/Reservation");
   };
 
   return (
@@ -59,7 +76,11 @@ const Home = () => {
         <HomeReservInfoListWrap>
           {tempPetData.map((pet) => (
             <HomeReservInfoBox>
-              <HomeReservInfoImg src={pet.petImg} />
+              {pet.petImg === "" ? (
+                <HomeReservInfoImg src={defaultPetImg} />
+              ) : (
+                <HomeReservInfoImg src={pet.petImg} />
+              )}
               {pet.reservDate === "" ? (
                 <>
                   <HomeReservInfoName style={{ color: "#000000" }}>
@@ -76,7 +97,7 @@ const Home = () => {
           ))}
         </HomeReservInfoListWrap>
       </HomeReservBox>
-      <HomeReservBtn>미용 예약하기</HomeReservBtn>
+      <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>
       <PetShopListBox>
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>

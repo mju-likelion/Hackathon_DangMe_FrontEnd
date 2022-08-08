@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const styledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   float: left;
   width: 25%;
   text-align: center;
@@ -10,12 +10,12 @@ export const styledLink = styled(Link)`
 `;
 
 //click 시 색 바뀌게 회->검으로 일단 후에 수정하자
-export const styledLinkImg = styled.img`
+export const StyledLinkImg = styled.img`
   width: 26px;
   height: 26px;
 `;
 
-export const styledNav = styled.nav`
+export const StyledNav = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
