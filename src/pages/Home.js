@@ -35,10 +35,13 @@ import tempData from "../data/tempData";
 import tempPetData from "../data/tempPetData";
 import defaultPetImg from "../img/defaultPetImg.png";
 import { useEffect, useState } from "react";
+import { userLocation } from "../atoms/SigninAtom";
+import { useRecoilState } from "recoil";
 import axios from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [userlocation, setUserLocation] = useRecoilState(userLocation);
   const [petShopList, setPetShopList] = useState([]);
 
   /*   useEffect(() => {
@@ -69,6 +72,9 @@ const Home = () => {
   const goToReservHistory = () => {
     navigate("/ReservationHistory");
   };
+  const goSearchAddress = () => {
+    navigate("/searchAddress");
+  };
 
   const goToReservation = () => {
     navigate("/Reservation");
@@ -78,7 +84,9 @@ const Home = () => {
     <HomeStyled>
       <UserPositionBox>
         <UserPositionIcon src={positionIcon} alt="position_icon" />
-        <UserPositionText>경기도 용인시 처인구 역북동</UserPositionText>
+        <UserPositionText onClick={goSearchAddress}>
+          {userlocation.address}
+        </UserPositionText>
         <UserPositionSetBtn src={positionSet} />
       </UserPositionBox>
       <HomeReservBox>

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
+import { Suspense } from "react";
 import { RecoilRoot } from "recoil";
 import axios from "axios";
 
@@ -12,8 +13,10 @@ axios.defaults.baseURL = "https://d58c-58-78-54-29.jp.ngrok.io/";
 root.render(
   <BrowserRouter>
     <RecoilRoot>
-      <GlobalStyle />
-      <App />
+      <Suspense fallback={<div>Loading...</div>}>
+        <GlobalStyle />
+        <App />
+      </Suspense>
     </RecoilRoot>
   </BrowserRouter>
 );

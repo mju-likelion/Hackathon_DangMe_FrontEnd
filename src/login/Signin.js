@@ -1,6 +1,6 @@
-import arrow from "../img/arrow_prev.png";
-import userInfobar from "../img/userInfobar.png";
-import { useNavigate } from "react-router-dom";
+import arrow from '../img/arrow_prev.png';
+import userInfobar from '../img/userInfobar.png';
+import { useNavigate } from 'react-router-dom';
 import {
   SigninStyled,
   TopWrap,
@@ -13,11 +13,11 @@ import {
   SigninNextBtn,
   PrevArrowImg,
   BarDiv,
-} from "../styles/SigninStyle";
-import { userInfo } from "../atoms/SigninAtom";
-import { useRecoilState } from "recoil";
-import axios from "axios";
-import { useForm } from "react-hook-form";
+} from '../styles/SigninStyle';
+import { userInfo } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
 const Signin = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const {
@@ -27,11 +27,11 @@ const Signin = () => {
     getValues,
   } = useForm();
   const handleChange = () => {
-    console.log(getValues("phoneNum"));
+    console.log(getValues('phoneNum'));
   };
   const navigate = useNavigate();
   const toDogInfo = () => {
-    navigate("/signin/doginfo");
+    navigate('/signin/doginfo');
   };
   const goPrev = () => {
     navigate(-1);
@@ -69,25 +69,25 @@ const Signin = () => {
   //중복확인 버튼 눌렀을 때 이벤트 관리
   const confirmEmailDup = (e) => {
     e.preventDefault();
-    const Email = getValues("email");
-    if (!email_check(Email)) alert("올바른 이메일 형식으로 입력해주세요");
+    const Email = getValues('email');
+    if (!email_check(Email)) alert('올바른 이메일 형식으로 입력해주세요');
     else {
-      const response = axios.post("/auth/emailsame", {
+      const response = axios.post('/auth/emailsame', {
         email: Email,
       });
       response
         .then(() => {
-          alert("사용 가능한 이메일입니다.");
+          alert('사용 가능한 이메일입니다.');
         })
         .catch((e) => {
-          alert("이미 가입된 사용자입니다.");
+          alert('이미 가입된 사용자입니다.');
         });
     }
   };
   const errorStyled = {
-    position: "absolute",
-    color: "red",
-    fontSize: "14px",
+    position: 'absolute',
+    color: 'red',
+    fontSize: '14px',
   };
   return (
     <div>
@@ -103,11 +103,11 @@ const Signin = () => {
           <SigninUserInfo>아이디(이메일)</SigninUserInfo>
           <SigninUserInfoInput
             placeholder="이메일 주소"
-            {...register("email", {
+            {...register('email', {
               pattern: {
                 value:
                   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-                message: "이메일 형식에 맞게 입력해주세요",
+                message: '이메일 형식에 맞게 입력해주세요',
               },
             })}
           />
@@ -125,7 +125,7 @@ const Signin = () => {
               placeholder="6자 이상~14자 이하"
               minLength={6}
               maxLength={14}
-              {...register("password", {
+              {...register('password', {
                 validate: pw_check,
                 maxLength: 14,
                 minLength: 6,
@@ -142,8 +142,8 @@ const Signin = () => {
               placeholder="비밀번호 확인"
               minLength={6}
               maxLength={14}
-              {...register("confirmPassword", {
-                validate: (value) => value === getValues("password"),
+              {...register('confirmPassword', {
+                validate: (value) => value === getValues('password'),
               })}
             />
             {errors.confirmPassword && (
@@ -152,7 +152,7 @@ const Signin = () => {
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput placeholder="이름" {...register("userName")} />
+            <SigninUserInfoInput placeholder="이름" {...register('userName')} />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>핸드폰 번호</SigninUserInfo>
@@ -160,7 +160,7 @@ const Signin = () => {
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
               maxLength={11}
-              {...register("phoneNum", {
+              {...register('phoneNum', {
                 pattern: {
                   value: /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
                   message: "'-'를 제외한 숫자만 입력해주세요",
@@ -179,4 +179,5 @@ const Signin = () => {
     </div>
   );
 };
+
 export default Signin;

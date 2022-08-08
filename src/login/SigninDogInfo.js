@@ -52,19 +52,10 @@ const SigninDogInfo = () => {
   const goPrev = () => {
     navigate(-1);
   };
-
   const onSubmit = (data) => {
-    setUserInfo({
-      ...userinfo,
-      petName: data.petName,
-      age: data.age,
-      weight: data.weight,
-      dogBreed: data.dogBreed,
-    });
-    console.log(userinfo);
     handleSignin();
   };
-  const onImgChange = async (event) => {
+  const onImgChange = (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
     formData.append("petimg", event.target.files[0]);
   };
