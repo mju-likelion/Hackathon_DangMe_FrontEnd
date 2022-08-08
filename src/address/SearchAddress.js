@@ -33,21 +33,19 @@ const SearchAddress = () => {
   const goPrev = () => {
     navigate(-1);
   };
-  const goMap = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setUserAddress({
+  const onSuccess = (position) => {
+    setUserAddress((prev) => {
+      return {
+        ...prev,
         coordinateX: position.coords.latitude,
         coordinateY: position.coords.longitude,
-      });
-    });
-    setTimeout(() => {
-      navigate('/location');
-    }, 500);
-  };
-  const onSuccess = (position) => {
-    setUserAddress({
-      coordinateX: position.coords.latitude,
-      coordinateY: position.coords.longitude,
+        default: [
+          {
+            coordinateX: position.coords.latitude,
+            coordinateY: position.coords.longitude,
+          },
+        ],
+      };
     });
     navigate('/location');
   };

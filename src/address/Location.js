@@ -52,7 +52,7 @@ const Location = () => {
   }, [userGPS]);
   const handleClick = (a, MouseEvent) => {
     //지도를 클릭했을 때
-
+    console.log(userGPS[0]);
     setUserGPS({
       coordinateX: MouseEvent.latLng.getLat(), //해당 좌표를 사용자 위치 정보에 저장 (위도, 경도)
       coordinateY: MouseEvent.latLng.getLng(),
@@ -61,7 +61,7 @@ const Location = () => {
   return (
     <div style={{ position: 'relative' }}>
       <Map //지도를 띄움
-        center={{ lat: position.lat, lng: position.lng }} //처음에만 메인으로 사용할 좌표를 state로 저장한 위치정보 사용
+        center={{ lat: position.lat, lng: position.lng, zIndex: 2 }} //처음에만 메인으로 사용할 좌표를 state로 저장한 위치정보 사용
         style={{ width: '100%', height: '800px', position: 'relative' }}
         onClick={handleClick}
       >

@@ -6,8 +6,9 @@ import GlobalStyle from './styles/GlobalStyle';
 import { RecoilRoot } from 'recoil';
 import { Suspense } from 'react';
 import axios from 'axios';
+require('dotenv').config();
 const root = ReactDOM.createRoot(document.getElementById('root'));
-axios.defaults.baseURL = 'https://3376-58-78-54-29.jp.ngrok.io/';
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 //axios.defaults.withCredentials = true;
 root.render(
   <BrowserRouter>

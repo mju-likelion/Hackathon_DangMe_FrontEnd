@@ -80,7 +80,7 @@ const Signin = () => {
           alert('사용 가능한 이메일입니다.');
         })
         .catch((e) => {
-          alert('이미 가입된 사용자입니다.');
+          alert(e);
         });
     }
   };

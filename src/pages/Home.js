@@ -35,21 +35,41 @@ import tempData from '../data/tempData';
 import tempPetData from '../data/tempPetData';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const Home = () => {
   const navigate = useNavigate();
   const [userlocation, setUserLocation] = useRecoilState(userLocation);
+  const [petShopList, setPetShopList] = useState([]);
+  const getData = async () => {
+    const response = await axios.get('api/coordinate/shop-dis');
+    response.then((res) => {
+      console.log(res);
+    });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   const goToReservHistory = () => {
     navigate('/ReservationHistory');
   };
   const goSearchAddress = () => {
     navigate('/searchAddress');
   };
+  const goToReservation = () => {
+    navigate('/Reservation');
+  };
+
   return (
     <HomeStyled>
       <UserPositionBox>
         <UserPositionIcon src={positionIcon} alt="position_icon" />
         <UserPositionText onClick={goSearchAddress}>
-          {userlocation.address}
+          {userlocation.address === undefined
+            ? userlocation[0].address
+            : userlocation.address}
         </UserPositionText>
         <UserPositionSetBtn src={positionSet} />
       </UserPositionBox>
@@ -65,7 +85,9 @@ const Home = () => {
         <HomeReservInfoListWrap>
           {tempPetData.map((pet) => (
             <HomeReservInfoBox>
-              <HomeReservInfoImg src={pet.petImg} />
+              {pet.petImg === '' ? null : (
+                <HomeReservInfoImg src={pet.petImg} />
+              )}
               {pet.reservDate === '' ? (
                 <>
                   <HomeReservInfoName style={{ color: '#000000' }}>
@@ -82,7 +104,7 @@ const Home = () => {
           ))}
         </HomeReservInfoListWrap>
       </HomeReservBox>
-      <HomeReservBtn>미용 예약하기</HomeReservBtn>
+      <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>
       <PetShopListBox>
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
