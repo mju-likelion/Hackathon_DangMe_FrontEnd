@@ -46,13 +46,13 @@ const Login = () => {
   };
   return (
     <LoginStyled>
-      <LogoStyled alt="logo" src={logo} />
+      <LogoStyled alt='logo' src={logo} />
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
-        <InputStyled {...register('email')} type="email" placeholder="이메일" />
+        <InputStyled {...register('email')} type='email' placeholder='이메일' />
         <InputStyled
           {...register('password')}
-          type="password"
-          placeholder="비밀번호"
+          type='password'
+          placeholder='비밀번호'
           maxLength={14}
         />
         <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
@@ -60,7 +60,7 @@ const Login = () => {
       <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
       <GoToHome onClick={goToHome}>
         <span>어플 둘러보기</span>
-        <ArrowStyled alt="arrow" src={arrow} />
+        <ArrowStyled alt='arrow' src={arrow} />
       </GoToHome>
     </LoginStyled>
   );
