@@ -10,36 +10,68 @@ import mypageClickIcon from "./img/myClick.png";
 import { useState } from "react";
 
 const ButtomNav = () => {
-  const [activeNav, setActiveNav] = useState(1);
+  const [activeNav, setActiveNav] = useState(0);
 
   return (
     <StyledNav>
-      <StyledLink to="/home" onClick={() => setActiveNav(1)}>
+      <StyledLink to="/home">
+        {activeNav === 0 ? (
+          <StyledLinkImg
+            src={homeClickIcon}
+            alt="homeClick"
+            onClick={() => setActiveNav(0)}
+          />
+        ) : (
+          <StyledLinkImg
+            src={homeIcon}
+            alt="home"
+            onClick={() => setActiveNav(0)}
+          />
+        )}
+      </StyledLink>
+      <StyledLink to="/map">
         {activeNav === 1 ? (
-          <StyledLinkImg src={homeClickIcon} alt="homeClick" />
+          <StyledLinkImg
+            src={searchClickIcon}
+            alt="searchClick"
+            onClick={() => setActiveNav(1)}
+          />
         ) : (
-          <StyledLinkImg src={homeIcon} alt="home" />
+          <StyledLinkImg
+            src={searchIcon}
+            alt="search"
+            onClick={() => setActiveNav(1)}
+          />
         )}
       </StyledLink>
-      <StyledLink to="/map" onClick={() => setActiveNav(2)}>
+      <StyledLink to="/reservationHistory">
         {activeNav === 2 ? (
-          <StyledLinkImg src={searchClickIcon} alt="searchClick" />
+          <StyledLinkImg
+            src={calendarClickIcon}
+            alt="calendarClick"
+            onClick={() => setActiveNav(2)}
+          />
         ) : (
-          <StyledLinkImg src={searchIcon} alt="search" />
+          <StyledLinkImg
+            src={calendarIcon}
+            alt="calendar"
+            onClick={() => setActiveNav(2)}
+          />
         )}
       </StyledLink>
-      <StyledLink to="/reservationHistory" onClick={() => setActiveNav(3)}>
+      <StyledLink to="/mypage">
         {activeNav === 3 ? (
-          <StyledLinkImg src={calendarClickIcon} alt="calendarClick" />
+          <StyledLinkImg
+            src={mypageClickIcon}
+            alt="mypageClick"
+            onClick={() => setActiveNav(3)}
+          />
         ) : (
-          <StyledLinkImg src={calendarIcon} alt="calendar" />
-        )}
-      </StyledLink>
-      <StyledLink to="/mypage" onClick={() => setActiveNav(4)}>
-        {activeNav === 4 ? (
-          <StyledLinkImg src={mypageClickIcon} alt="mypageClick" />
-        ) : (
-          <StyledLinkImg src={mypageIcon} alt="mypage" />
+          <StyledLinkImg
+            src={mypageIcon}
+            alt="mypage"
+            onClick={() => setActiveNav(3)}
+          />
         )}
       </StyledLink>
     </StyledNav>

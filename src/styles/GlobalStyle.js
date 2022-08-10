@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -14,9 +14,10 @@ const GlobalStyle = createGlobalStyle`
 }
     *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       font-family: 'Pretendard';
+      max-width: 428px;
 /*        @media screen and (max-width : 428px){
         width : 100%;        
       }  */

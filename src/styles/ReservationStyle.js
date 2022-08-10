@@ -5,6 +5,10 @@ export const ReservationTopBox = styled.div`
   border-radius: 0px 0px 30px 30px;
   height: 58px;
   padding-top: 17px;
+  /* position: fixed;
+  left: 0;
+  top: 0;
+  right: 0; */
 `;
 
 export const ReservationPrevIcon = styled.img`
@@ -17,11 +21,16 @@ export const ReservationTopBoxText = styled.p`
   color: #ffffff;
   font-size: 20px;
   font-weight: 600px;
-  display: inline;
+  display: inline-block;
   margin-left: 140px;
 `;
 
+export const ShopInfoTopBoxText = styled(ReservationTopBoxText)`
+  margin-left: 121px;
+`;
+
 export const ReservSelectPetBox = styled.div`
+  //padding-top: 58px;
   margin-left: 26px;
   margin-top: 40px;
 `;
@@ -60,12 +69,11 @@ export const ReservNoneShop = styled.div`
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 20px;
-  margin-top: 20px;
   padding-top: 44px;
   padding-left: 20px;
   font-size: 18px;
   color: #848484;
-  margin-bottom: 12px; //기능 작업 후에 이 부분 수정할 것
+  margin: 20px 0 12px 0; //기능 작업 후에 margin-bottom 수정할 것
 `;
 
 export const ReservNextBtn = styled.button`

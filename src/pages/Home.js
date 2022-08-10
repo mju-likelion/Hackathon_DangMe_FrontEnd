@@ -26,6 +26,8 @@ import {
   HomeReservInfoAny,
   HomeReservInfoListWrap,
   PetShopInfoListWrap,
+  HomeFlexBox,
+  HomeMiddleBox,
 } from "../styles/HomeStyle";
 import positionIcon from "../img/positionIcon.png";
 import positionSet from "../img/positionSet.png";
@@ -80,8 +82,12 @@ const Home = () => {
     navigate("/Reservation");
   };
 
+  const goToShopInfo = () => {
+    navigate("/ShopInfo");
+  };
+
   return (
-    <HomeStyled>
+    <>
       <UserPositionBox>
         <UserPositionIcon src={positionIcon} alt="position_icon" />
         <UserPositionText onClick={goSearchAddress}>
@@ -89,58 +95,59 @@ const Home = () => {
         </UserPositionText>
         <UserPositionSetBtn src={positionSet} />
       </UserPositionBox>
-      <HomeReservBox>
-        <HomeReservTitleBox>
-          <HomeReservTitle>미용 예약 현황</HomeReservTitle>
-          <HomeReservInfoBtn
-            src={nextIcon}
-            alt="goReservHistory"
-            onClick={goToReservHistory}
-          />
-        </HomeReservTitleBox>
-        <HomeReservInfoListWrap>
-          {tempPetData.map((pet) => (
-            <HomeReservInfoBox>
-              {pet.petImg === "" ? (
-                <HomeReservInfoImg src={defaultPetImg} />
-              ) : (
-                <HomeReservInfoImg src={pet.petImg} />
-              )}
-              {pet.reservDate === "" ? (
-                <>
-                  <HomeReservInfoName style={{ color: "#000000" }}>
-                    {pet.petName}
-                  </HomeReservInfoName>
-                  <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
-                </>
-              ) : (
-                <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
-              )}
-              <HomeReservInfoShop>{pet.petShopName}</HomeReservInfoShop>
-              <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate>
-            </HomeReservInfoBox>
-          ))}
-        </HomeReservInfoListWrap>
-      </HomeReservBox>
-      <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>
-      <PetShopListBox>
-        <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
-        <PetShopListSubTitle>내 주변</PetShopListSubTitle>
-        <PetShopInfoListWrap>
-          {tempData.map((petShop) => (
-            <PetShopInfoBox>
-              <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
-              <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
-              <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
-              <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
-            </PetShopInfoBox>
-          ))}
-        </PetShopInfoListWrap>
-      </PetShopListBox>
+      <HomeMiddleBox>
+        <HomeReservBox>
+          <HomeReservTitleBox>
+            <HomeReservTitle>미용 예약 현황</HomeReservTitle>
+            <HomeReservInfoBtn
+              src={nextIcon}
+              alt="goReservHistory"
+              onClick={goToReservHistory}
+            />
+          </HomeReservTitleBox>
+          <HomeReservInfoListWrap>
+            {tempPetData.map((pet) => (
+              <HomeReservInfoBox>
+                {pet.petImg === "" ? (
+                  <HomeReservInfoImg src={defaultPetImg} />
+                ) : (
+                  <HomeReservInfoImg src={pet.petImg} />
+                )}
+                {pet.reservDate === "" ? (
+                  <>
+                    <HomeReservInfoName style={{ color: "#000000" }}>
+                      {pet.petName}
+                    </HomeReservInfoName>
+                    <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
+                  </>
+                ) : (
+                  <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
+                )}
+                <HomeReservInfoShop>{pet.petShopName}</HomeReservInfoShop>
+                <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate>
+              </HomeReservInfoBox>
+            ))}
+          </HomeReservInfoListWrap>
+        </HomeReservBox>
+        <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>
+        <PetShopListBox>
+          <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
+          <PetShopInfoListWrap>
+            {tempData.map((petShop) => (
+              <PetShopInfoBox onClick={goToShopInfo}>
+                <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
+                <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
+                <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
+                <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
+              </PetShopInfoBox>
+            ))}
+          </PetShopInfoListWrap>
+        </PetShopListBox>
+      </HomeMiddleBox>
       <Routes>
         <Route path="/*" element={<ButtomNav />} />
       </Routes>
-    </HomeStyled>
+    </>
   );
 };
 

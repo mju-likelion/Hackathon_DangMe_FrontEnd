@@ -17,7 +17,7 @@ import {
   TipEx,
   TipMark,
 } from "../styles/AddressStyle";
-import prevIcon from "../img/arrow_prev_address.png";
+import prevIcon from "../img/arrow_prev_white.png";
 import SearchImg from "../img/search_white.png";
 import location from "../img/location.png";
 import nextIcon from "../img/arrow_next_white.png";

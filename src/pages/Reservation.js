@@ -38,6 +38,9 @@ const Reservation = () => {
   const goPrev = () => {
     navigate(-1);
   };
+  const goToMap = () => {
+    navigate("/map");
+  };
 
   return (
     <>
@@ -81,7 +84,11 @@ const Reservation = () => {
         <ReservSelectShopTitleBox>
           <ReservationDefaultText>미용샵을 선택해주세요</ReservationDefaultText>
           <ReservSelectMap>지도에서 선택하기</ReservSelectMap>
-          <ReservSelectMapIcon src={nextIcon} alt="지도 바로가기" />
+          <ReservSelectMapIcon
+            src={nextIcon}
+            alt="지도 바로가기"
+            onClick={goToMap}
+          />
         </ReservSelectShopTitleBox>
         <ReservNoneShop>선택한 미용샵이 없습니다</ReservNoneShop>
         {/*아래는 선택한 미용샵 있는 경우*/}

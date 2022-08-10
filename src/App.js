@@ -9,6 +9,7 @@ import SigninDogInfo from "./login/SigninDogInfo";
 import SearchAddress from "./address/SearchAddress";
 import Reservation from "./pages/Reservation";
 import Location from "./address/Location";
+import ShopInfo from "./pages/ShopInfo";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/searchAddress" element={<SearchAddress />} />
         <Route path="/Reservation" element={<Reservation />} />
         <Route path="/location" element={<Location />} />
+        <Route path="/shopInfo" element={<ShopInfo />} />
       </Routes>
     </div>
   );
