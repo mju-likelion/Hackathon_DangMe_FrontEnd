@@ -72,14 +72,14 @@ const Home = () => {
   }, []);
 
   const goToReservHistory = () => {
-    navigate('/ReservationHistory');
+    navigate('/reservationHistory');
   };
   const goSearchAddress = () => {
     navigate('/searchAddress');
   };
 
   const goToReservation = () => {
-    navigate('/Reservation');
+    navigate('/reservation');
   };
 
   const goToShopInfo = () => {

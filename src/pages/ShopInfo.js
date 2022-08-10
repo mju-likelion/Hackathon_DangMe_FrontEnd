@@ -32,7 +32,7 @@ const ShopInfo = () => {
     navigate(-1);
   };
   const goToReservation = () => {
-    navigate('/Reservation');
+    navigate('/reservation');
   };
   const tabShopInfo = [
     {

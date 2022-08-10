@@ -10,6 +10,7 @@ import SearchAddress from './address/SearchAddress';
 import Reservation from './pages/Reservation';
 import Location from './address/Location';
 import ShopInfo from './pages/ShopInfo';
+import ReservationMain from './pages/ReservationMain';
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
         <Route path='/reservationHistory' element={<ReservationHistory />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/searchAddress' element={<SearchAddress />} />
-        <Route path='/Reservation' element={<Reservation />} />
+        <Route path='/reservation' element={<Reservation />} />
         <Route path='/location' element={<Location />} />
         <Route path='/shopInfo' element={<ShopInfo />} />
+        <Route path='/reservationMain' element={<ReservationMain />} />
       </Routes>
     </div>
   );

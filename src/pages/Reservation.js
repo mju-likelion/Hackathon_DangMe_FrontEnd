@@ -41,6 +41,9 @@ const Reservation = () => {
   const goToMap = () => {
     navigate('/map');
   };
+  const goToNext = () => {
+    navigate('/reservationMain');
+  };
 
   return (
     <>
@@ -99,7 +102,7 @@ const Reservation = () => {
           <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
         </PetShopInfoBox>
       </ReservSelectShopBox>
-      <ReservNextBtn>다음</ReservNextBtn>
+      <ReservNextBtn onClick={goToNext}>다음</ReservNextBtn>
       <Routes>
         <Route path='/*' element={<ButtomNav />} />
       </Routes>

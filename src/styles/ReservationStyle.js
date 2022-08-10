@@ -89,3 +89,92 @@ export const ReservNextBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
 `;
+
+export const ReservCompleteBtn = styled(ReservNextBtn)`
+  margin-top: 158px;
+`;
+
+export const ReservMainBox = styled.div`
+  overflow: auto;
+`;
+
+export const ReservShopName = styled.p`
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffa724;
+  display: inline-block;
+  margin-bottom: 25px;
+  margin-left: 26px;
+`;
+
+export const ReservPetName = styled(ReservShopName)`
+  margin-left: 0;
+`;
+
+export const ReservToggleUl = styled.ul`
+  padding-left: 0;
+  list-style: none;
+  margin-left: 26px;
+  width: 90%;
+`;
+
+export const ReservToggleTitle = styled.li`
+  font-weight: 700;
+  font-size: 18px;
+  color: #000000;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 9px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const ReservToggleActive = styled.img`
+  width: 10px;
+  height: 5px;
+  margin-left: 280px;
+`;
+
+export const ReservToggleDateActive = styled(ReservToggleActive)`
+  margin-left: 330px;
+`;
+
+export const ReservOpenedToggleBox = styled.div`
+  //margin-left: 10px;
+  margin-bottom: 22px;
+`;
+
+export const ReservServiceTopBox = styled.div`
+  //border-bottom: 1px solid #dddddd;
+  //width: 376px;
+`;
+
+export const ReservSerViceBox = styled.div`
+  width: 376px;
+  height: 82px;
+  border-bottom: 1px solid #f6f6f6;
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+`;
+
+export const ReservServiceName = styled.p`
+  font-weight: 700;
+  font-size: 18px;
+  color: #848484;
+  flex-basis: initial;
+  margin: 0;
+  padding-left: 20px;
+`;
+export const ReservServicePrice = styled.p`
+  font-size: 18px;
+  color: #000000;
+  flex-basis: initial;
+  margin-right: 47px;
+`;
+
+export const ReservToggleEndLine = styled.div`
+  height: 1px;
+  background-color: #dddddd;
+  margin-top: -1px;
+`;
