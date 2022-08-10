@@ -39,15 +39,19 @@ const Signin = () => {
   //이메일 형식 체크
   const email_check = (email) => {
     var reg =
+      //eslint-disable-next-line
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return reg.test(email);
   };
   //비밀번호 형식 체크
   function pw_check(pw) {
+    //eslint-disable-next-line
     const num = pw.search(/[0-9]/g); //숫자 여부
+    //eslint-disable-next-line
     const eng = pw.search(/[a-z]/gi); //영문자 여부
+    //eslint-disable-next-line
     const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); //특수문자 여부
-
+    //eslint-disable-next-line
     if (pw.search(/\s/) !== -1) {
       //공백 체크
       return false;
@@ -92,20 +96,21 @@ const Signin = () => {
   return (
     <div>
       <TopWrap>
-        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt='arrow_prev' onClick={goPrev} />
         <SigninUserTitle>회원가입</SigninUserTitle>
       </TopWrap>
       <BarDiv>
-        <SigninBar src={userInfobar} alt="userInfobar" />
+        <SigninBar src={userInfobar} alt='userInfobar' />
       </BarDiv>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SigninStyled>
           <SigninUserInfo>아이디(이메일)</SigninUserInfo>
           <SigninUserInfoInput
-            placeholder="이메일 주소"
+            placeholder='이메일 주소'
             {...register('email', {
               pattern: {
                 value:
+                  //eslint-disable-next-line
                   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
                 message: '이메일 형식에 맞게 입력해주세요',
               },
@@ -113,16 +118,16 @@ const Signin = () => {
           />
           <EmailCheckBtn
             onClick={confirmEmailDup}
-            value="중복확인"
-            type="button"
+            value='중복확인'
+            type='button'
           />
           {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
           <SigninUserInfoBox></SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>비밀번호</SigninUserInfo>
             <SigninUserInfoInput
-              type="password"
-              placeholder="6자 이상~14자 이하"
+              type='password'
+              placeholder='6자 이상~14자 이하'
               minLength={6}
               maxLength={14}
               {...register('password', {
@@ -138,8 +143,8 @@ const Signin = () => {
           <SigninUserInfoBox>
             <SigninUserInfo>비밀번호 확인</SigninUserInfo>
             <SigninUserInfoInput
-              type="password"
-              placeholder="비밀번호 확인"
+              type='password'
+              placeholder='비밀번호 확인'
               minLength={6}
               maxLength={14}
               {...register('confirmPassword', {
@@ -152,7 +157,7 @@ const Signin = () => {
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput placeholder="이름" {...register('userName')} />
+            <SigninUserInfoInput placeholder='이름' {...register('userName')} />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>핸드폰 번호</SigninUserInfo>
@@ -162,6 +167,7 @@ const Signin = () => {
               maxLength={11}
               {...register('phoneNum', {
                 pattern: {
+                  //eslint-disable-next-line
                   value: /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
                   message: "'-'를 제외한 숫자만 입력해주세요",
                 },
@@ -172,7 +178,7 @@ const Signin = () => {
             )}
           </SigninUserInfoBox>
         </SigninStyled>
-        <SigninNextBtn type="submit" disabled={isSubmitting}>
+        <SigninNextBtn type='submit' disabled={isSubmitting}>
           다음
         </SigninNextBtn>
       </form>

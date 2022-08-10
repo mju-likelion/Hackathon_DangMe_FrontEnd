@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import ButtomNav from "../ButtomNav";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import ButtomNav from '../ButtomNav';
 import {
   ReservationPrevIcon,
   ReservationTopBox,
@@ -12,7 +12,7 @@ import {
   ReservSelectShopTitleBox,
   ReservNoneShop,
   ReservNextBtn,
-} from "../styles/ReservationStyle";
+} from '../styles/ReservationStyle';
 import {
   HomeReservInfoListWrap,
   HomeReservInfoBox,
@@ -26,12 +26,12 @@ import {
   PetShopInfoName,
   PetShopInfoAddress,
   PetShopInfoClosed,
-} from "../styles/HomeStyle";
-import prevIcon from "../img/arrow_prev_white.png";
-import tempPetData from "../data/tempPetData";
-import defaultPetImg from "../img/defaultPetImg.png";
-import nextIcon from "../img/arrow_next_home.png";
-import petShopImg from "../img/petShop.png";
+} from '../styles/HomeStyle';
+import prevIcon from '../img/arrow_prev_white.png';
+import tempPetData from '../data/tempPetData';
+import defaultPetImg from '../img/defaultPetImg.png';
+import nextIcon from '../img/arrow_next_home.png';
+import petShopImg from '../img/petShop.png';
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -39,41 +39,41 @@ const Reservation = () => {
     navigate(-1);
   };
   const goToMap = () => {
-    navigate("/map");
+    navigate('/map');
   };
 
   return (
     <>
       <ReservationTopBox>
-        <ReservationPrevIcon src={prevIcon} alt="뒤로가기" onClick={goPrev} />
+        <ReservationPrevIcon src={prevIcon} alt='뒤로가기' onClick={goPrev} />
         <ReservationTopBoxText>예약하기</ReservationTopBoxText>
       </ReservationTopBox>
       <ReservSelectPetBox>
         <ReservationDefaultText>반려견을 선택해주세요</ReservationDefaultText>
         <HomeReservInfoListWrap>
-          {tempPetData.map((pet) => (
-            <HomeReservInfoBox>
-              {pet.petImg === "" ? (
+          {tempPetData.map((pet, index) => (
+            <HomeReservInfoBox key={index}>
+              {pet.petImg === '' ? (
                 <HomeReservInfoImg src={defaultPetImg} />
               ) : (
                 <HomeReservInfoImg src={pet.petImg} />
               )}
-              {pet.reservDate === "" ? (
+              {pet.reservDate === '' ? (
                 <>
-                  <HomeReservInfoName style={{ color: "#000000" }}>
+                  <HomeReservInfoName style={{ color: '#000000' }}>
                     {pet.petName}
                   </HomeReservInfoName>
                   <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
                 </>
               ) : (
-                <HomeReservInfoName style={{ color: "#dddddd" }}>
+                <HomeReservInfoName style={{ color: '#dddddd' }}>
                   {pet.petName}
                 </HomeReservInfoName>
               )}
-              <HomeReservInfoShop style={{ color: "#dddddd" }}>
+              <HomeReservInfoShop style={{ color: '#dddddd' }}>
                 {pet.petShopName}
               </HomeReservInfoShop>
-              <HomeReservInfoDate style={{ color: "#dddddd" }}>
+              <HomeReservInfoDate style={{ color: '#dddddd' }}>
                 {pet.reservDate}
               </HomeReservInfoDate>
             </HomeReservInfoBox>
@@ -86,14 +86,14 @@ const Reservation = () => {
           <ReservSelectMap>지도에서 선택하기</ReservSelectMap>
           <ReservSelectMapIcon
             src={nextIcon}
-            alt="지도 바로가기"
+            alt='지도 바로가기'
             onClick={goToMap}
           />
         </ReservSelectShopTitleBox>
         <ReservNoneShop>선택한 미용샵이 없습니다</ReservNoneShop>
         {/*아래는 선택한 미용샵 있는 경우*/}
         <PetShopInfoBox>
-          <PetShopInfoImg src={petShopImg} alt="petshop" />
+          <PetShopInfoImg src={petShopImg} alt='petshop' />
           <PetShopInfoName>멍멍 미용실</PetShopInfoName>
           <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
           <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
@@ -101,7 +101,7 @@ const Reservation = () => {
       </ReservSelectShopBox>
       <ReservNextBtn>다음</ReservNextBtn>
       <Routes>
-        <Route path="/*" element={<ButtomNav />} />
+        <Route path='/*' element={<ButtomNav />} />
       </Routes>
     </>
   );

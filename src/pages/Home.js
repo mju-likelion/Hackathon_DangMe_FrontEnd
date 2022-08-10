@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import ButtomNav from "../ButtomNav";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import ButtomNav from '../ButtomNav';
 import {
   HomeReservTitleBox,
   HomeReservInfoBtn,
@@ -28,18 +28,18 @@ import {
   PetShopInfoListWrap,
   HomeFlexBox,
   HomeMiddleBox,
-} from "../styles/HomeStyle";
-import positionIcon from "../img/positionIcon.png";
-import positionSet from "../img/positionSet.png";
-import { HomeStyled } from "./../styles/HomeStyle";
-import nextIcon from "../img/arrow_next_home.png";
-import tempData from "../data/tempData";
-import tempPetData from "../data/tempPetData";
-import defaultPetImg from "../img/defaultPetImg.png";
-import { useEffect, useState } from "react";
-import { userLocation } from "../atoms/SigninAtom";
-import { useRecoilState } from "recoil";
-import axios from "axios";
+} from '../styles/HomeStyle';
+import positionIcon from '../img/positionIcon.png';
+import positionSet from '../img/positionSet.png';
+import { HomeStyled } from './../styles/HomeStyle';
+import nextIcon from '../img/arrow_next_home.png';
+import tempData from '../data/tempData';
+import tempPetData from '../data/tempPetData';
+import defaultPetImg from '../img/defaultPetImg.png';
+import { useEffect, useState } from 'react';
+import { userLocation } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
+import axios from 'axios';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPetShops = async () => {
       try {
-        const response = await axios.get("api/coordinate/shop-dis");
+        const response = await axios.get('api/coordinate/shop-dis');
         console.log(response);
         console.log(response.data);
       } catch (e) {
@@ -72,24 +72,24 @@ const Home = () => {
   }, []);
 
   const goToReservHistory = () => {
-    navigate("/ReservationHistory");
+    navigate('/ReservationHistory');
   };
   const goSearchAddress = () => {
-    navigate("/searchAddress");
+    navigate('/searchAddress');
   };
 
   const goToReservation = () => {
-    navigate("/Reservation");
+    navigate('/Reservation');
   };
 
   const goToShopInfo = () => {
-    navigate("/ShopInfo");
+    navigate('/ShopInfo');
   };
 
   return (
     <>
       <UserPositionBox>
-        <UserPositionIcon src={positionIcon} alt="position_icon" />
+        <UserPositionIcon src={positionIcon} alt='position_icon' />
         <UserPositionText onClick={goSearchAddress}>
           {userlocation.address}
         </UserPositionText>
@@ -101,21 +101,21 @@ const Home = () => {
             <HomeReservTitle>미용 예약 현황</HomeReservTitle>
             <HomeReservInfoBtn
               src={nextIcon}
-              alt="goReservHistory"
+              alt='goReservHistory'
               onClick={goToReservHistory}
             />
           </HomeReservTitleBox>
           <HomeReservInfoListWrap>
-            {tempPetData.map((pet) => (
-              <HomeReservInfoBox>
-                {pet.petImg === "" ? (
+            {tempPetData.map((pet, index) => (
+              <HomeReservInfoBox key={index}>
+                {pet.petImg === '' ? (
                   <HomeReservInfoImg src={defaultPetImg} />
                 ) : (
                   <HomeReservInfoImg src={pet.petImg} />
                 )}
-                {pet.reservDate === "" ? (
+                {pet.reservDate === '' ? (
                   <>
-                    <HomeReservInfoName style={{ color: "#000000" }}>
+                    <HomeReservInfoName style={{ color: '#000000' }}>
                       {pet.petName}
                     </HomeReservInfoName>
                     <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
@@ -133,9 +133,9 @@ const Home = () => {
         <PetShopListBox>
           <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
           <PetShopInfoListWrap>
-            {tempData.map((petShop) => (
-              <PetShopInfoBox onClick={goToShopInfo}>
-                <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
+            {tempData.map((petShop, index) => (
+              <PetShopInfoBox onClick={goToShopInfo} key={index}>
+                <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
                 <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
                 <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
                 <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
@@ -145,7 +145,7 @@ const Home = () => {
         </PetShopListBox>
       </HomeMiddleBox>
       <Routes>
-        <Route path="/*" element={<ButtomNav />} />
+        <Route path='/*' element={<ButtomNav />} />
       </Routes>
     </>
   );

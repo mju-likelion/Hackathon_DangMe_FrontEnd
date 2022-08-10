@@ -1,10 +1,10 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import ButtomNav from "../ButtomNav";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import ButtomNav from '../ButtomNav';
 import {
   ReservationTopBox,
   ShopInfoTopBoxText,
   ReservationPrevIcon,
-} from "./../styles/ReservationStyle";
+} from './../styles/ReservationStyle';
 import {
   ShopInfoImg,
   ShopInfoName,
@@ -15,11 +15,11 @@ import {
   ShopInfoBox,
   ShopInfoContentBox,
   ShopInfoContent,
-} from "../styles/ShopInfoStyle";
-import prevIcon from "../img/arrow_prev_white.png";
-import { useState } from "react";
-import { ShopInfoContentTitle } from "./../styles/ShopInfoStyle";
-import tempShopInfoData from "../data/tempShopInfoData";
+} from '../styles/ShopInfoStyle';
+import prevIcon from '../img/arrow_prev_white.png';
+import { useState } from 'react';
+import { ShopInfoContentTitle } from './../styles/ShopInfoStyle';
+import tempShopInfoData from '../data/tempShopInfoData';
 
 const ShopInfo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -32,7 +32,7 @@ const ShopInfo = () => {
     navigate(-1);
   };
   const goToReservation = () => {
-    navigate("/Reservation");
+    navigate('/Reservation');
   };
   const tabShopInfo = [
     {
@@ -78,12 +78,12 @@ const ShopInfo = () => {
   return (
     <div>
       <ReservationTopBox>
-        <ReservationPrevIcon src={prevIcon} alt="뒤로가기" onClick={goPrev} />
+        <ReservationPrevIcon src={prevIcon} alt='뒤로가기' onClick={goPrev} />
         <ShopInfoTopBoxText>지점 상세정보</ShopInfoTopBoxText>
       </ReservationTopBox>
       {tempShopInfoData.map((shopInfo) => (
         <>
-          <ShopInfoImg src={shopInfo.shopImg} alt="지점 이미지" />
+          <ShopInfoImg src={shopInfo.shopImg} alt='지점 이미지' />
           <ShopInfoName>{shopInfo.shopName}</ShopInfoName>
         </>
       ))}
@@ -99,7 +99,7 @@ const ShopInfo = () => {
         <div>{tabShopInfo[activeIndex].tabContent}</div>
       </ShopInfoBox>
       <Routes>
-        <Route path="/*" element={<ButtomNav />} />
+        <Route path='/*' element={<ButtomNav />} />
       </Routes>
     </div>
   );

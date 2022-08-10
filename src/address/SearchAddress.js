@@ -16,15 +16,15 @@ import {
   TipList,
   TipEx,
   TipMark,
-} from "../styles/AddressStyle";
-import prevIcon from "../img/arrow_prev_white.png";
-import SearchImg from "../img/search_white.png";
-import location from "../img/location.png";
-import nextIcon from "../img/arrow_next_white.png";
-import { useNavigate, Link } from "react-router-dom";
-import { DaumPostcodeEmbed } from "react-daum-postcode";
-import { userLocation } from "../atoms/SigninAtom";
-import { useRecoilState } from "recoil";
+} from '../styles/AddressStyle';
+import prevIcon from '../img/arrow_prev_white.png';
+import SearchImg from '../img/search_white.png';
+import location from '../img/location.png';
+import nextIcon from '../img/arrow_next_white.png';
+import { useNavigate, Link } from 'react-router-dom';
+import { DaumPostcodeEmbed } from 'react-daum-postcode';
+import { userLocation } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
 const { kakao } = window;
 
 const SearchAddress = () => {
@@ -41,7 +41,7 @@ const SearchAddress = () => {
       });
     });
     setTimeout(() => {
-      navigate("/location");
+      navigate('/location');
     }, 500);
   };
   const onSuccess = (position) => {
@@ -49,14 +49,14 @@ const SearchAddress = () => {
       coordinateX: position.coords.latitude,
       coordinateY: position.coords.longitude,
     });
-    navigate("/location");
+    navigate('/location');
   };
   const onError = () => {
     setUserAddress({
       coordinateX: 37.22488354862069,
       coordinateY: 127.1877995370437,
     });
-    navigate("/location");
+    navigate('/location');
   };
   const allowGPS = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -69,7 +69,7 @@ const SearchAddress = () => {
       };
     });
     console.log(data.address);
-    navigate("/home");
+    navigate('/home');
   };
   var geocoder = new kakao.maps.services.Geocoder();
 
@@ -87,18 +87,18 @@ const SearchAddress = () => {
     <div>
       <AddressPositionBox>
         <TopWrap>
-          <PrevArrowImg src={prevIcon} alt="prevBtn" onClick={goPrev} />
+          <PrevArrowImg src={prevIcon} alt='prevBtn' onClick={goPrev} />
           <SearchAddressTitle>주소검색</SearchAddressTitle>
           <SearchBox>
             <UserLocationDiv>
-              <LocationImg src={location} alt="locationImg" />
+              <LocationImg src={location} alt='locationImg' />
               <LocationText onClick={allowGPS}>
                 현재 위치로 설정하기
               </LocationText>
-              <img src={nextIcon} alt="nextArrow" />
+              <img src={nextIcon} alt='nextArrow' />
             </UserLocationDiv>
             <DaumPostcodeEmbed
-              style={{ marginTop: "20px", height: "800px" }}
+              style={{ marginTop: '20px', height: '800px' }}
               onComplete={handleComplete}
             />
           </SearchBox>
