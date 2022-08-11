@@ -11,6 +11,7 @@ import Reservation from './pages/Reservation';
 import Location from './address/Location';
 import ShopInfo from './pages/ShopInfo';
 import ReservationMain from './pages/ReservationMain';
+import './Calendar.css';
 
 function App() {
   return (

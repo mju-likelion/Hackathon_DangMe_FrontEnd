@@ -91,11 +91,20 @@ export const ReservNextBtn = styled.button`
 `;
 
 export const ReservCompleteBtn = styled(ReservNextBtn)`
-  margin-top: 158px;
+  position: relative;
+  //transform: translateY(-100%);
+  margin: 0 auto;
+  display: block;
+  //margin-bottom: 40px;
 `;
 
 export const ReservMainBox = styled.div`
   overflow: auto;
+  //여기부터 수정 코드
+  height: auto;
+  min-height: 100%;
+  //position: relative;
+  padding-bottom: 160px;
 `;
 
 export const ReservShopName = styled.p`

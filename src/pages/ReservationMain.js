@@ -20,22 +20,64 @@ import {
   ReservToggleEndLine,
   ReservServiceTopBox,
 } from '../styles/ReservationStyle';
+import { format, getDate, getMonth } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
 import { ShopInfoImg } from '../styles/ShopInfoStyle';
 import prevIcon from '../img/arrow_prev_white.png';
 import shopImg from '../img/petShopImgL.png';
 import openToggle from '../img/openedToggle.png';
 import closeToggle from '../img/closedToggle.png';
+import { ko } from 'date-fns/locale';
+import styles from 'react-day-picker/dist/style.module.css';
 
 const ReservationMain = () => {
   const navigate = useNavigate();
   const goPrev = () => {
     navigate('/reservation');
   };
+  const today = new Date();
+  const [selectedDay, setSelectedDay] = useState();
+  const classNames = {
+    ...styles,
+    head: 'custom-head',
+  };
+  const css = `
+  .my-selected:not([disabled]) { 
+    font-weight: 700; 
+    color:white;
+    border: 2px solid currentColor;
+    background-color:#FFA724;
+  }
+  .my-selected:hover:not([disabled]) { 
+    border-color: #FFA724;
+    color:black;
+  }
+`;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isServiceClicked, setIsServiceClicked] = useState(false);
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [isTimeClicked, setIsTimeClicked] = useState(false);
+  const closedDay = ['월', '화'];
+  const arr = [...closedDay];
+  const disabledDays = (date) => {
+    const day = date.getDay();
+    if (day === 0 && closedDay.find((day) => day === '일')) {
+      return day === 0;
+    } else if (day === 1 && closedDay.find((day) => day === '월')) {
+      return day === 1;
+    } else if (day === 2 && closedDay.find((day) => day === '화')) {
+      return day === 2;
+    } else if (day === 3 && closedDay.find((day) => day === '수')) {
+      return day === 3;
+    } else if (day === 4 && closedDay.find((day) => day === '목')) {
+      return day === 4;
+    } else if (day === 5 && closedDay.find((day) => day === '금')) {
+      return day === 5;
+    } else if (day === 6 && closedDay.find((day) => day === '토')) {
+      return day === 6;
+    }
+  };
 
   const handleToggleClick = (index) => {
     setActiveIndex(index);
@@ -107,7 +149,36 @@ const ReservationMain = () => {
       ),
       toggleContent: (
         <ReservOpenedToggleBox>
-          {isDateClicked ? <li>날짜 선택</li> : ''}
+          {isDateClicked ? (
+            <li style={{ paddingLeft: '25px' }}>
+              <style>{`.custom-head { color: #848484}`}</style>
+              <style>{css}</style>
+
+              <DayPicker
+                mode='single'
+                defaultMonth={today}
+                fromDate={today}
+                toDate={
+                  new Date(
+                    today.getFullYear(),
+                    today.getMonth() + 1,
+                    today.getDate(),
+                  )
+                }
+                selected={selectedDay}
+                onSelect={setSelectedDay}
+                disabled={disabledDays}
+                locale={ko}
+                required
+                classNames={classNames}
+                modifiersClassNames={{
+                  selected: 'my-selected',
+                }}
+              />
+            </li>
+          ) : (
+            ''
+          )}
         </ReservOpenedToggleBox>
       ),
     },
@@ -147,8 +218,10 @@ const ReservationMain = () => {
             </ReservOpenedToggleBox>
           </ReservToggleUl>
         ))}
-        <ReservCompleteBtn>예약 완료</ReservCompleteBtn>
       </ReservMainBox>
+      <div style={{ paddingBottom: '132px' }}>
+        <ReservCompleteBtn>예약 완료</ReservCompleteBtn>
+      </div>
       <Routes>
         <Route path='/*' element={<ButtomNav />} />
       </Routes>
