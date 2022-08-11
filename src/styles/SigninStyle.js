@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SigninStyled = styled.div`
   margin-left: 26px;
@@ -9,9 +9,9 @@ export const TopWrap = styled.div`
 `;
 
 export const PrevArrowImg = styled.img`
-  position : absolute;
-  margin-top : 2px;
-  left:31px;
+  position: absolute;
+  margin-top: 2px;
+  left: 31px;
   width: 18px;
   height: 18px;
 `;
@@ -31,7 +31,6 @@ export const SigninBar = styled.img`
 export const BarDiv = styled.div`
   text-align: center;
 `;
-
 
 export const SigninUserInfoBox = styled.div`
   margin-bottom: 34px;
@@ -79,7 +78,7 @@ export const SigninUserInfoInput = styled.input`
 `;
 
 export const SigninNextBtn = styled.button`
-  display : block;
+  display: block;
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -87,9 +86,9 @@ export const SigninNextBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
-  margin : auto;
+  margin: auto;
   margin-top: 111px;
- 
+
   &:active {
     background-color: #b1d0ff;
   }
@@ -97,7 +96,7 @@ export const SigninNextBtn = styled.button`
 //중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
 
 export const SigninCompleteBtn = styled.button`
-  display : block;
+  display: block;
   width: 360px;
   height: 60px;
   background-color: #3385ff;
@@ -105,7 +104,7 @@ export const SigninCompleteBtn = styled.button`
   font-size: 24px;
   color: #ffffff;
   border: none;
-  margin : auto;
+  margin: auto;
   margin-top: 11px;
   &:active {
     background-color: #b1d0ff;
@@ -131,7 +130,7 @@ export const PetimgPrevBox = styled.div`
   height: 100px;
   border-radius: 50%;
   background-color: #dddddd;
-  margin : auto;
+  margin: auto;
   margin-bottom: 20px;
 `;
 
@@ -155,7 +154,7 @@ export const SigninPetimgBtn = styled.button`
   text-align: center;
   display: block;
   font-size: 16px;
-  margin : auto;
+  margin: auto;
   margin-bottom: 20px;
 `;
 

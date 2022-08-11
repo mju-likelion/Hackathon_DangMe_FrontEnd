@@ -23,8 +23,8 @@ export const userLocation = atom({
   default: [
     {
       address: '경기 용인시 처인구 명지로 116',
-      coordinateX: null,
-      coordinateY: null,
+      coordinateX: 37.22299976877114,
+      coordinateY: 127.18817232603816,
     },
   ],
 });

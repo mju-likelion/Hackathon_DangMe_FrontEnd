@@ -1,28 +1,38 @@
+import React from 'react';
+import ButtomNav from '../ButtomNav';
+import { Route, Routes } from 'react-router-dom';
 import {
   AddressPositionBox,
   TopWrap,
   PrevArrowImg,
   SearchAddressTitle,
   SearchBox,
-  LocationImg,
   UserLocationDiv,
+  LocationImg,
   LocationText,
 } from '../styles/AddressStyle';
+import {
+  SearchAddressInput,
+  SearchImgStyled,
+  SearchInputBox,
+} from '../styles/SearchShopStyle';
+
 import prevIcon from '../img/arrow_prev_address.png';
 import location from '../img/location.png';
 import nextIcon from '../img/arrow_next_white.png';
+import SearchImg from '../img/search_white.png';
 import { useNavigate } from 'react-router-dom';
-import { DaumPostcodeEmbed } from 'react-daum-postcode';
-import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-const SearchAddress = () => {
-  const [, setUserAddress] = useRecoilState(userLocation);
+import { userLocation } from '../atoms/SigninAtom';
+const SearchShop = () => {
+  const [, setUserLocation] = useRecoilState(userLocation);
   const navigate = useNavigate();
+
   const goPrev = () => {
     navigate(-1);
   };
   const onSuccess = (position) => {
-    setUserAddress((prev) => {
+    setUserLocation((prev) => {
       return {
         ...prev,
         coordinateX: position.coords.latitude,
@@ -35,36 +45,22 @@ const SearchAddress = () => {
         ],
       };
     });
-    navigate('/location/address');
-  };
-  const onError = () => {
-    setUserAddress({
-      coordinateX: 37.22488354862069,
-      coordinateY: 127.1877995370437,
-    });
-    navigate('/location');
+    navigate('/location/shop');
   };
   const allowGPS = () => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    navigator.geolocation.getCurrentPosition(onSuccess);
   };
-  const handleComplete = (data) => {
-    setUserAddress((prevAddress) => {
-      return {
-        ...prevAddress,
-        address: data.address,
-      };
-    });
-    console.log(data.address);
-    navigate('/home');
-  };
-
   return (
     <div>
       <AddressPositionBox>
         <TopWrap>
           <PrevArrowImg src={prevIcon} alt='prevBtn' onClick={goPrev} />
-          <SearchAddressTitle>주소검색</SearchAddressTitle>
+          <SearchAddressTitle>미용샵 검색</SearchAddressTitle>
           <SearchBox>
+            <SearchInputBox>
+              <SearchAddressInput />
+              <SearchImgStyled src={SearchImg} />
+            </SearchInputBox>
             <UserLocationDiv>
               <LocationImg src={location} alt='locationImg' />
               <LocationText onClick={allowGPS}>
@@ -72,15 +68,14 @@ const SearchAddress = () => {
               </LocationText>
               <img src={nextIcon} alt='nextArrow' />
             </UserLocationDiv>
-            <DaumPostcodeEmbed
-              style={{ marginTop: '20px', height: '800px' }}
-              onComplete={handleComplete}
-            />
           </SearchBox>
         </TopWrap>
       </AddressPositionBox>
+      <Routes>
+        <Route path='/*' element={<ButtomNav />} />
+      </Routes>
     </div>
   );
 };
 
-export default SearchAddress;
+export default SearchShop;

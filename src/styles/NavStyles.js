@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const styledLink = styled(Link)`
   float: left;
@@ -23,4 +23,5 @@ export const styledNav = styled.nav`
   height: 92px;
   background-color: #ffffff;
   border-top: 1px solid #dddddd;
+  z-index: 1000;
 `;

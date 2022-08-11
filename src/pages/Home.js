@@ -35,22 +35,19 @@ import tempData from '../data/tempData';
 import tempPetData from '../data/tempPetData';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+//import { useState } from 'react';
+//import axios from 'axios';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [userlocation, setUserLocation] = useRecoilState(userLocation);
-  const [petShopList, setPetShopList] = useState([]);
-  const getData = async () => {
+  const [userlocation] = useRecoilState(userLocation);
+  //const [petShopList, setPetShopList] = useState([]);
+  /*const getData = async () => {
     const response = await axios.get('api/coordinate/shop-dis');
     response.then((res) => {
       console.log(res);
     });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  };*/
 
   const goToReservHistory = () => {
     navigate('/ReservationHistory');
@@ -65,7 +62,7 @@ const Home = () => {
   return (
     <HomeStyled>
       <UserPositionBox>
-        <UserPositionIcon src={positionIcon} alt="position_icon" />
+        <UserPositionIcon src={positionIcon} alt='position_icon' />
         <UserPositionText onClick={goSearchAddress}>
           {userlocation.address === undefined
             ? userlocation[0].address
@@ -78,13 +75,13 @@ const Home = () => {
           <HomeReservTitle>미용 예약 현황</HomeReservTitle>
           <HomeReservInfoBtn
             src={nextIcon}
-            alt="goReservHistory"
+            alt='goReservHistory'
             onClick={goToReservHistory}
           />
         </HomeReservTitleBox>
         <HomeReservInfoListWrap>
           {tempPetData.map((pet) => (
-            <HomeReservInfoBox>
+            <HomeReservInfoBox key={pet.id}>
               {pet.petImg === '' ? null : (
                 <HomeReservInfoImg src={pet.petImg} />
               )}
@@ -110,8 +107,8 @@ const Home = () => {
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
         <PetShopInfoListWrap>
           {tempData.map((petShop) => (
-            <PetShopInfoBox>
-              <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
+            <PetShopInfoBox key={petShop.id}>
+              <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
               <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
               <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
               <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
@@ -120,7 +117,7 @@ const Home = () => {
         </PetShopInfoListWrap>
       </PetShopListBox>
       <Routes>
-        <Route path="/*" element={<ButtomNav />} />
+        <Route path='/*' element={<ButtomNav />} />
       </Routes>
     </HomeStyled>
   );

@@ -1,15 +1,14 @@
-/* global kakao */
 import React, { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { AddressBox, AddressText, AddressBtn } from '../styles/AddressStyle';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const { kakao } = window;
 
 const Location = () => {
+  const { from } = useParams();
   const navigate = useNavigate();
-
   const [userGPS, setUserGPS] = useRecoilState(userLocation); //GPS허용을 눌렀을 때 사용자의 위치 좌표를 저장한 state
   const [position, setPosition] = useState({
     //처음 지도를 띄울 때 메인으로 사용할 사용자의 좌표
@@ -19,7 +18,8 @@ const Location = () => {
   var geocoder = new kakao.maps.services.Geocoder();
   var coord = new kakao.maps.LatLng(userGPS.coordinateX, userGPS.coordinateY);
   const goHome = () => {
-    navigate('/home');
+    if (from === 'shop') navigate('/searchshop');
+    else navigate('/home');
   };
   useEffect(() => {
     setPosition({
@@ -38,21 +38,16 @@ const Location = () => {
             address: result[0].address.address_name,
           };
         });
-      } else
-        console.log(
-          status,
-          typeof userGPS.coordinateX,
-          typeof userGPS.coordinateY,
-        );
+      } else console.log(userGPS);
     });
   }, [userGPS]);
   const handleClick = (a, MouseEvent) => {
     //지도를 클릭했을 때
-    console.log(userGPS[0]);
     setUserGPS({
       coordinateX: MouseEvent.latLng.getLat(), //해당 좌표를 사용자 위치 정보에 저장 (위도, 경도)
       coordinateY: MouseEvent.latLng.getLng(),
     });
+    console.log(MouseEvent.latLng.getLat(), MouseEvent.latLng.getLng());
   };
   return (
     <div style={{ position: 'relative' }}>
