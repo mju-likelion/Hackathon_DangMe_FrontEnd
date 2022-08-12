@@ -27,11 +27,7 @@ export const UserPositionSetBtn = styled.img`
   height: 5px;
 `;
 
-export const HomeMiddleBox = styled.div`
-  /*   display: flex;
-  flex-direction: column;
-  align-items: center; */
-`;
+export const HomeMiddleBox = styled.div``;
 
 export const HomeReservBox = styled.div`
   height: 220px;

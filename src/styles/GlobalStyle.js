@@ -18,9 +18,6 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       font-family: 'Pretendard';
       max-width: 428px;
-/*        @media screen and (max-width : 428px){
-        width : 100%;        
-      }  */
     }
     body{
     };

@@ -20,7 +20,6 @@ import {
   ReservToggleEndLine,
   ReservServiceTopBox,
 } from '../styles/ReservationStyle';
-import { format, getDate, getMonth } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { ShopInfoImg } from '../styles/ShopInfoStyle';
 import prevIcon from '../img/arrow_prev_white.png';
