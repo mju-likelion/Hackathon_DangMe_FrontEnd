@@ -92,17 +92,17 @@ const Signin = () => {
   return (
     <div>
       <TopWrap>
-        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt='arrow_prev' onClick={goPrev} />
         <SigninUserTitle>회원가입</SigninUserTitle>
       </TopWrap>
       <BarDiv>
-        <SigninBar src={userInfobar} alt="userInfobar" />
+        <SigninBar src={userInfobar} alt='userInfobar' />
       </BarDiv>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SigninStyled>
           <SigninUserInfo>아이디(이메일)</SigninUserInfo>
           <SigninUserInfoInput
-            placeholder="이메일 주소"
+            placeholder='이메일 주소'
             {...register('email', {
               pattern: {
                 value:
@@ -113,16 +113,16 @@ const Signin = () => {
           />
           <EmailCheckBtn
             onClick={confirmEmailDup}
-            value="중복확인"
-            type="button"
+            value='중복확인'
+            type='button'
           />
           {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
           <SigninUserInfoBox></SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>비밀번호</SigninUserInfo>
             <SigninUserInfoInput
-              type="password"
-              placeholder="6자 이상~14자 이하"
+              type='password'
+              placeholder='6자 이상~14자 이하'
               minLength={6}
               maxLength={14}
               {...register('password', {
@@ -138,8 +138,8 @@ const Signin = () => {
           <SigninUserInfoBox>
             <SigninUserInfo>비밀번호 확인</SigninUserInfo>
             <SigninUserInfoInput
-              type="password"
-              placeholder="비밀번호 확인"
+              type='password'
+              placeholder='비밀번호 확인'
               minLength={6}
               maxLength={14}
               {...register('confirmPassword', {
@@ -152,7 +152,7 @@ const Signin = () => {
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput placeholder="이름" {...register('userName')} />
+            <SigninUserInfoInput placeholder='이름' {...register('userName')} />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>핸드폰 번호</SigninUserInfo>
@@ -172,7 +172,7 @@ const Signin = () => {
             )}
           </SigninUserInfoBox>
         </SigninStyled>
-        <SigninNextBtn type="submit" disabled={isSubmitting}>
+        <SigninNextBtn type='submit' disabled={isSubmitting}>
           다음
         </SigninNextBtn>
       </form>

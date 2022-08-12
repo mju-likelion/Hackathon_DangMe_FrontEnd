@@ -87,15 +87,15 @@ const SearchAddress = () => {
     <div>
       <AddressPositionBox>
         <TopWrap>
-          <PrevArrowImg src={prevIcon} alt="prevBtn" onClick={goPrev} />
+          <PrevArrowImg src={prevIcon} alt='prevBtn' onClick={goPrev} />
           <SearchAddressTitle>주소검색</SearchAddressTitle>
           <SearchBox>
             <UserLocationDiv>
-              <LocationImg src={location} alt="locationImg" />
+              <LocationImg src={location} alt='locationImg' />
               <LocationText onClick={allowGPS}>
                 현재 위치로 설정하기
               </LocationText>
-              <img src={nextIcon} alt="nextArrow" />
+              <img src={nextIcon} alt='nextArrow' />
             </UserLocationDiv>
             <DaumPostcodeEmbed
               style={{ marginTop: '20px', height: '800px' }}

@@ -81,20 +81,20 @@ const SigninDogInfo = () => {
   return (
     <div>
       <TopWrap>
-        <PrevArrowImg src={arrow} alt="arrow_prev" onClick={goPrev} />
+        <PrevArrowImg src={arrow} alt='arrow_prev' onClick={goPrev} />
         <SigninUserTitle>반려견 정보 입력</SigninUserTitle>
       </TopWrap>
       <BarDiv>
-        <SigninBar src={petInfobar} alt="petInfobar" />
+        <SigninBar src={petInfobar} alt='petInfobar' />
       </BarDiv>
       <SigninPetimgTxt>반려견 사진 등록</SigninPetimgTxt>
       <PetimgPrevBox>
-        {fileImg && <PetImgPrev alt="preview" src={fileImg} />}
+        {fileImg && <PetImgPrev alt='preview' src={fileImg} />}
       </PetimgPrevBox>
       <SigninPetimgInput
-        type="file"
-        accept="image/png,image/jpg,image/jpeg"
-        name="petimg"
+        type='file'
+        accept='image/png,image/jpg,image/jpeg'
+        name='petimg'
         ref={petImg}
         onChange={onImgChange}
       ></SigninPetimgInput>
@@ -112,28 +112,28 @@ const SigninDogInfo = () => {
           <SigninUserInfoBox>
             <SigninUserInfo>이름</SigninUserInfo>
             <SigninUserInfoInput
-              placeholder="반려견 이름"
+              placeholder='반려견 이름'
               {...register('petName')}
             ></SigninUserInfoInput>
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>나이</SigninUserInfo>
             <SigninUserInfoInput
-              placeholder="반려견 나이"
+              placeholder='반려견 나이'
               {...register('age')}
             ></SigninUserInfoInput>
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>품종</SigninUserInfo>
             <SigninUserInfoInput
-              placeholder="반려견 품종"
+              placeholder='반려견 품종'
               {...register('dogBreed')}
             ></SigninUserInfoInput>
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>몸무게</SigninUserInfo>
             <SigninUserInfoInput
-              placeholder="반려견 몸무게"
+              placeholder='반려견 몸무게'
               {...register('weight')}
             ></SigninUserInfoInput>
           </SigninUserInfoBox>

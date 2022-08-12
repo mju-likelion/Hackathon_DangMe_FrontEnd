@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <HomeStyled>
       <UserPositionBox>
-        <UserPositionIcon src={positionIcon} alt="position_icon" />
+        <UserPositionIcon src={positionIcon} alt='position_icon' />
         <UserPositionText onClick={goSearchAddress}>
           {userlocation.address}
         </UserPositionText>
@@ -58,7 +58,7 @@ const Home = () => {
           <HomeReservTitle>미용 예약 현황</HomeReservTitle>
           <HomeReservInfoBtn
             src={nextIcon}
-            alt="goReservHistory"
+            alt='goReservHistory'
             onClick={goToReservHistory}
           />
         </HomeReservTitleBox>
@@ -89,7 +89,7 @@ const Home = () => {
         <PetShopInfoListWrap>
           {tempData.map((petShop) => (
             <PetShopInfoBox>
-              <PetShopInfoImg src={petShop.shopImg} alt="petshop" />
+              <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
               <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
               <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
               <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
@@ -98,7 +98,7 @@ const Home = () => {
         </PetShopInfoListWrap>
       </PetShopListBox>
       <Routes>
-        <Route path="/*" element={<ButtomNav />} />
+        <Route path='/*' element={<ButtomNav />} />
       </Routes>
     </HomeStyled>
   );
