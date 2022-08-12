@@ -25,12 +25,14 @@ export const PrevImg = styled.img`
   width: 8px;
   height: 18px;
 `;
+
 export const ShopDetailBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
 `;
+
 export const ShopImg = styled.img`
   width: 376px;
   height: 204px;
@@ -56,7 +58,6 @@ export const ResBtn = styled.button`
 
 export const ShopMenu = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   margin-top: 40px;
 `;
@@ -82,6 +83,7 @@ export const ShopMenuBar = styled.div`
       border-bottom: solid 2px #ffa724;
     `}
 `;
+
 export const PriceDetail = styled.div`
   width: 100px;
   height: 45px;
@@ -102,6 +104,7 @@ export const PriceDetail = styled.div`
       border-bottom: solid 2px #ffa724;
     `}
 `;
+
 export const ShopHr = styled.img`
   width: 376px;
   position: absolute;
@@ -112,15 +115,12 @@ export const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-
-  margin-top: 25px;
-  margin-bottom: 107px;
+  margin: 25px 0 107px 0;
 `;
 
 export const InfoWrap = styled.div`
   text-align: left;
-  margin-bottom: 50px;
-  margin-left: 40px;
+  margin: 0 0 50px 40px;
 `;
 
 export const InfoTitle = styled.p`
@@ -138,14 +138,10 @@ export const InfoText = styled.p`
 export const PriceImg = styled.img`
   width: 376px;
   height: 265px;
-  margin-top: 24px;
-  margin-left: 26px;
-  margin-bottom: 25px;
+  margin: 24px 0 25px 26px;
 `;
 
 export const NoticeBox = styled.div`
   text-align: left;
-  margin-bottom: 50px;
-  margin-left: 40px;
-  margin-bottom: 117px;
+  margin: 0 0 117px 40px;
 `;

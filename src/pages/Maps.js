@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ButtomNav from '../ButtomNav';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-import ListBar from '../img/Listbar.png';
+
 //import tempData from '../data/tempData';
 import {
   NearShop,
@@ -11,7 +11,6 @@ import {
   PrevImg,
   Topwrap,
   ShopListBox,
-  ListBarImg,
   NearShopListBox,
   SearchBarImg,
   ShopBox,
@@ -135,10 +134,12 @@ const Maps = () => {
         </>
       ) : (
         <ShopListBox>
-          <ListBarImg src={ListBar} alt='ListBarImg' />
           <NearShopListBox>
             {tempData.map((shop) => (
-              <ShopBox key={shop.id}>
+              <ShopBox
+                onClick={() => navigate(`/shopdetail/${shop.id}`)}
+                key={shop.id}
+              >
                 <ShopImg src={shop.shopImg} />
                 <TextBox>
                   <ShopTitle>{shop.shopName}</ShopTitle>

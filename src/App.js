@@ -10,6 +10,7 @@ import Location from './address/Location';
 import Maps from './pages/Maps';
 import SearchShop from './pages/SearchShop';
 import ShopDetail from './pages/ShopDetail';
+
 function App() {
   return (
     <div>

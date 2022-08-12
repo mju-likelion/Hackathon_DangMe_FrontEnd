@@ -38,7 +38,7 @@ const Location = () => {
             address: result[0].address.address_name,
           };
         });
-      } else console.log(userGPS);
+      }
     });
   }, [userGPS]);
   const handleClick = (a, MouseEvent) => {
@@ -47,7 +47,6 @@ const Location = () => {
       coordinateX: MouseEvent.latLng.getLat(), //해당 좌표를 사용자 위치 정보에 저장 (위도, 경도)
       coordinateY: MouseEvent.latLng.getLng(),
     });
-    console.log(MouseEvent.latLng.getLat(), MouseEvent.latLng.getLng());
   };
   return (
     <div style={{ position: 'relative' }}>
