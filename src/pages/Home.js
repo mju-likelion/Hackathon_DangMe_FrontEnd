@@ -47,18 +47,6 @@ const Home = () => {
   const [petShopList, setPetShopList] = useState([]);
   const [petReservList, setPetReservList] = useState([]);
 
-  /*   useEffect(() => {
-    axios
-      .get("api/coordinate/shop-dis")
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []); */
-
   useEffect(() => {
     const fetchPetShops = async () => {
       try {
