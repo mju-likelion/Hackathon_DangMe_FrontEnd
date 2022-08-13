@@ -141,11 +141,11 @@ export const ReservToggleTitle = styled.li`
 export const ReservToggleActive = styled.img`
   width: 10px;
   height: 5px;
-  margin-left: 280px;
+  margin-left: 130px;
 `;
 
 export const ReservToggleDateActive = styled(ReservToggleActive)`
-  margin-left: 330px;
+  margin-left: 252px;
 `;
 
 export const ReservOpenedToggleBox = styled.div`
@@ -186,4 +186,38 @@ export const ReservToggleEndLine = styled.div`
   height: 1px;
   background-color: #dddddd;
   margin-top: -1px;
+`;
+
+export const ReservTimeBox = styled.div`
+  text-align: center;
+`;
+
+export const ReservTimeMediem = styled.p`
+  font-weight: 600;
+  font-size: 21px;
+  color: #000000;
+  margin-bottom: 20px;
+`;
+
+export const ReservTimeSelectBtn = styled.button`
+  width: 100px;
+  height: 50px;
+  border: 1px solid #848484;
+  border-radius: 30px;
+  font-size: 18px;
+  color: #848484;
+  background-color: #ffffff;
+  margin: 9px 6px;
+`;
+
+export const ReservTimeSelected = styled(ReservTimeSelectBtn)`
+  background-color: #ffa724;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+`;
+
+export const ReservDoneTime = styled(ReservTimeSelectBtn)`
+  border: 1px solid #dddddd;
+  color: #dddddd;
 `;

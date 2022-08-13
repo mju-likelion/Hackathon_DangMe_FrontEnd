@@ -9,6 +9,7 @@ export const LogoStyled = styled.img`
   height: 62px;
   margin-top: 151px;
   margin-bottom: 130px;
+  margin-right: 5%;
 `;
 export const FormStyled = styled.form``;
 

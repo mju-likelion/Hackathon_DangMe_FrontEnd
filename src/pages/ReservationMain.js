@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import ButtomNav from '../ButtomNav';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   ReservationTopBox,
   ReservationPrevIcon,
@@ -19,6 +19,11 @@ import {
   ReservServicePrice,
   ReservToggleEndLine,
   ReservServiceTopBox,
+  ReservTimeSelectBtn,
+  ReservTimeMediem,
+  ReservTimeBox,
+  ReservDoneTime,
+  ReservTimeSelected,
 } from '../styles/ReservationStyle';
 import { DayPicker } from 'react-day-picker';
 import { ShopInfoImg } from '../styles/ShopInfoStyle';
@@ -28,36 +33,47 @@ import openToggle from '../img/openedToggle.png';
 import closeToggle from '../img/closedToggle.png';
 import { ko } from 'date-fns/locale';
 import styles from 'react-day-picker/dist/style.module.css';
+import { useRecoilState } from 'recoil';
+import { reservation } from '../atoms/ReservationAtom';
+import serviceList from '../data/tempServiceData';
+import ShopServiceList from '../components/ShopServiceList';
+import {
+  tempReservTimeData,
+  tempReservDoneTime,
+} from '../data/tempReservTimeData';
 
 const ReservationMain = () => {
   const navigate = useNavigate();
   const goPrev = () => {
     navigate('/reservation');
   };
+  const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
+  const [dateClicked, setDateClicked] = useState(false);
+
+  const handleClickDate = () => {
+    setDateClicked(!dateClicked);
+    setReservationInfo({
+      ...reservationInfo,
+      date:
+        (new Date(selectedDay).getMonth() + 1).toString() +
+        '월 ' +
+        new Date(selectedDay).getDate().toString() +
+        '일',
+    });
+  };
+
   const today = new Date();
   const [selectedDay, setSelectedDay] = useState();
   const classNames = {
     ...styles,
     head: 'custom-head',
   };
-  const css = `
-  .my-selected:not([disabled]) { 
-    font-weight: 700; 
-    color:white;
-    border: 2px solid currentColor;
-    background-color:#FFA724;
-  }
-  .my-selected:hover:not([disabled]) { 
-    border-color: #FFA724;
-    color:black;
-  }
-`;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isServiceClicked, setIsServiceClicked] = useState(false);
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [isTimeClicked, setIsTimeClicked] = useState(false);
-  const closedDay = ['월', '화'];
+  const closedDay = ['월', '수'];
   const arr = [...closedDay];
   const disabledDays = (date) => {
     const day = date.getDay();
@@ -94,6 +110,16 @@ const ReservationMain = () => {
       toggleTitle: (
         <ReservToggleTitle onClick={() => handleToggleClick(0)}>
           희망 서비스
+          <p
+            style={{
+              fontWeight: 700,
+              fontSize: '18px',
+              color: '#FFA724',
+              margin: '0 5px',
+            }}
+          >
+            {reservationInfo.service}
+          </p>
           {isServiceClicked ? (
             <ReservToggleActive src={closeToggle} />
           ) : (
@@ -106,26 +132,13 @@ const ReservationMain = () => {
           {isServiceClicked ? (
             <li>
               <ReservServiceTopBox>
-                <ReservSerViceBox>
-                  <ReservServiceName>부분 미용</ReservServiceName>
-                  <ReservServicePrice>20,000</ReservServicePrice>
-                </ReservSerViceBox>
-                <ReservSerViceBox>
-                  <ReservServiceName>목욕</ReservServiceName>
-                  <ReservServicePrice>25,000</ReservServicePrice>
-                </ReservSerViceBox>
-                <ReservSerViceBox>
-                  <ReservServiceName>부분+전체미용</ReservServiceName>
-                  <ReservServicePrice>45,000</ReservServicePrice>
-                </ReservSerViceBox>
-                <ReservSerViceBox>
-                  <ReservServiceName>스포팅</ReservServiceName>
-                  <ReservServicePrice>60,000</ReservServicePrice>
-                </ReservSerViceBox>
-                <ReservSerViceBox>
-                  <ReservServiceName>가위</ReservServiceName>
-                  <ReservServicePrice>75,000</ReservServicePrice>
-                </ReservSerViceBox>
+                {serviceList.map((service, index) => (
+                  <ShopServiceList
+                    key={index}
+                    serviceName={service.serviceName}
+                    servicePrice={service.price}
+                  />
+                ))}
                 <ReservToggleEndLine />
               </ReservServiceTopBox>
             </li>
@@ -139,6 +152,9 @@ const ReservationMain = () => {
       toggleTitle: (
         <ReservToggleTitle onClick={() => handleToggleClick(1)}>
           날짜
+          <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
+            {reservationInfo.date === 'NaN' ? '' : reservationInfo.date}
+          </p>
           {isDateClicked ? (
             <ReservToggleDateActive src={closeToggle} />
           ) : (
@@ -147,11 +163,10 @@ const ReservationMain = () => {
         </ReservToggleTitle>
       ),
       toggleContent: (
-        <ReservOpenedToggleBox>
+        <ReservOpenedToggleBox onClick={handleClickDate}>
           {isDateClicked ? (
-            <li style={{ paddingLeft: '25px' }}>
+            <li style={{ paddingLeft: '15px' }}>
               <style>{`.custom-head { color: #848484}`}</style>
-              <style>{css}</style>
 
               <DayPicker
                 mode='single'
@@ -170,9 +185,6 @@ const ReservationMain = () => {
                 locale={ko}
                 required
                 classNames={classNames}
-                modifiersClassNames={{
-                  selected: 'my-selected',
-                }}
               />
             </li>
           ) : (
@@ -185,6 +197,9 @@ const ReservationMain = () => {
       toggleTitle: (
         <ReservToggleTitle onClick={() => handleToggleClick(2)}>
           시간
+          <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
+            14:00
+          </p>
           {isTimeClicked ? (
             <ReservToggleDateActive src={closeToggle} />
           ) : (
@@ -194,7 +209,37 @@ const ReservationMain = () => {
       ),
       toggleContent: (
         <ReservOpenedToggleBox>
-          {isTimeClicked ? <li>시간 선택</li> : ''}
+          {isTimeClicked ? (
+            <li>
+              <div>
+                {tempReservTimeData.map((time, index) => (
+                  <ReservTimeBox key={index} style={{ marginTop: '20px' }}>
+                    {time.text === '오전' ? (
+                      <>
+                        <ReservTimeMediem>오전</ReservTimeMediem>
+                        {time.worktime.map((shoptime, workindex) => (
+                          <ReservTimeSelectBtn key={workindex}>
+                            {shoptime}
+                          </ReservTimeSelectBtn>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        <ReservTimeMediem>오후</ReservTimeMediem>
+                        {time.worktime.map((shoptime, index) => (
+                          <ReservTimeSelectBtn key={index}>
+                            {shoptime}
+                          </ReservTimeSelectBtn>
+                        ))}
+                      </>
+                    )}
+                  </ReservTimeBox>
+                ))}
+              </div>
+            </li>
+          ) : (
+            ''
+          )}
         </ReservOpenedToggleBox>
       ),
     },
@@ -206,8 +251,8 @@ const ReservationMain = () => {
         <ReservationTopBoxText>예약하기</ReservationTopBoxText>
       </ReservationTopBox>
       <ShopInfoImg src={shopImg} />
-      <ReservShopName>미용실 이름&nbsp;/</ReservShopName>
-      <ReservPetName>&nbsp;댕댕이 이름</ReservPetName>
+      <ReservShopName>멍멍 미용실&nbsp;/</ReservShopName>
+      <ReservPetName>&nbsp;박둥둥</ReservPetName>
       <ReservMainBox>
         {toggleMenu.map((section, index) => (
           <ReservToggleUl key={index}>
@@ -219,7 +264,9 @@ const ReservationMain = () => {
         ))}
       </ReservMainBox>
       <div style={{ paddingBottom: '132px' }}>
-        <ReservCompleteBtn>예약 완료</ReservCompleteBtn>
+        <ReservCompleteBtn style={{ background: '#3385FF', marginTop: '40px' }}>
+          예약 완료
+        </ReservCompleteBtn>
       </div>
       <Routes>
         <Route path='/*' element={<ButtomNav />} />

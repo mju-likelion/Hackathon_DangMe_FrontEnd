@@ -68,6 +68,11 @@ export const HomeReservInfoBox = styled.div`
   border-radius: 30px;
   background: #ffffff;
   flex-shrink: 0;
+  margin-left: 0;
+`;
+
+export const ReservClickedPetBox = styled(HomeReservInfoBox)`
+  background-color: #f6f6f6;
 `;
 
 export const HomeReservInfoImg = styled.img`

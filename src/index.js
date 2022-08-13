@@ -8,7 +8,7 @@ import { RecoilRoot } from 'recoil';
 import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-axios.defaults.baseURL = 'https://e22d-58-78-54-29.jp.ngrok.io/';
+axios.defaults.baseURL = 'http://3.39.228.246';
 //axios.defaults.withCredentials = true;
 root.render(
   <BrowserRouter>

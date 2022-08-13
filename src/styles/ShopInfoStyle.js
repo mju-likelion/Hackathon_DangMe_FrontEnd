@@ -69,11 +69,24 @@ export const ShopInfoContentTitle = styled.p`
   font-weight: 700;
   font-size: 16px;
   color: #848484;
+  padding-left: 10px;
 `;
 
 export const ShopInfoContent = styled.p`
   font-size: 16px;
   color: #000000;
   margin-top: 12px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+`;
+
+export const ShopInfoContentLine = styled.div`
+  border-bottom: 1px solid #f6f6f6;
+  margin-bottom: 25px;
+`;
+
+export const ShopInfoPriceContent = styled.img`
+  width: 376px;
+  height: 265px;
   margin-bottom: 25px;
 `;

@@ -15,11 +15,14 @@ import {
   ShopInfoBox,
   ShopInfoContentBox,
   ShopInfoContent,
+  ShopInfoContentLine,
+  ShopInfoPriceContent,
 } from '../styles/ShopInfoStyle';
 import prevIcon from '../img/arrow_prev_white.png';
 import { useState } from 'react';
 import { ShopInfoContentTitle } from './../styles/ShopInfoStyle';
 import tempShopInfoData from '../data/tempShopInfoData';
+import shopPrice from '../img/shopPrice.png';
 
 const ShopInfo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,14 +53,19 @@ const ShopInfo = () => {
             <>
               <ShopInfoContentTitle>소개</ShopInfoContentTitle>
               <ShopInfoContent>{shopInfo.shopIntro}</ShopInfoContent>
+              <ShopInfoContentLine />
               <ShopInfoContentTitle>주소</ShopInfoContentTitle>
               <ShopInfoContent>{shopInfo.shopAddress}</ShopInfoContent>
+              <ShopInfoContentLine />
               <ShopInfoContentTitle>영업시간</ShopInfoContentTitle>
               <ShopInfoContent>{shopInfo.shopWorkTime}</ShopInfoContent>
+              <ShopInfoContentLine />
               <ShopInfoContentTitle>전화번호</ShopInfoContentTitle>
               <ShopInfoContent>{shopInfo.shopCallNum}</ShopInfoContent>
+              <ShopInfoContentLine />
               <ShopInfoContentTitle>주차</ShopInfoContentTitle>
               <ShopInfoContent>{shopInfo.shopPark}</ShopInfoContent>
+              <ShopInfoContentLine />
             </>
           ))}
         </ShopInfoContentBox>
@@ -72,7 +80,16 @@ const ShopInfo = () => {
             가격 상세
           </ShopInfoTabTitle>
         ),
-      tabContent: <ShopInfoContentBox>가격 상세 내용</ShopInfoContentBox>,
+      tabContent: (
+        <ShopInfoContentBox>
+          <ShopInfoPriceContent src={shopPrice} />
+          <ShopInfoContentTitle>안내 사항</ShopInfoContentTitle>
+          <ShopInfoContent>
+            위 미용 요금표 이미지와 실제 지불하는 미용 요금에는 차이가 있을 수
+            있습니다. 자세한 가격문의는 미용샵과 통화를 통해 확인해주세요 :)
+          </ShopInfoContent>
+        </ShopInfoContentBox>
+      ),
     },
   ];
   return (

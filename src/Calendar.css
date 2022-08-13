@@ -1,14 +1,14 @@
 :root {
-  --rdp-cell-size: 40px;
+  --rdp-cell-size: 45px;
   --rdp-accent-color: #ffa724;
-  --rdp-background-color: #ffa724a1;
+  --rdp-background-color: #ffffff;
   /* Switch to dark colors for dark themes */
   --rdp-accent-color-dark: #3003e1;
   --rdp-background-color-dark: #180270;
   /* Outline border for focused elements */
   --rdp-outline: 2px solid var(--rdp-accent-color);
   /* Outline border for focused and selected elements */
-  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
+  --rdp-outline-selected: none;
 }
 
 .rdp {

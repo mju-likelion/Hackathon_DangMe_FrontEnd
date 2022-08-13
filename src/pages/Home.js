@@ -45,6 +45,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [userlocation, setUserLocation] = useRecoilState(userLocation);
   const [petShopList, setPetShopList] = useState([]);
+  const [petReservList, setPetReservList] = useState([]);
 
   /*   useEffect(() => {
     axios
@@ -61,14 +62,26 @@ const Home = () => {
   useEffect(() => {
     const fetchPetShops = async () => {
       try {
-        const response = await axios.get('api/coordinate/shop-dis');
+        const response = await axios.get('api/coordinate');
         console.log(response);
         console.log(response.data);
+        console.log('shop');
+        setPetShopList(response.data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    const fetchPetInfo = async () => {
+      try {
+        const response = await axios.get('/api/pet/main');
+        console.log(response.data.data);
+        setPetReservList(response.data.data);
       } catch (e) {
         console.log(e);
       }
     };
     fetchPetShops();
+    fetchPetInfo();
   }, []);
 
   const goToReservHistory = () => {
@@ -106,14 +119,17 @@ const Home = () => {
             />
           </HomeReservTitleBox>
           <HomeReservInfoListWrap>
-            {tempPetData.map((pet, index) => (
+            {petReservList.map((pet, index) => (
               <HomeReservInfoBox key={index}>
                 {pet.petImg === '' ? (
                   <HomeReservInfoImg src={defaultPetImg} />
                 ) : (
                   <HomeReservInfoImg src={pet.petImg} />
                 )}
-                {pet.reservDate === '' ? (
+                <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
+              </HomeReservInfoBox>
+            ))}
+            {/* {pet.reservDate === '' ? (
                   <>
                     <HomeReservInfoName style={{ color: '#000000' }}>
                       {pet.petName}
@@ -124,21 +140,19 @@ const Home = () => {
                   <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
                 )}
                 <HomeReservInfoShop>{pet.petShopName}</HomeReservInfoShop>
-                <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate>
-              </HomeReservInfoBox>
-            ))}
+                <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate> */}
           </HomeReservInfoListWrap>
         </HomeReservBox>
         <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>
         <PetShopListBox>
           <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
           <PetShopInfoListWrap>
-            {tempData.map((petShop, index) => (
+            {petShopList.map((petShop, index) => (
               <PetShopInfoBox onClick={goToShopInfo} key={index}>
                 <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
                 <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
-                <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>
-                <PetShopInfoClosed>{petShop.shopClosed}</PetShopInfoClosed>
+                <PetShopInfoAddress>{petShop.address}</PetShopInfoAddress>
+                <PetShopInfoClosed>{petShop.workHoly}</PetShopInfoClosed>
               </PetShopInfoBox>
             ))}
           </PetShopInfoListWrap>
