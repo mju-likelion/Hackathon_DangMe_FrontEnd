@@ -39,6 +39,7 @@ import defaultPetImg from '../img/defaultPetImg.png';
 import { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Home = () => {
@@ -92,7 +93,9 @@ const Home = () => {
       <UserPositionBox>
         <UserPositionIcon src={positionIcon} alt='position_icon' />
         <UserPositionText onClick={goSearchAddress}>
-          {userlocation.address}
+          {userlocation.address === undefined
+            ? userlocation[0].address
+            : userlocation.address}
         </UserPositionText>
         <UserPositionSetBtn src={positionSet} />
       </UserPositionBox>
@@ -117,18 +120,6 @@ const Home = () => {
                 <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
               </HomeReservInfoBox>
             ))}
-            {/* {pet.reservDate === '' ? (
-                  <>
-                    <HomeReservInfoName style={{ color: '#000000' }}>
-                      {pet.petName}
-                    </HomeReservInfoName>
-                    <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
-                  </>
-                ) : (
-                  <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
-                )}
-                <HomeReservInfoShop>{pet.petShopName}</HomeReservInfoShop>
-                <HomeReservInfoDate>{pet.reservDate}</HomeReservInfoDate> */}
           </HomeReservInfoListWrap>
         </HomeReservBox>
         <HomeReservBtn onClick={goToReservation}>미용 예약하기</HomeReservBtn>

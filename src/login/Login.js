@@ -13,7 +13,6 @@ import {
 } from '../styles/LoginStlye';
 import { useState } from 'react';
 import axios from 'axios';
-
 import { useForm } from 'react-hook-form';
 import { userInfo } from '../atoms/SigninAtom';
 const Login = () => {
@@ -23,7 +22,17 @@ const Login = () => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm();
-
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      setUserId((previnfo) => {
+        return {
+          ...previnfo,
+          [name]: value[name],
+        };
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
   const navigate = useNavigate();
   const goToHome = () => {
     navigate('/home');
@@ -40,7 +49,6 @@ const Login = () => {
     response
       .then((response) => {
         const { token } = response.data;
-        console.log(token);
         axios.defaults.headers.common['Authorization'] = `${token}`;
         alert('로그인에 성공하였습니다.');
         goToHome();
