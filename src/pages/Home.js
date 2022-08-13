@@ -31,30 +31,25 @@ import {
 } from '../styles/HomeStyle';
 import positionIcon from '../img/positionIcon.png';
 import positionSet from '../img/positionSet.png';
-import { HomeStyled } from './../styles/HomeStyle';
 import nextIcon from '../img/arrow_next_home.png';
-import tempData from '../data/tempData';
-import tempPetData from '../data/tempPetData';
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
+import { shopList } from '../atoms/SigninAtom';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [userlocation, setUserLocation] = useRecoilState(userLocation);
-  const [petShopList, setPetShopList] = useState([]);
+  const [userlocation] = useRecoilState(userLocation);
+  const [shoplist, setShopList] = useRecoilState(shopList);
   const [petReservList, setPetReservList] = useState([]);
 
   useEffect(() => {
     const fetchPetShops = async () => {
       try {
         const response = await axios.get('api/coordinate');
-        console.log(response);
-        console.log(response.data);
-        console.log('shop');
-        setPetShopList(response.data.data);
+        setShopList(response.data.data);
       } catch (e) {
         console.log(e);
       }
@@ -62,7 +57,6 @@ const Home = () => {
     const fetchPetInfo = async () => {
       try {
         const response = await axios.get('/api/pet/main');
-        console.log(response.data.data);
         setPetReservList(response.data.data);
       } catch (e) {
         console.log(e);
@@ -125,7 +119,7 @@ const Home = () => {
         <PetShopListBox>
           <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
           <PetShopInfoListWrap>
-            {petShopList.map((petShop, index) => (
+            {shoplist.map((petShop, index) => (
               <PetShopInfoBox onClick={goToShopInfo} key={index}>
                 <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
                 <PetShopInfoName>{petShop.shopName}</PetShopInfoName>

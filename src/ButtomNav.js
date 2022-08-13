@@ -29,7 +29,7 @@ const ButtomNav = () => {
           />
         )}
       </StyledLink>
-      <StyledLink to='/map'>
+      <StyledLink to='/maps'>
         {activeNav === 1 ? (
           <StyledLinkImg
             src={searchClickIcon}
