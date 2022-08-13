@@ -39,7 +39,6 @@ import defaultPetImg from '../img/defaultPetImg.png';
 import { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Home = () => {

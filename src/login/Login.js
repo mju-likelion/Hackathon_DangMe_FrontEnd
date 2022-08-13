@@ -11,15 +11,17 @@ import {
   GoToHome,
   ArrowStyled,
 } from '../styles/LoginStlye';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+
 import { userInfo } from '../atoms/SigninAtom';
 const Login = () => {
   const [user, setUserId] = useState({ email: null, password: null });
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting },
   } = useForm();
   useEffect(() => {
