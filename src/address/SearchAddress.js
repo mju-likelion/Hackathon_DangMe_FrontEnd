@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { DaumPostcodeEmbed } from 'react-daum-postcode';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
+import axios from 'axios';
 const SearchAddress = () => {
   const [, setUserAddress] = useRecoilState(userLocation);
   const navigate = useNavigate();
@@ -48,6 +49,24 @@ const SearchAddress = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   };
   const handleComplete = (data) => {
+    var geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(data.address, async (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        setUserAddress((prev) => {
+          return {
+            ...prev,
+            coordinateX: result[0].y,
+            coordinateY: result[0].x,
+          };
+        });
+        await axios
+          .put('api/coordinate/user', {
+            coordinateX: result[0].y,
+            coordinateY: result[0].x,
+          })
+          .then((res) => alert(res.data.data));
+      }
+    });
     setUserAddress((prevAddress) => {
       return {
         ...prevAddress,

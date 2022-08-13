@@ -32,13 +32,14 @@ import SearchBar from '../img/searchBar.png';
 import prevIcon from '../img/arrow_prev_address.png';
 import { useNavigate } from 'react-router-dom';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import tempData from '../data/tempData';
+import { shopList } from '../atoms/SigninAtom';
 import shopMarker from '../img/shop_place.png';
 import clickedShopMarker from '../img/shop_place_clicked.png';
+import shortid from 'shortid';
 const Maps = () => {
   const [selectMarker, setSelectMarker] = useState(null);
-  console.log({ shopMarker });
   const [userlocation] = useRecoilState(userLocation);
+  const [shoplist] = useRecoilState(shopList);
   const navigate = useNavigate();
   const goPrev = () => {
     navigate(-1);
@@ -99,11 +100,11 @@ const Maps = () => {
         }
         style={{ width: '100%', height: '700px', position: 'relative' }}
       >
-        {tempData.map((shop) => (
+        {shoplist.map((shop) => (
           <EventMarkerContainer
             id={shop.id}
-            key={shop.id}
-            position={shop.latlng}
+            key={shortid.generate()}
+            position={{ lat: shop.coordinateX, lng: shop.coordinateY }}
             onClick={() => setSelectMarker(shop.id)}
             isClicked={selectMarker === shop.id}
           />
@@ -113,21 +114,21 @@ const Maps = () => {
       {selectMarker ? (
         <>
           <ShopResBox>
-            <ShopResImg src={tempData[selectMarker - 1].shopImg} />
+            <ShopResImg src={shoplist[selectMarker - 1].shopImg} />
             <ShopResText>
-              <ShopResTitle>{tempData[selectMarker - 1].shopName}</ShopResTitle>
+              <ShopResTitle>{shoplist[selectMarker - 1].shopName}</ShopResTitle>
               <ShopResAddress>
-                {tempData[selectMarker - 1].shopAddress}
+                {shoplist[selectMarker - 1].shopAddress}
               </ShopResAddress>
               <ShopResClosed>
-                {tempData[selectMarker - 1].shopClosed}
+                {shoplist[selectMarker - 1].shopClosed}
               </ShopResClosed>
-              <ShopResTime>{tempData[selectMarker - 1].shopTime}</ShopResTime>
+              <ShopResTime>{shoplist[selectMarker - 1].shopTime}</ShopResTime>
             </ShopResText>
           </ShopResBox>
 
           <ShopDetailBtn
-            onClick={() => goDetail(tempData[selectMarker - 1].id)}
+            onClick={() => goDetail(shoplist[selectMarker - 1].id)}
           >
             상세정보 더보기
           </ShopDetailBtn>
@@ -135,7 +136,7 @@ const Maps = () => {
       ) : (
         <ShopListBox>
           <NearShopListBox>
-            {tempData.map((shop) => (
+            {shoplist.map((shop) => (
               <ShopBox
                 onClick={() => navigate(`/shopdetail/${shop.id}`)}
                 key={shop.id}

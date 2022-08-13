@@ -19,7 +19,7 @@ import { useRecoilState } from 'recoil';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 const Signin = () => {
-  const [userinfo, setUserInfo] = useRecoilState(userInfo);
+  const [, setUserInfo] = useRecoilState(userInfo);
   const {
     register,
     handleSubmit,
@@ -39,7 +39,7 @@ const Signin = () => {
   //이메일 형식 체크
   const email_check = (email) => {
     var reg =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //eslint-disable-line
     return reg.test(email);
   };
   //비밀번호 형식 체크
@@ -106,7 +106,7 @@ const Signin = () => {
             {...register('email', {
               pattern: {
                 value:
-                  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i, //eslint-disable-line
                 message: '이메일 형식에 맞게 입력해주세요',
               },
             })}

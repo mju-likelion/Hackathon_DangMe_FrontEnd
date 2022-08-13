@@ -43,7 +43,6 @@ const SigninDogInfo = () => {
           [name]: value[name],
         };
       });
-      console.log(name, value[name]);
     });
     return () => subscription.unsubscribe();
   }, [watch]);
@@ -60,7 +59,6 @@ const SigninDogInfo = () => {
   const handleSignin = () => {
     for (let [key, value] of Object.entries(userinfo)) {
       formData.append(key, value);
-      console.log(key, value);
     }
 
     console.log(formData.get('petimg'));
@@ -70,9 +68,7 @@ const SigninDogInfo = () => {
         alert(response.data.data);
         navigate('/');
       })
-      .catch(function (error) {
-        console.log(formData.get('petimg'));
-      });
+      .catch(function (error) {});
   };
   const onImgInputBtnClick = (e) => {
     e.preventDefault();

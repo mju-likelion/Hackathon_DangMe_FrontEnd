@@ -27,11 +27,15 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ButtomNav from '../ButtomNav';
 import Price from '../img/Price.png';
+import { shopList } from '../atoms/SigninAtom';
+import { useRecoilState } from 'recoil';
+import shortid from 'shortid';
 const ShopDetail = () => {
+  const [shoplist] = useRecoilState(shopList);
   const [isMenuBar, setIsMenuBar] = useState(true);
   const navigate = useNavigate();
   const { shopId } = useParams();
-  const shop = tempData[shopId - 1];
+  const shop = shoplist[shopId - 1];
   const goPrev = () => {
     navigate(-1);
   };
@@ -61,23 +65,23 @@ const ShopDetail = () => {
         <InfoBox>
           <InfoWrap>
             <InfoTitle>소개</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.intro}</InfoText>
           </InfoWrap>
           <InfoWrap>
             <InfoTitle>주소</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.address}</InfoText>
           </InfoWrap>
           <InfoWrap>
             <InfoTitle>영업시간</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.workTime}</InfoText>
           </InfoWrap>
           <InfoWrap>
             <InfoTitle>전화번호</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.shopNum}</InfoText>
           </InfoWrap>
           <InfoWrap>
             <InfoTitle>주차</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.parking}</InfoText>
           </InfoWrap>
         </InfoBox>
       ) : (
@@ -85,7 +89,7 @@ const ShopDetail = () => {
           <PriceImg src={Price} />
           <NoticeBox>
             <InfoTitle>안내사항</InfoTitle>
-            <InfoText>ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄹ</InfoText>
+            <InfoText>{shop.intro}</InfoText>
           </NoticeBox>
         </>
       )}

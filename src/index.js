@@ -8,7 +8,7 @@ import { Suspense } from 'react';
 import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = 'http://3.39.228.246';
 //axios.defaults.withCredentials = true;
 root.render(
   <BrowserRouter>

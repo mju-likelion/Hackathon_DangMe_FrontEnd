@@ -31,24 +31,32 @@ import positionIcon from '../img/positionIcon.png';
 import positionSet from '../img/positionSet.png';
 import { HomeStyled } from './../styles/HomeStyle';
 import nextIcon from '../img/arrow_next_home.png';
-import tempData from '../data/tempData';
-import tempPetData from '../data/tempPetData';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
-//import { useState } from 'react';
-//import axios from 'axios';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { shopList } from '../atoms/SigninAtom';
+import shortid from 'shortid';
 const Home = () => {
   const navigate = useNavigate();
   const [userlocation] = useRecoilState(userLocation);
-  //const [petShopList, setPetShopList] = useState([]);
-  /*const getData = async () => {
-    const response = await axios.get('api/coordinate/shop-dis');
-    response.then((res) => {
-      console.log(res);
+  const [petResList, setPetResList] = useState([]);
+  const [shoplist, setShopList] = useRecoilState(shopList);
+  const getData = async () => {
+    await axios.get('api/pet/main').then((res) => {
+      res.data.data.map((dog) => setPetResList((prev) => [...prev, dog]));
+      console.log(petResList);
     });
-  };*/
-
+    await axios.get('api/coordinate').then((res) => {
+      res.data.data.map((shop) => setShopList((prev) => [...prev, shop]));
+    });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  useEffect(() => {
+    console.log(petResList);
+  }, [petResList]);
   const goToReservHistory = () => {
     navigate('/ReservationHistory');
   };
@@ -80,8 +88,8 @@ const Home = () => {
           />
         </HomeReservTitleBox>
         <HomeReservInfoListWrap>
-          {tempPetData.map((pet) => (
-            <HomeReservInfoBox key={pet.id}>
+          {petResList.map((pet, index) => (
+            <HomeReservInfoBox key={shortid.generate()}>
               {pet.petImg === '' ? null : (
                 <HomeReservInfoImg src={pet.petImg} />
               )}
@@ -106,8 +114,8 @@ const Home = () => {
         <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
         <PetShopListSubTitle>내 주변</PetShopListSubTitle>
         <PetShopInfoListWrap>
-          {tempData.map((petShop) => (
-            <PetShopInfoBox key={petShop.id}>
+          {shoplist.map((petShop, index) => (
+            <PetShopInfoBox key={shortid.generate()}>
               <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
               <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
               <PetShopInfoAddress>{petShop.shopAddress}</PetShopInfoAddress>

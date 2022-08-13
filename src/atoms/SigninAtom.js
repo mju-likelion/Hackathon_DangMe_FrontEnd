@@ -28,3 +28,8 @@ export const userLocation = atom({
     },
   ],
 });
+
+export const shopList = atom({
+  key: 'shopList',
+  default: [],
+});

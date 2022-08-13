@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { AddressBox, AddressText, AddressBtn } from '../styles/AddressStyle';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 const { kakao } = window;
 
 const Location = () => {
@@ -17,9 +18,18 @@ const Location = () => {
   });
   var geocoder = new kakao.maps.services.Geocoder();
   var coord = new kakao.maps.LatLng(userGPS.coordinateX, userGPS.coordinateY);
-  const goHome = () => {
-    if (from === 'shop') navigate('/searchshop');
-    else navigate('/home');
+  const goHome = async () => {
+    console.log(userGPS.coordinateX, userGPS.coordinateY);
+    await axios
+      .put('api/coordinate/user', {
+        coordinateX: userGPS.coordinateX,
+        coordinateY: userGPS.coordinateY,
+      })
+      .then((res) => {
+        alert(res.data.data);
+        if (from === 'shop') navigate('/searchshop');
+        else navigate('/home');
+      });
   };
   useEffect(() => {
     setPosition({
