@@ -10,24 +10,25 @@ import {
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useRecoilState } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
-import { isPetClicked } from '../atoms/ClickedAtoms';
+import { isClickedAtoms } from '../atoms/ClickedAtoms';
 
-const PetInfo = ({ petname, petimg, petshop, petReservdate, isReserved }) => {
+const PetInfo = ({ petid, petname, petimg, petshop, petReservdate }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [petClicked, setPetClicked] = useRecoilState(isPetClicked);
+  const [petClicked, setPetClicked] = useRecoilState(isClickedAtoms);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
-  const test = petClicked.isClicked;
+
+  const selectedPet = petClicked.isPetClicked;
   const handleClick = () => {
-    if (petReservdate !== '') return;
-    if (test && !isClicked) return; //다른게 이미 선택되어 있는 경우 리턴
+    if (petshop !== null) return;
+    if (selectedPet && !isClicked) return; //다른게 이미 선택되어 있는 경우 리턴
     //선택된 것이 아무것도 없거나, 선택된 게 자기일 경우
-    if (test === isClicked) {
-      setPetClicked({ isClicked: !test });
+    if (selectedPet === isClicked) {
+      setPetClicked({ isPetClicked: !selectedPet });
       setIsClicked(!isClicked); //리코일이랑 선택 여부 다 반전하고
-      if (isClicked) {
+      if (!isClicked) {
         //해당 div가 선택이 된 친구일 경우 온클릭 이벤트 실행
         setReservationInfo((prev) => {
-          return { ...prev, petName: petname };
+          return { ...prev, petName: petname, petId: petid };
         });
       } else {
         setReservationInfo({ petName: null });
@@ -39,14 +40,16 @@ const PetInfo = ({ petname, petimg, petshop, petReservdate, isReserved }) => {
     <div>
       <HomeReservInfoBox
         onClick={handleClick}
-        style={{ background: isClicked ? '#f6f6f6' : ' #ffffff' }}
+        style={{
+          background: isClicked ? '#f6f6f6' : ' #ffffff',
+        }}
       >
         {petimg === '' ? (
           <HomeReservInfoImg src={defaultPetImg} />
         ) : (
           <HomeReservInfoImg src={petimg} />
         )}
-        {petReservdate === '' ? (
+        {petshop === null ? (
           <>
             <HomeReservInfoName style={{ color: '#000000' }}>
               {petname}
@@ -61,9 +64,9 @@ const PetInfo = ({ petname, petimg, petshop, petReservdate, isReserved }) => {
             <HomeReservInfoShop style={{ color: '#dddddd' }}>
               {petshop}
             </HomeReservInfoShop>
-            <HomeReservInfoDate style={{ color: '#dddddd' }}>
+            {/*             <HomeReservInfoDate style={{ color: '#dddddd' }}>
               {petReservdate}
-            </HomeReservInfoDate>
+            </HomeReservInfoDate> */}
           </>
         )}
       </HomeReservInfoBox>

@@ -31,6 +31,7 @@ import { reservation } from '../atoms/ReservationAtom';
 import { shopList } from '../atoms/SigninAtom';
 import { useState, useEffect } from 'react';
 import { selectedShop } from '../atoms/ReservationAtom';
+import { petList } from '../atoms/ReservationAtom';
 const Reservation = () => {
   const navigate = useNavigate();
   const goPrev = () => {
@@ -40,14 +41,15 @@ const Reservation = () => {
     navigate('/maps');
   };
   const goToNext = () => {
-    navigate('/reservationMain');
+    navigate(`/reservation/${selectedShopInfo.id}/${reservationInfo.petId}`);
   };
 
   const selectedShopInfo = useRecoilValue(selectedShop);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
   const [shoplist] = useRecoilState(shopList);
   const { shopId } = reservationInfo;
-  const [isReserved, setIsReserved] = useState(false);
+  const petlist = useRecoilValue(petList);
+
   useEffect(() => {
     setReservationInfo((prev) => {
       return {
@@ -66,14 +68,14 @@ const Reservation = () => {
       <ReservSelectPetBox>
         <ReservationDefaultText>반려견을 선택해주세요</ReservationDefaultText>
         <HomeReservInfoListWrap>
-          {tempPetData.map((pet, index) => (
+          {petlist.map((pet, index) => (
             <>
               <PetInfo
                 key={index}
+                petid={pet.id}
                 petname={pet.petName}
                 petimg={pet.petImg}
-                petshop={pet.petShopName}
-                petReservdate={pet.reservDate}
+                petshop={pet.shopName}
               />
             </>
           ))}

@@ -31,7 +31,10 @@ function App() {
         <Route path='/reservation' element={<Reservation />} />
         <Route path='/location/:from' element={<Location />} />
         <Route path='/shopInfo' element={<ShopInfo />} />
-        <Route path='/reservationMain' element={<ReservationMain />} />
+        <Route
+          path='/reservation/:shopId/:petId'
+          element={<ReservationMain />}
+        />
         <Route path='/searchShop' element={<SearchShop />} />
         <Route path='/shopdetail/:shopId' element={<ShopDetail />} />
       </Routes>

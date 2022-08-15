@@ -42,6 +42,8 @@ import {
   tempReservDoneTime,
 } from '../data/tempReservTimeData';
 import ReservTime from '../components/ReservTime';
+import axios from 'axios';
+
 const ReservationMain = () => {
   const navigate = useNavigate();
   const goPrev = () => {
@@ -53,6 +55,15 @@ const ReservationMain = () => {
   const handleSubmmit = () => {
     setReservationInfo({ ...reservationInfo });
     console.log(reservationInfo);
+    axios
+      .post('api/reserve/:shopid/:petid', reservationInfo)
+      .then(function (response) {
+        alert(response.data.data);
+        navigate('/');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleClickDate = (day) => {

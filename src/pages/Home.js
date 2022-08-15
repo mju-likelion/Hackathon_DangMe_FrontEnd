@@ -35,15 +35,17 @@ import nextIcon from '../img/arrow_next_home.png';
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
 import { shopList } from '../atoms/SigninAtom';
+import { petList } from '../atoms/ReservationAtom';
+import { userInfo } from './../atoms/SigninAtom';
 
 const Home = () => {
   const navigate = useNavigate();
   const [userlocation] = useRecoilState(userLocation);
   const [shoplist, setShopList] = useRecoilState(shopList);
-  const [petReservList, setPetReservList] = useState([]);
+  const [petlist, setpetlist] = useRecoilState(petList);
 
   useEffect(() => {
     const fetchPetShops = async () => {
@@ -57,7 +59,7 @@ const Home = () => {
     const fetchPetInfo = async () => {
       try {
         const response = await axios.get('/api/pet/main');
-        setPetReservList(response.data.data);
+        setpetlist(response.data.data);
       } catch (e) {
         console.log(e);
       }
@@ -103,18 +105,25 @@ const Home = () => {
             />
           </HomeReservTitleBox>
           <HomeReservInfoListWrap>
-            {petReservList.map((pet, index) => (
+            {petlist.map((pet, index) => (
               <HomeReservInfoBox key={index}>
                 {pet.petImg === '' ? (
                   <HomeReservInfoImg src={defaultPetImg} />
                 ) : (
                   <HomeReservInfoImg src={pet.petImg} />
                 )}
-                <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
-                {pet.shopName === undefined ? (
-                  <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
+                {pet.shopName === null ? (
+                  <>
+                    <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
+                    <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
+                  </>
                 ) : (
-                  <HomeReservInfoShop>{pet.shopName}</HomeReservInfoShop>
+                  <>
+                    <HomeReservInfoName style={{ color: '#FFA724' }}>
+                      {pet.petName}
+                    </HomeReservInfoName>
+                    <HomeReservInfoShop>{pet.shopName}</HomeReservInfoShop>
+                  </>
                 )}
               </HomeReservInfoBox>
             ))}

@@ -45,7 +45,6 @@ const SigninDogInfo = () => {
           [name]: value[name],
         };
       });
-      console.log(name, value[name]);
     });
     return () => subscription.unsubscribe();
   }, [watch]);
@@ -54,6 +53,7 @@ const SigninDogInfo = () => {
   };
   const onSubmit = (data) => {
     handleSignin();
+    console.log(userinfo);
   };
   const onImgChange = (event) => {
     setFileImg(URL.createObjectURL(event.target.files[0])); //이미지 미리보기
@@ -62,10 +62,7 @@ const SigninDogInfo = () => {
   const handleSignin = () => {
     for (let [key, value] of Object.entries(userinfo)) {
       formData.append(key, value);
-      console.log(key, value);
     }
-
-    console.log(formData.get('petimg'));
     axios
       .post('auth/register', formData)
       .then(function (response) {
@@ -73,7 +70,7 @@ const SigninDogInfo = () => {
         navigate('/');
       })
       .catch(function (error) {
-        console.log(formData.get('petimg'));
+        console.log(error);
       });
   };
   const onImgInputBtnClick = (e) => {
