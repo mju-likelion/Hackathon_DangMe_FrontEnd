@@ -26,22 +26,37 @@ import tempPetData from '../data/tempPetData';
 import nextIcon from '../img/arrow_next_home.png';
 import petShopImg from '../img/petShop.png';
 import PetInfo from '../components/PetInfo';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
-
+import { shopList } from '../atoms/SigninAtom';
+import { useState, useEffect } from 'react';
+import { selectedShop } from '../atoms/ReservationAtom';
 const Reservation = () => {
   const navigate = useNavigate();
   const goPrev = () => {
     navigate(-1);
   };
   const goToMap = () => {
-    navigate('/map');
+    navigate('/maps');
   };
   const goToNext = () => {
     navigate('/reservationMain');
   };
-  const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
 
+  const selectedShopInfo = useRecoilValue(selectedShop);
+  const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
+  const [shoplist] = useRecoilState(shopList);
+  const { shopId } = reservationInfo;
+  const [isReserved, setIsReserved] = useState(false);
+  useEffect(() => {
+    setReservationInfo((prev) => {
+      return {
+        ...prev,
+        shopName: selectedShopInfo.shopName,
+        shopImg: selectedShopInfo.shopImg,
+      };
+    });
+  }, []);
   return (
     <>
       <ReservationTopBox>
@@ -52,13 +67,15 @@ const Reservation = () => {
         <ReservationDefaultText>반려견을 선택해주세요</ReservationDefaultText>
         <HomeReservInfoListWrap>
           {tempPetData.map((pet, index) => (
-            <PetInfo
-              key={index}
-              petname={pet.petName}
-              petimg={pet.petImg}
-              petshop={pet.petShopName}
-              petReservdate={pet.reservDate}
-            />
+            <>
+              <PetInfo
+                key={index}
+                petname={pet.petName}
+                petimg={pet.petImg}
+                petshop={pet.petShopName}
+                petReservdate={pet.reservDate}
+              />
+            </>
           ))}
         </HomeReservInfoListWrap>
       </ReservSelectPetBox>
@@ -72,14 +89,16 @@ const Reservation = () => {
             onClick={goToMap}
           />
         </ReservSelectShopTitleBox>
-        {/* <ReservNoneShop>선택한 미용샵이 없습니다</ReservNoneShop> */}
-        {/*아래는 선택한 미용샵 있는 경우*/}
-        <PetShopInfoBox style={{ marginTop: '20px' }}>
-          <PetShopInfoImg src={petShopImg} alt='petshop' />
-          <PetShopInfoName>멍멍 미용실</PetShopInfoName>
-          <PetShopInfoAddress>서울시 강남구 땡땡동 342-1</PetShopInfoAddress>
-          <PetShopInfoClosed>매주 월,수 휴무</PetShopInfoClosed>
-        </PetShopInfoBox>
+        {selectedShopInfo.id === undefined ? (
+          <ReservNoneShop>선택한 미용샵이 없습니다</ReservNoneShop>
+        ) : (
+          <PetShopInfoBox style={{ marginTop: '20px' }}>
+            <PetShopInfoImg src={selectedShopInfo.shopImg} alt='petshop' />
+            <PetShopInfoName>{selectedShopInfo.shopName}</PetShopInfoName>
+            <PetShopInfoAddress>{selectedShopInfo.address}</PetShopInfoAddress>
+            <PetShopInfoClosed>{selectedShopInfo.workHoly}</PetShopInfoClosed>
+          </PetShopInfoBox>
+        )}
       </ReservSelectShopBox>
       <ReservNextBtn
         onClick={goToNext}

@@ -119,12 +119,12 @@ const Maps = () => {
             <ShopResText>
               <ShopResTitle>{shoplist[selectMarker - 1].shopName}</ShopResTitle>
               <ShopResAddress>
-                {shoplist[selectMarker - 1].shopAddress}
+                {shoplist[selectMarker - 1].address}
               </ShopResAddress>
               <ShopResClosed>
-                {shoplist[selectMarker - 1].shopClosed}
+                {shoplist[selectMarker - 1].workHoly}
               </ShopResClosed>
-              <ShopResTime>{shoplist[selectMarker - 1].shopTime}</ShopResTime>
+              <ShopResTime>{shoplist[selectMarker - 1].workTime}</ShopResTime>
             </ShopResText>
           </ShopResBox>
 
@@ -145,8 +145,8 @@ const Maps = () => {
                 <ShopImg src={shop.shopImg} />
                 <TextBox>
                   <ShopTitle>{shop.shopName}</ShopTitle>
-                  <ShopAddress>{shop.shopAddress}</ShopAddress>
-                  <ShopClosed>{shop.shopClosed}</ShopClosed>
+                  <ShopAddress>{shop.address}</ShopAddress>
+                  <ShopClosed>{shop.workHoly}</ShopClosed>
                 </TextBox>
               </ShopBox>
             ))}

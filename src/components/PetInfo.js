@@ -10,14 +10,29 @@ import {
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useRecoilState } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
+import { isPetClicked } from '../atoms/ClickedAtoms';
 
-const PetInfo = ({ petname, petimg, petshop, petReservdate }) => {
+const PetInfo = ({ petname, petimg, petshop, petReservdate, isReserved }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [petClicked, setPetClicked] = useRecoilState(isPetClicked);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
-
+  const test = petClicked.isClicked;
   const handleClick = () => {
-    setIsClicked(!isClicked);
-    setReservationInfo({ petName: petname });
+    if (petReservdate !== '') return;
+    if (test && !isClicked) return; //다른게 이미 선택되어 있는 경우 리턴
+    //선택된 것이 아무것도 없거나, 선택된 게 자기일 경우
+    if (test === isClicked) {
+      setPetClicked({ isClicked: !test });
+      setIsClicked(!isClicked); //리코일이랑 선택 여부 다 반전하고
+      if (isClicked) {
+        //해당 div가 선택이 된 친구일 경우 온클릭 이벤트 실행
+        setReservationInfo((prev) => {
+          return { ...prev, petName: petname };
+        });
+      } else {
+        setReservationInfo({ petName: null });
+      }
+    }
   };
 
   return (

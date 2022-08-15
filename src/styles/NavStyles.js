@@ -23,5 +23,5 @@ export const StyledNav = styled.nav`
   height: 92px;
   background-color: #ffffff;
   border-top: 1px solid #dddddd;
-  z-index: 1;
+  z-index: 500;
 `;

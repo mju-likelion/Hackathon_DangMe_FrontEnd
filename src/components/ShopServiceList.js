@@ -14,11 +14,18 @@ const ShopServiceList = ({ serviceName, servicePrice }) => {
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-
     if (!isClicked) {
-      setReservationInfo({ service: serviceName, servicePrice: servicePrice });
+      setReservationInfo({
+        ...reservationInfo,
+        service: serviceName,
+        servicePrice: servicePrice,
+      });
     } else {
-      setReservationInfo({ service: null, servicePrice: null });
+      setReservationInfo({
+        ...reservationInfo,
+        service: null,
+        servicePrice: null,
+      });
     }
   };
   return (

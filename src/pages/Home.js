@@ -111,6 +111,11 @@ const Home = () => {
                   <HomeReservInfoImg src={pet.petImg} />
                 )}
                 <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
+                {pet.shopName === undefined ? (
+                  <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>
+                ) : (
+                  <HomeReservInfoShop>{pet.shopName}</HomeReservInfoShop>
+                )}
               </HomeReservInfoBox>
             ))}
           </HomeReservInfoListWrap>

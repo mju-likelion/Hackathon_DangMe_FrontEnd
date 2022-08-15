@@ -104,9 +104,10 @@ export const ShopDetailBtn = styled.button`
 
 export const NearShopListBox = styled.div`
   margin-top: 28px;
+  height: 360px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding-bottom: 90px;
   align-items: center;
 `;

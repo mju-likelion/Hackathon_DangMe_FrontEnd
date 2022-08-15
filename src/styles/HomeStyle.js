@@ -88,7 +88,7 @@ export const HomeReservInfoName = styled.p`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  color: #ffa724;
+  color: #000000;
   margin-bottom: 4px;
   margin-top: 12px;
 `;

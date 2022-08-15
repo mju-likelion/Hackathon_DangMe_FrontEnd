@@ -41,7 +41,7 @@ import {
   tempReservTimeData,
   tempReservDoneTime,
 } from '../data/tempReservTimeData';
-
+import ReservTime from '../components/ReservTime';
 const ReservationMain = () => {
   const navigate = useNavigate();
   const goPrev = () => {
@@ -50,14 +50,19 @@ const ReservationMain = () => {
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
   const [dateClicked, setDateClicked] = useState(false);
 
-  const handleClickDate = () => {
+  const handleSubmmit = () => {
+    setReservationInfo({ ...reservationInfo });
+    console.log(reservationInfo);
+  };
+
+  const handleClickDate = (day) => {
     setDateClicked(!dateClicked);
     setReservationInfo({
       ...reservationInfo,
       date:
-        (new Date(selectedDay).getMonth() + 1).toString() +
+        (day.getMonth() + 1).toString() +
         '월 ' +
-        new Date(selectedDay).getDate().toString() +
+        day.getDate().toString() +
         '일',
     });
   };
@@ -74,23 +79,25 @@ const ReservationMain = () => {
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [isTimeClicked, setIsTimeClicked] = useState(false);
   const closedDay = ['월', '수'];
-  const arr = [...closedDay];
+  const disabledDay = [new Date(2022, 7, 26), new Date(2022, 7, 27)];
+  const arr = [...disabledDay];
+
   const disabledDays = (date) => {
     const day = date.getDay();
     if (day === 0 && closedDay.find((day) => day === '일')) {
-      return day === 0;
+      return day;
     } else if (day === 1 && closedDay.find((day) => day === '월')) {
-      return day === 1;
+      return day;
     } else if (day === 2 && closedDay.find((day) => day === '화')) {
-      return day === 2;
+      return day;
     } else if (day === 3 && closedDay.find((day) => day === '수')) {
-      return day === 3;
+      return day;
     } else if (day === 4 && closedDay.find((day) => day === '목')) {
-      return day === 4;
+      return day;
     } else if (day === 5 && closedDay.find((day) => day === '금')) {
-      return day === 5;
+      return day;
     } else if (day === 6 && closedDay.find((day) => day === '토')) {
-      return day === 6;
+      return day;
     }
   };
 
@@ -104,6 +111,9 @@ const ReservationMain = () => {
       setIsTimeClicked(!isTimeClicked);
     }
   };
+
+  //dlrjskwnddp wldnj
+  const test = closedDay.concat(disabledDay);
 
   const toggleMenu = [
     {
@@ -153,7 +163,7 @@ const ReservationMain = () => {
         <ReservToggleTitle onClick={() => handleToggleClick(1)}>
           날짜
           <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
-            {reservationInfo.date === 'NaN' ? '' : reservationInfo.date}
+            {reservationInfo.date}
           </p>
           {isDateClicked ? (
             <ReservToggleDateActive src={closeToggle} />
@@ -163,7 +173,7 @@ const ReservationMain = () => {
         </ReservToggleTitle>
       ),
       toggleContent: (
-        <ReservOpenedToggleBox onClick={handleClickDate}>
+        <ReservOpenedToggleBox>
           {isDateClicked ? (
             <li style={{ paddingLeft: '15px' }}>
               <style>{`.custom-head { color: #848484}`}</style>
@@ -185,6 +195,7 @@ const ReservationMain = () => {
                 locale={ko}
                 required
                 classNames={classNames}
+                onDayClick={handleClickDate}
               />
             </li>
           ) : (
@@ -198,7 +209,7 @@ const ReservationMain = () => {
         <ReservToggleTitle onClick={() => handleToggleClick(2)}>
           시간
           <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
-            14:00
+            {reservationInfo.time}
           </p>
           {isTimeClicked ? (
             <ReservToggleDateActive src={closeToggle} />
@@ -211,31 +222,27 @@ const ReservationMain = () => {
         <ReservOpenedToggleBox>
           {isTimeClicked ? (
             <li>
-              <div>
-                {tempReservTimeData.map((time, index) => (
-                  <ReservTimeBox key={index} style={{ marginTop: '20px' }}>
-                    {time.text === '오전' ? (
+              <ReservTimeBox style={{ marginTop: '20px' }}>
+                {tempReservTimeData.map((shoptime, index) => (
+                  <>
+                    {shoptime.text === '오전' ? (
                       <>
-                        <ReservTimeMediem>오전</ReservTimeMediem>
-                        {time.worktime.map((shoptime, workindex) => (
-                          <ReservTimeSelectBtn key={workindex}>
-                            {shoptime}
-                          </ReservTimeSelectBtn>
+                        <ReservTimeMediem key={index}>오전</ReservTimeMediem>
+                        {shoptime.worktime.map((shopWorktime, index) => (
+                          <ReservTime key={index} worktime={shopWorktime} />
                         ))}
                       </>
                     ) : (
                       <>
-                        <ReservTimeMediem>오후</ReservTimeMediem>
-                        {time.worktime.map((shoptime, index) => (
-                          <ReservTimeSelectBtn key={index}>
-                            {shoptime}
-                          </ReservTimeSelectBtn>
+                        <ReservTimeMediem key={index}>오후</ReservTimeMediem>
+                        {shoptime.worktime.map((shopWorktime, index) => (
+                          <ReservTime key={index} worktime={shopWorktime} />
                         ))}
                       </>
                     )}
-                  </ReservTimeBox>
+                  </>
                 ))}
-              </div>
+              </ReservTimeBox>
             </li>
           ) : (
             ''
@@ -250,9 +257,9 @@ const ReservationMain = () => {
         <ReservationPrevIcon src={prevIcon} onClick={goPrev} />
         <ReservationTopBoxText>예약하기</ReservationTopBoxText>
       </ReservationTopBox>
-      <ShopInfoImg src={shopImg} />
-      <ReservShopName>멍멍 미용실&nbsp;/</ReservShopName>
-      <ReservPetName>&nbsp;박둥둥</ReservPetName>
+      <ShopInfoImg src={reservationInfo.shopImg} />
+      <ReservShopName>{reservationInfo.shopName}&nbsp;/</ReservShopName>
+      <ReservPetName>&nbsp;{reservationInfo.petName}</ReservPetName>
       <ReservMainBox>
         {toggleMenu.map((section, index) => (
           <ReservToggleUl key={index}>
@@ -264,7 +271,10 @@ const ReservationMain = () => {
         ))}
       </ReservMainBox>
       <div style={{ paddingBottom: '132px' }}>
-        <ReservCompleteBtn style={{ background: '#3385FF', marginTop: '40px' }}>
+        <ReservCompleteBtn
+          onClick={handleSubmmit}
+          style={{ background: '#3385FF', marginTop: '40px' }}
+        >
           예약 완료
         </ReservCompleteBtn>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import tempData from '../data/tempData';
 import prevIcon from '../img/arrow_prev_address.png';
@@ -30,14 +30,27 @@ import Price from '../img/Price.png';
 import { shopList } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import shortid from 'shortid';
+import { reservation, selectedShop } from '../atoms/ReservationAtom';
+
 const ShopDetail = () => {
   const [shoplist] = useRecoilState(shopList);
   const [isMenuBar, setIsMenuBar] = useState(true);
+  const [selectedshop, setSelectedShop] = useRecoilState(selectedShop);
   const navigate = useNavigate();
   const { shopId } = useParams();
   const shop = shoplist[shopId - 1];
+  useEffect(() => {
+    const selectedShopList = shoplist.filter(
+      (shop) => shop.id === parseInt(shopId),
+    );
+    const selectedShopObj = selectedShopList[0];
+    setSelectedShop(selectedShopObj);
+  }, []);
   const goPrev = () => {
     navigate(-1);
+  };
+  const goToReservation = () => {
+    navigate(`/reservation`);
   };
   return (
     <div>
@@ -50,7 +63,7 @@ const ShopDetail = () => {
       <ShopDetailBox>
         <ShopImg src={shop.shopImg} />
         <ShopTitle>{shop.shopName}</ShopTitle>
-        <ResBtn>미용 예약하기</ResBtn>
+        <ResBtn onClick={goToReservation}>미용 예약하기</ResBtn>
       </ShopDetailBox>
       <ShopMenu>
         <ShopMenuBar selected={isMenuBar} onClick={() => setIsMenuBar(true)}>
