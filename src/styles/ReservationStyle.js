@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ReservationTopBox = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
-  height: 58px;
-  padding-top: 17px;
+  height: 102px;
+  padding-top: 61px;
   /* position: fixed;
   left: 0;
   top: 0;
@@ -179,7 +179,7 @@ export const ReservServicePrice = styled.p`
   font-size: 18px;
   color: #000000;
   flex-basis: initial;
-  margin-right: 47px;
+  margin-right: 30px;
 `;
 
 export const ReservToggleEndLine = styled.div`

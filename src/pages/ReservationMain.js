@@ -33,7 +33,7 @@ import openToggle from '../img/openedToggle.png';
 import closeToggle from '../img/closedToggle.png';
 import { ko } from 'date-fns/locale';
 import styles from 'react-day-picker/dist/style.module.css';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
 import serviceList from '../data/tempServiceData';
 import ShopServiceList from '../components/ShopServiceList';
@@ -43,6 +43,9 @@ import {
 } from '../data/tempReservTimeData';
 import ReservTime from '../components/ReservTime';
 import axios from 'axios';
+import { isPetAtoms } from '../atoms/ClickedAtoms';
+import { format } from 'date-fns';
+import { selectedShop } from '../atoms/ReservationAtom';
 
 const ReservationMain = () => {
   const navigate = useNavigate();
@@ -51,15 +54,21 @@ const ReservationMain = () => {
   };
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
   const [dateClicked, setDateClicked] = useState(false);
-
+  const [isPetClicked, setIsPetClicked] = useRecoilState(isPetAtoms);
+  const selectedShopInfo = useRecoilValue(selectedShop);
   const handleSubmmit = () => {
     setReservationInfo({ ...reservationInfo });
     console.log(reservationInfo);
+    navigate('/home');
     axios
-      .post('api/reserve/:shopid/:petid', reservationInfo)
+      .post(`/api/reserve/${selectedShopInfo.id}/${reservationInfo.petId}`, {
+        orderDate: reservationInfo.orderDate,
+        serviceName: reservationInfo.serviceName,
+        amount: reservationInfo.amount,
+      })
       .then(function (response) {
-        alert(response.data.data);
-        navigate('/');
+        alert(response.data);
+        navigate('/home');
       })
       .catch(function (error) {
         console.log(error);
@@ -70,12 +79,9 @@ const ReservationMain = () => {
     setDateClicked(!dateClicked);
     setReservationInfo({
       ...reservationInfo,
-      date:
-        (day.getMonth() + 1).toString() +
-        '월 ' +
-        day.getDate().toString() +
-        '일',
+      date: day,
     });
+    console.log(day);
   };
 
   const today = new Date();
@@ -90,8 +96,6 @@ const ReservationMain = () => {
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [isTimeClicked, setIsTimeClicked] = useState(false);
   const closedDay = ['월', '수'];
-  const disabledDay = [new Date(2022, 7, 26), new Date(2022, 7, 27)];
-  const arr = [...disabledDay];
 
   const disabledDays = (date) => {
     const day = date.getDay();
@@ -123,8 +127,10 @@ const ReservationMain = () => {
     }
   };
 
-  //dlrjskwnddp wldnj
-  const test = closedDay.concat(disabledDay);
+  {
+    /* 만약 내가 클릭한 date랑 서버에 저장된 예약 date랑 같다면? -> 이 날짜의 특정 시간대엔 예약이 있구나를 확인
+     */
+  }
 
   const toggleMenu = [
     {
@@ -174,7 +180,13 @@ const ReservationMain = () => {
         <ReservToggleTitle onClick={() => handleToggleClick(1)}>
           날짜
           <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
-            {reservationInfo.date}
+            {reservationInfo.date !== null
+              ? new Date(reservationInfo.date).getMonth() +
+                1 +
+                '월 ' +
+                new Date(reservationInfo.date).getDate() +
+                '일'
+              : ''}
           </p>
           {isDateClicked ? (
             <ReservToggleDateActive src={closeToggle} />
@@ -220,7 +232,9 @@ const ReservationMain = () => {
         <ReservToggleTitle onClick={() => handleToggleClick(2)}>
           시간
           <p style={{ fontWeight: 700, fontSize: '18px', color: '#FFA724' }}>
-            {reservationInfo.time}
+            {reservationInfo.time !== null
+              ? format(reservationInfo.time, 'HH:mm')
+              : ''}
           </p>
           {isTimeClicked ? (
             <ReservToggleDateActive src={closeToggle} />
@@ -234,18 +248,22 @@ const ReservationMain = () => {
           {isTimeClicked ? (
             <li>
               <ReservTimeBox style={{ marginTop: '20px' }}>
-                {tempReservTimeData.map((shoptime, index) => (
+                {tempReservTimeData.map((shoptime) => (
                   <>
                     {shoptime.text === '오전' ? (
                       <>
-                        <ReservTimeMediem key={index}>오전</ReservTimeMediem>
+                        <ReservTimeMediem key={shoptime.id}>
+                          오전
+                        </ReservTimeMediem>
                         {shoptime.worktime.map((shopWorktime, index) => (
                           <ReservTime key={index} worktime={shopWorktime} />
                         ))}
                       </>
                     ) : (
                       <>
-                        <ReservTimeMediem key={index}>오후</ReservTimeMediem>
+                        <ReservTimeMediem key={shoptime.id}>
+                          오후
+                        </ReservTimeMediem>
                         {shoptime.worktime.map((shopWorktime, index) => (
                           <ReservTime key={index} worktime={shopWorktime} />
                         ))}
@@ -284,7 +302,7 @@ const ReservationMain = () => {
       <div style={{ paddingBottom: '132px' }}>
         <ReservCompleteBtn
           onClick={handleSubmmit}
-          style={{ background: '#3385FF', marginTop: '40px' }}
+          style={{ background: '#3385FF', marginTop: '15px' }}
         >
           예약 완료
         </ReservCompleteBtn>

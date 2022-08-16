@@ -19,7 +19,7 @@ import {
 } from '../styles/SigninStyle';
 import axios from 'axios';
 import { userInfo } from '../atoms/SigninAtom';
-import { useRecoilState } from 'recoil';
+import { errorSelector, useRecoilState } from 'recoil';
 import { useRef, useState, useEffect } from 'react';
 import { PetImgPrev } from './../styles/SigninStyle';
 import { useForm } from 'react-hook-form';
@@ -35,7 +35,7 @@ const SigninDogInfo = () => {
     register,
     handleSubmit,
     watch,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm();
   useEffect(() => {
     const subscription = watch((value, { name }) => {
@@ -77,6 +77,11 @@ const SigninDogInfo = () => {
     e.preventDefault();
     petImg.current.click();
   };
+  const errorStyled = {
+    position: 'absolute',
+    color: 'red',
+    fontSize: '14px',
+  };
   return (
     <div>
       <TopWrap>
@@ -116,29 +121,57 @@ const SigninDogInfo = () => {
             <SigninUserInfo>이름</SigninUserInfo>
             <SigninUserInfoInput
               placeholder='반려견 이름'
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('반려견 이름을 입력해주세요!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('petName')}
-            ></SigninUserInfoInput>
+            />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>나이</SigninUserInfo>
             <SigninUserInfoInput
               placeholder='반려견 나이'
+              required
+              onInvalid={(e) =>
+                e.target.setCustomValidity('반려견 나이를 입력해주세요!')
+              }
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('age')}
-            ></SigninUserInfoInput>
+            />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>품종</SigninUserInfo>
             <SigninUserInfoInput
               placeholder='반려견 품종'
+              required
+              onInvalid={(e) =>
+                e.target.setCustomValidity('반려견 품종을 입력해주세요!')
+              }
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('dogBreed')}
-            ></SigninUserInfoInput>
+            />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>몸무게</SigninUserInfo>
             <SigninUserInfoInput
               placeholder='반려견 몸무게'
+              required
+              onInvalid={(e) =>
+                e.target.setCustomValidity('반려견 몸무게를 입력해주세요!')
+              }
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('weight')}
-            ></SigninUserInfoInput>
+            />
           </SigninUserInfoBox>
         </SigninStyled>
         <SigninCompleteBtn disabled={isSubmitting}>완료</SigninCompleteBtn>

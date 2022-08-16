@@ -10,17 +10,17 @@ import {
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useRecoilState } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
-import { isClickedAtoms } from '../atoms/ClickedAtoms';
+import { isPetAtoms } from '../atoms/ClickedAtoms';
 
-const PetInfo = ({ petid, petname, petimg, petshop, petReservdate }) => {
+const PetInfo = ({ petid, petname, petimg, petshop }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [petClicked, setPetClicked] = useRecoilState(isClickedAtoms);
+  const [petClicked, setPetClicked] = useRecoilState(isPetAtoms);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
 
   const selectedPet = petClicked.isPetClicked;
   const handleClick = () => {
     if (petshop !== null) return;
-    if (selectedPet && !isClicked) return; //다른게 이미 선택되어 있는 경우 리턴
+    if (selectedPet === true && !isClicked) return; //다른게 이미 선택되어 있는 경우 리턴
     //선택된 것이 아무것도 없거나, 선택된 게 자기일 경우
     if (selectedPet === isClicked) {
       setPetClicked({ isPetClicked: !selectedPet });
@@ -40,9 +40,7 @@ const PetInfo = ({ petid, petname, petimg, petshop, petReservdate }) => {
     <div>
       <HomeReservInfoBox
         onClick={handleClick}
-        style={{
-          background: isClicked ? '#f6f6f6' : ' #ffffff',
-        }}
+        style={{ background: isClicked ? '#f6f6f6' : ' #ffffff' }}
       >
         {petimg === '' ? (
           <HomeReservInfoImg src={defaultPetImg} />

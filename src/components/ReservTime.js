@@ -3,21 +3,40 @@ import {
   ReservTimeMediem,
   ReservTimeSelectBtn,
 } from '../styles/ReservationStyle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
+import { isTimeAtoms } from '../atoms/ClickedAtoms';
+import { add, format } from 'date-fns';
 
 const ReservTime = ({ worktime }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
+  const [timeClicked, setTimeClicked] = useRecoilState(isTimeAtoms);
+  const selectedTime = timeClicked.isTimeClicked;
+  let resultDate;
+
+  useEffect(() => {}, []);
 
   const handleClick = () => {
-    setIsClicked(!isClicked);
-    if (!isClicked) {
-      setReservationInfo({ ...reservationInfo, time: worktime });
-    } else {
-      setReservationInfo({ ...reservationInfo, time: null });
+    if (selectedTime && !isClicked) return;
+    if (selectedTime === isClicked) {
+      setTimeClicked({ isTimeClicked: !selectedTime });
+      setIsClicked(!isClicked);
+      if (!isClicked) {
+        setReservationInfo({
+          ...reservationInfo,
+          time: worktime,
+        });
+        resultDate = add(reservationInfo.date, {
+          hours: worktime.getHours(),
+          minutes: worktime.getMinutes(),
+        });
+      } else {
+        setReservationInfo({ ...reservationInfo, time: null });
+      }
     }
+    setReservationInfo({ ...reservationInfo, orderDate: resultDate });
   };
 
   return (
@@ -30,7 +49,7 @@ const ReservTime = ({ worktime }) => {
           border: isClicked ? 'none' : '1px solid #848484',
         }}
       >
-        {worktime}
+        {format(worktime, 'HH:mm')}
       </ReservTimeSelectBtn>
     </>
   );

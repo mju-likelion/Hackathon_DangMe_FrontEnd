@@ -7,9 +7,10 @@ export const reservation = atom({
     shopName: null,
     petId: null,
     petName: null,
-    service: null,
+    serviceName: null,
     date: null,
     time: null,
+    orderDate: null,
   },
 });
 

@@ -5,27 +5,36 @@ import {
   ReservServicePrice,
 } from '../styles/ReservationStyle';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { reservation } from '../atoms/ReservationAtom';
+import { isServiceAtoms } from '../atoms/ClickedAtoms';
 
 const ShopServiceList = ({ serviceName, servicePrice }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
+  const [serviceClicked, setIsServiceClicked] = useRecoilState(isServiceAtoms);
+  const selectedService = serviceClicked.isServiceClicked;
 
   const handleClick = () => {
-    setIsClicked(!isClicked);
-    if (!isClicked) {
-      setReservationInfo({
-        ...reservationInfo,
-        service: serviceName,
-        servicePrice: servicePrice,
+    //if (selectedService && !isClicked) return;
+    if (selectedService === isClicked) {
+      setIsServiceClicked({
+        isServiceClicked: !selectedService,
       });
-    } else {
-      setReservationInfo({
-        ...reservationInfo,
-        service: null,
-        servicePrice: null,
-      });
+      setIsClicked(!isClicked);
+      if (!isClicked) {
+        setReservationInfo({
+          ...reservationInfo,
+          serviceName: serviceName,
+          amount: servicePrice,
+        });
+      } else {
+        setReservationInfo({
+          ...reservationInfo,
+          serviceName: null,
+          amount: null,
+        });
+      }
     }
   };
   return (

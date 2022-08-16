@@ -107,6 +107,13 @@ const Signin = () => {
           <SigninUserInfo>아이디(이메일)</SigninUserInfo>
           <SigninUserInfoInput
             placeholder='이메일 주소'
+            required
+            onInvalid={(e) => {
+              e.target.setCustomValidity('이메일은 필수 입력입니다!');
+            }}
+            onInput={(e) => {
+              e.target.setCustomValidity('');
+            }}
             {...register('email', {
               pattern: {
                 value:
@@ -130,6 +137,13 @@ const Signin = () => {
               placeholder='6자 이상~14자 이하'
               minLength={6}
               maxLength={14}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('비밀번호는 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('password', {
                 validate: pw_check,
                 maxLength: 14,
@@ -147,6 +161,13 @@ const Signin = () => {
               placeholder='비밀번호 확인'
               minLength={6}
               maxLength={14}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('비밀번호를 확인해주세요!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('confirmPassword', {
                 validate: (value) => value === getValues('password'),
               })}
@@ -157,7 +178,17 @@ const Signin = () => {
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput placeholder='이름' {...register('userName')} />
+            <SigninUserInfoInput
+              placeholder='이름'
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('이름은 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
+              {...register('userName')}
+            />
           </SigninUserInfoBox>
           <SigninUserInfoBox>
             <SigninUserInfo>핸드폰 번호</SigninUserInfo>
@@ -165,6 +196,13 @@ const Signin = () => {
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
               maxLength={11}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('이름은 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('phoneNum', {
                 pattern: {
                   //eslint-disable-next-line

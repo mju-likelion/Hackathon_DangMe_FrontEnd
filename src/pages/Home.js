@@ -35,17 +35,27 @@ import nextIcon from '../img/arrow_next_home.png';
 import defaultPetImg from '../img/defaultPetImg.png';
 import { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import axios from 'axios';
 import { shopList } from '../atoms/SigninAtom';
 import { petList } from '../atoms/ReservationAtom';
-import { userInfo } from './../atoms/SigninAtom';
+import { reservation } from '../atoms/ReservationAtom';
+import { isPetAtoms } from '../atoms/ClickedAtoms';
+import { isServiceAtoms } from '../atoms/ClickedAtoms';
+import { isTimeAtoms } from '../atoms/ClickedAtoms';
+import { selectedShop } from '../atoms/ReservationAtom';
 
 const Home = () => {
   const navigate = useNavigate();
   const [userlocation] = useRecoilState(userLocation);
   const [shoplist, setShopList] = useRecoilState(shopList);
   const [petlist, setpetlist] = useRecoilState(petList);
+  //예약하기 시 사용된 recoil reset
+  const resetReservation = useResetRecoilState(reservation);
+  const resetSelectShop = useResetRecoilState(selectedShop);
+  const resetPetClicked = useResetRecoilState(isPetAtoms);
+  const resetServiceCicked = useResetRecoilState(isServiceAtoms);
+  const resetTimeClicked = useResetRecoilState(isTimeAtoms);
 
   useEffect(() => {
     const fetchPetShops = async () => {
@@ -66,6 +76,11 @@ const Home = () => {
     };
     fetchPetShops();
     fetchPetInfo();
+    resetReservation();
+    resetSelectShop();
+    resetPetClicked();
+    resetServiceCicked();
+    resetTimeClicked();
   }, []);
 
   const goToReservHistory = () => {
@@ -112,7 +127,7 @@ const Home = () => {
                 ) : (
                   <HomeReservInfoImg src={pet.petImg} />
                 )}
-                {pet.shopName === null ? (
+                {pet.shopName === null || pet.shopName === undefined ? (
                   <>
                     <HomeReservInfoName>{pet.petName}</HomeReservInfoName>
                     <HomeReservInfoAny>예약 내역이 없습니다.</HomeReservInfoAny>

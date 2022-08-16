@@ -32,6 +32,7 @@ import { shopList } from '../atoms/SigninAtom';
 import { useState, useEffect } from 'react';
 import { selectedShop } from '../atoms/ReservationAtom';
 import { petList } from '../atoms/ReservationAtom';
+import { isPetAtoms } from '../atoms/ClickedAtoms';
 const Reservation = () => {
   const navigate = useNavigate();
   const goPrev = () => {
@@ -42,12 +43,11 @@ const Reservation = () => {
   };
   const goToNext = () => {
     navigate(`/reservation/${selectedShopInfo.id}/${reservationInfo.petId}`);
+    console.log(reservationInfo);
   };
 
   const selectedShopInfo = useRecoilValue(selectedShop);
   const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
-  const [shoplist] = useRecoilState(shopList);
-  const { shopId } = reservationInfo;
   const petlist = useRecoilValue(petList);
 
   useEffect(() => {
@@ -56,6 +56,7 @@ const Reservation = () => {
         ...prev,
         shopName: selectedShopInfo.shopName,
         shopImg: selectedShopInfo.shopImg,
+        date: null,
       };
     });
   }, []);
@@ -84,7 +85,7 @@ const Reservation = () => {
       <ReservSelectShopBox>
         <ReservSelectShopTitleBox>
           <ReservationDefaultText>미용샵을 선택해주세요</ReservationDefaultText>
-          <ReservSelectMap>지도에서 선택하기</ReservSelectMap>
+          <ReservSelectMap onClick={goToMap}>지도에서 선택하기</ReservSelectMap>
           <ReservSelectMapIcon
             src={nextIcon}
             alt='지도 바로가기'
@@ -105,7 +106,7 @@ const Reservation = () => {
       <ReservNextBtn
         onClick={goToNext}
         style={{
-          marginTop: '233px',
+          marginTop: '204px',
           backgroundColor: '#3385FF',
           color: '#ffffff',
         }}
