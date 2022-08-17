@@ -8,10 +8,10 @@
   },
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true
+    "es2021": true
   },
   "extends": [
+    "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -25,11 +25,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
 
   "rules": {
     "no-console": "warn",
-    "no-unused-vars": "error",
+    "no-unused-vars": "off",
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": 0,
@@ -43,6 +43,12 @@
     "default-case": 0,
     "react/require-default-props": 0,
     "react/function-component-definition": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }

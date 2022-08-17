@@ -14,12 +14,10 @@ const GlobalStyle = createGlobalStyle`
 }
     *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       font-family: 'Pretendard';
-/*        @media screen and (max-width : 428px){
-        width : 100%;        
-      }  */
+      max-width: 428px;
     }
     body{
     };

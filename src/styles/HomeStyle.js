@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-export const HomeStyled = styled.div``;
-
 export const UserPositionBox = styled.div`
   background-color: #ffa724;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 30px 30px;
   height: 76px;
   padding-top: 30.5px;
 `;
@@ -29,15 +27,19 @@ export const UserPositionSetBtn = styled.img`
   height: 5px;
 `;
 
+export const HomeMiddleBox = styled.div``;
+
 export const HomeReservBox = styled.div`
   height: 220px;
   margin-left: 26px;
+  //text-align: center;
 `;
 
 export const HomeReservTitleBox = styled.div`
   height: 26px;
   margin-top: 40px;
 `;
+
 export const HomeReservTitle = styled.p`
   font-size: 22px;
   font-weight: 700;
@@ -48,7 +50,6 @@ export const HomeReservTitle = styled.p`
 export const HomeReservInfoBtn = styled.img`
   width: 18px;
   height: 18px;
-  display: inline;
   margin-left: 238px;
 `;
 
@@ -67,6 +68,11 @@ export const HomeReservInfoBox = styled.div`
   border-radius: 30px;
   background: #ffffff;
   flex-shrink: 0;
+  margin-left: 0;
+`;
+
+export const ReservClickedPetBox = styled(HomeReservInfoBox)`
+  background-color: #f6f6f6;
 `;
 
 export const HomeReservInfoImg = styled.img`
@@ -82,7 +88,7 @@ export const HomeReservInfoName = styled.p`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  color: #ffa724;
+  color: #000000;
   margin-bottom: 4px;
   margin-top: 12px;
 `;
@@ -118,24 +124,31 @@ export const HomeReservBtn = styled.button`
   font-size: 16px;
   color: #ffffff;
   margin: 20px 137px 40px 137px;
+  //margin: 20px auto;
+  display: block;
+  &:active {
+    background-color: #b1d0ff;
+  }
 `;
 
 export const PetShopListBox = styled.div`
   margin-left: 26px;
+  margin-top: 40px;
 `;
 
 export const PetShopListTitle = styled.p`
   font-weight: 700;
   font-size: 22px;
   color: #000000;
+  margin-bottom: 20px;
 `;
 
-export const PetShopListSubTitle = styled.p`
+/* export const PetShopListSubTitle = styled.p`
   font-weight: 700;
   font-size: 16px;
   color: #ffa724;
   margin: 20px 0 20px 26px;
-`;
+`; */
 
 export const PetShopInfoListWrap = styled.div`
   display: flex;

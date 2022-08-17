@@ -2,23 +2,23 @@ import arrow from '../img/arrow_prev.png';
 import userInfobar from '../img/userInfobar.png';
 import { useNavigate } from 'react-router-dom';
 import {
-  SigninStyled,
+  SignupStyled,
   TopWrap,
-  SigninUserTitle,
-  SigninBar,
-  SigninUserInfoBox,
+  SignupUserTitle,
+  SignupBar,
+  SignupUserInfoBox,
   EmailCheckBtn,
-  SigninUserInfo,
-  SigninUserInfoInput,
-  SigninNextBtn,
+  SignupUserInfo,
+  SignupUserInfoInput,
+  SignupNextBtn,
   PrevArrowImg,
   BarDiv,
-} from '../styles/SigninStyle';
+} from '../styles/SignupStyle';
 import { userInfo } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-const Signin = () => {
+const Signup = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const {
     register,
@@ -31,7 +31,7 @@ const Signin = () => {
   };
   const navigate = useNavigate();
   const toDogInfo = () => {
-    navigate('/signin/doginfo');
+    navigate('/signup/doginfo');
   };
   const goPrev = () => {
     navigate(-1);
@@ -39,15 +39,19 @@ const Signin = () => {
   //이메일 형식 체크
   const email_check = (email) => {
     var reg =
+      //eslint-disable-next-line
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return reg.test(email);
   };
   //비밀번호 형식 체크
   function pw_check(pw) {
+    //eslint-disable-next-line
     const num = pw.search(/[0-9]/g); //숫자 여부
+    //eslint-disable-next-line
     const eng = pw.search(/[a-z]/gi); //영문자 여부
+    //eslint-disable-next-line
     const spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); //특수문자 여부
-
+    //eslint-disable-next-line
     if (pw.search(/\s/) !== -1) {
       //공백 체크
       return false;
@@ -80,7 +84,7 @@ const Signin = () => {
           alert('사용 가능한 이메일입니다.');
         })
         .catch((e) => {
-          alert('이미 가입된 사용자입니다.');
+          alert(e);
         });
     }
   };
@@ -93,19 +97,27 @@ const Signin = () => {
     <div>
       <TopWrap>
         <PrevArrowImg src={arrow} alt='arrow_prev' onClick={goPrev} />
-        <SigninUserTitle>회원가입</SigninUserTitle>
+        <SignupUserTitle>회원가입</SignupUserTitle>
       </TopWrap>
       <BarDiv>
-        <SigninBar src={userInfobar} alt='userInfobar' />
+        <SignupBar src={userInfobar} alt='userInfobar' />
       </BarDiv>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <SigninStyled>
-          <SigninUserInfo>아이디(이메일)</SigninUserInfo>
-          <SigninUserInfoInput
+        <SignupStyled>
+          <SignupUserInfo>아이디(이메일)</SignupUserInfo>
+          <SignupUserInfoInput
             placeholder='이메일 주소'
+            required
+            onInvalid={(e) => {
+              e.target.setCustomValidity('이메일은 필수 입력입니다!');
+            }}
+            onInput={(e) => {
+              e.target.setCustomValidity('');
+            }}
             {...register('email', {
               pattern: {
                 value:
+                  //eslint-disable-next-line
                   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
                 message: '이메일 형식에 맞게 입력해주세요',
               },
@@ -117,14 +129,21 @@ const Signin = () => {
             type='button'
           />
           {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
-          <SigninUserInfoBox></SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>비밀번호</SigninUserInfo>
-            <SigninUserInfoInput
+          <SignupUserInfoBox></SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>비밀번호</SignupUserInfo>
+            <SignupUserInfoInput
               type='password'
               placeholder='6자 이상~14자 이하'
               minLength={6}
               maxLength={14}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('비밀번호는 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('password', {
                 validate: pw_check,
                 maxLength: 14,
@@ -134,14 +153,21 @@ const Signin = () => {
             {errors.password && (
               <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>
             )}
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>비밀번호 확인</SigninUserInfo>
-            <SigninUserInfoInput
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>비밀번호 확인</SignupUserInfo>
+            <SignupUserInfoInput
               type='password'
               placeholder='비밀번호 확인'
               minLength={6}
               maxLength={14}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('비밀번호를 확인해주세요!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('confirmPassword', {
                 validate: (value) => value === getValues('password'),
               })}
@@ -149,19 +175,37 @@ const Signin = () => {
             {errors.confirmPassword && (
               <p style={errorStyled}>같은 비밀번호를 입력해주세요</p>
             )}
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput placeholder='이름' {...register('userName')} />
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>핸드폰 번호</SigninUserInfo>
-            <SigninUserInfoInput
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>이름</SignupUserInfo>
+            <SignupUserInfoInput
+              placeholder='이름'
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('이름은 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
+              {...register('userName')}
+            />
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>핸드폰 번호</SignupUserInfo>
+            <SignupUserInfoInput
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
               maxLength={11}
+              required
+              onInvalid={(e) => {
+                e.target.setCustomValidity('이름은 필수 입력입니다!');
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity('');
+              }}
               {...register('phoneNum', {
                 pattern: {
+                  //eslint-disable-next-line
                   value: /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
                   message: "'-'를 제외한 숫자만 입력해주세요",
                 },
@@ -170,14 +214,14 @@ const Signin = () => {
             {errors.phoneNum && (
               <p style={errorStyled}>{errors.phoneNum.message}</p>
             )}
-          </SigninUserInfoBox>
-        </SigninStyled>
-        <SigninNextBtn type='submit' disabled={isSubmitting}>
+          </SignupUserInfoBox>
+        </SignupStyled>
+        <SignupNextBtn type='submit' disabled={isSubmitting}>
           다음
-        </SigninNextBtn>
+        </SignupNextBtn>
       </form>
     </div>
   );
 };
 
-export default Signin;
+export default Signup;

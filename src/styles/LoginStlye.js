@@ -5,10 +5,11 @@ export const LoginStyled = styled.div`
 `;
 
 export const LogoStyled = styled.img`
-  width: 55px;
-  height: 38px;
+  width: 130px;
+  height: 62px;
   margin-top: 151px;
-  margin-bottom: 155px;
+  margin-bottom: 130px;
+  margin-right: 5%;
 `;
 export const FormStyled = styled.form``;
 

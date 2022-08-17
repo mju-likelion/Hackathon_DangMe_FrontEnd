@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SigninStyled = styled.div`
+export const SignupStyled = styled.div`
   margin-left: 26px;
 `;
 
@@ -16,13 +16,13 @@ export const PrevArrowImg = styled.img`
   height: 18px;
 `;
 
-export const SigninUserTitle = styled.p`
+export const SignupUserTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
 `;
 
-export const SigninBar = styled.img`
+export const SignupBar = styled.img`
   margin-top: 40px;
   margin-bottom: 45px;
   width: 64px;
@@ -32,11 +32,11 @@ export const BarDiv = styled.div`
   text-align: center;
 `;
 
-export const SigninUserInfoBox = styled.div`
+export const SignupUserInfoBox = styled.div`
   margin-bottom: 34px;
 `;
 
-export const SigninUserInfo = styled.p`
+export const SignupUserInfo = styled.p`
   font-size: 16px;
   font-weight: 600;
   color: #848484;
@@ -61,7 +61,7 @@ export const EmailCheckBtn = styled.input`
   }
 `;
 
-export const SigninUserInfoInput = styled.input`
+export const SignupUserInfoInput = styled.input`
   width: 90%;
   height: 31px;
   border: 0;
@@ -77,7 +77,7 @@ export const SigninUserInfoInput = styled.input`
   }
 `;
 
-export const SigninNextBtn = styled.button`
+export const SignupNextBtn = styled.button`
   display: block;
   width: 360px;
   height: 60px;
@@ -95,7 +95,7 @@ export const SigninNextBtn = styled.button`
 `;
 //중복되는 스타일 코드 -> 중복 최소화하게끔 수정하기 한 코드 내에서 margin값 따로 줄 수 있게 작성해보기
 
-export const SigninCompleteBtn = styled.button`
+export const SignupCompleteBtn = styled.button`
   display: block;
   width: 360px;
   height: 60px;
@@ -111,13 +111,13 @@ export const SigninCompleteBtn = styled.button`
   }
 `;
 
-export const SigninPetTitle = styled.p`
+export const SignupPetTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
 `;
 
-export const SigninPetimgTxt = styled.p`
+export const SignupPetimgTxt = styled.p`
   font-size: 16px;
   font-weight: 600;
   color: #848484;
@@ -129,7 +129,7 @@ export const PetimgPrevBox = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #dddddd;
+  background-color: none;
   margin: auto;
   margin-bottom: 20px;
 `;
@@ -141,11 +141,11 @@ export const PetImgPrev = styled.img`
   object-fit: cover;
 `;
 
-export const SigninPetimgInput = styled.input`
+export const SignupPetimgInput = styled.input`
   display: none;
 `;
 
-export const SigninPetimgBtn = styled.button`
+export const SignupPetimgBtn = styled.button`
   width: 100px;
   height: 30px;
   background-color: #ffffff;
@@ -158,7 +158,7 @@ export const SigninPetimgBtn = styled.button`
   margin-bottom: 20px;
 `;
 
-/* export const NextSigninPetBtn = styled.button`
+/* export const NextSignupPetBtn = styled.button`
   background-color: #ffffff;
   border: none;
   color: #848484;

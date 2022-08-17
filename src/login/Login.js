@@ -11,25 +11,36 @@ import {
   GoToHome,
   ArrowStyled,
 } from '../styles/LoginStlye';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { useForm } from 'react-hook-form';
+
 import { userInfo } from '../atoms/SigninAtom';
 const Login = () => {
   const [user, setUserId] = useState({ email: null, password: null });
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting },
   } = useForm();
-
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      setUserId((previnfo) => {
+        return {
+          ...previnfo,
+          [name]: value[name],
+        };
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
   const navigate = useNavigate();
   const goToHome = () => {
     navigate('/home');
   };
-  const gotoSignIn = () => {
-    navigate('/signin');
+  const gotoSignUp = () => {
+    navigate('/signup');
   };
   const onSubmit = (data) => {
     setUserId({
@@ -40,12 +51,11 @@ const Login = () => {
     response
       .then((response) => {
         const { token } = response.data;
-        console.log(token);
         axios.defaults.headers.common['Authorization'] = `${token}`;
         alert('로그인에 성공하였습니다.');
         goToHome();
       })
-      .catch((error) => alert(error));
+      .catch((error) => alert(error.response.data));
   };
   return (
     <LoginStyled>
@@ -60,7 +70,7 @@ const Login = () => {
         />
         <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
-      <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
+      <SignInEmail onClick={gotoSignUp}>이메일로 회원가입</SignInEmail>
       <GoToHome onClick={goToHome}>
         <span>어플 둘러보기</span>
         <ArrowStyled alt='arrow' src={arrow} />
