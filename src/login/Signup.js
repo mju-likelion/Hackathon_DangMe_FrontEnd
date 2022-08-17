@@ -2,23 +2,23 @@ import arrow from '../img/arrow_prev.png';
 import userInfobar from '../img/userInfobar.png';
 import { useNavigate } from 'react-router-dom';
 import {
-  SigninStyled,
+  SignupStyled,
   TopWrap,
-  SigninUserTitle,
-  SigninBar,
-  SigninUserInfoBox,
+  SignupUserTitle,
+  SignupBar,
+  SignupUserInfoBox,
   EmailCheckBtn,
-  SigninUserInfo,
-  SigninUserInfoInput,
-  SigninNextBtn,
+  SignupUserInfo,
+  SignupUserInfoInput,
+  SignupNextBtn,
   PrevArrowImg,
   BarDiv,
-} from '../styles/SigninStyle';
+} from '../styles/SignupStyle';
 import { userInfo } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-const Signin = () => {
+const Signup = () => {
   const [userinfo, setUserInfo] = useRecoilState(userInfo);
   const {
     register,
@@ -31,7 +31,7 @@ const Signin = () => {
   };
   const navigate = useNavigate();
   const toDogInfo = () => {
-    navigate('/signin/doginfo');
+    navigate('/signup/doginfo');
   };
   const goPrev = () => {
     navigate(-1);
@@ -97,15 +97,15 @@ const Signin = () => {
     <div>
       <TopWrap>
         <PrevArrowImg src={arrow} alt='arrow_prev' onClick={goPrev} />
-        <SigninUserTitle>회원가입</SigninUserTitle>
+        <SignupUserTitle>회원가입</SignupUserTitle>
       </TopWrap>
       <BarDiv>
-        <SigninBar src={userInfobar} alt='userInfobar' />
+        <SignupBar src={userInfobar} alt='userInfobar' />
       </BarDiv>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <SigninStyled>
-          <SigninUserInfo>아이디(이메일)</SigninUserInfo>
-          <SigninUserInfoInput
+        <SignupStyled>
+          <SignupUserInfo>아이디(이메일)</SignupUserInfo>
+          <SignupUserInfoInput
             placeholder='이메일 주소'
             required
             onInvalid={(e) => {
@@ -129,10 +129,10 @@ const Signin = () => {
             type='button'
           />
           {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
-          <SigninUserInfoBox></SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>비밀번호</SigninUserInfo>
-            <SigninUserInfoInput
+          <SignupUserInfoBox></SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>비밀번호</SignupUserInfo>
+            <SignupUserInfoInput
               type='password'
               placeholder='6자 이상~14자 이하'
               minLength={6}
@@ -153,10 +153,10 @@ const Signin = () => {
             {errors.password && (
               <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>
             )}
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>비밀번호 확인</SigninUserInfo>
-            <SigninUserInfoInput
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>비밀번호 확인</SignupUserInfo>
+            <SignupUserInfoInput
               type='password'
               placeholder='비밀번호 확인'
               minLength={6}
@@ -175,10 +175,10 @@ const Signin = () => {
             {errors.confirmPassword && (
               <p style={errorStyled}>같은 비밀번호를 입력해주세요</p>
             )}
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>이름</SigninUserInfo>
-            <SigninUserInfoInput
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>이름</SignupUserInfo>
+            <SignupUserInfoInput
               placeholder='이름'
               required
               onInvalid={(e) => {
@@ -189,10 +189,10 @@ const Signin = () => {
               }}
               {...register('userName')}
             />
-          </SigninUserInfoBox>
-          <SigninUserInfoBox>
-            <SigninUserInfo>핸드폰 번호</SigninUserInfo>
-            <SigninUserInfoInput
+          </SignupUserInfoBox>
+          <SignupUserInfoBox>
+            <SignupUserInfo>핸드폰 번호</SignupUserInfo>
+            <SignupUserInfoInput
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
               maxLength={11}
@@ -214,14 +214,14 @@ const Signin = () => {
             {errors.phoneNum && (
               <p style={errorStyled}>{errors.phoneNum.message}</p>
             )}
-          </SigninUserInfoBox>
-        </SigninStyled>
-        <SigninNextBtn type='submit' disabled={isSubmitting}>
+          </SignupUserInfoBox>
+        </SignupStyled>
+        <SignupNextBtn type='submit' disabled={isSubmitting}>
           다음
-        </SigninNextBtn>
+        </SignupNextBtn>
       </form>
     </div>
   );
 };
 
-export default Signin;
+export default Signup;

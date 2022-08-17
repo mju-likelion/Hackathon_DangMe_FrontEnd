@@ -3,9 +3,9 @@ import Home from './pages/Home';
 import ReservationHistory from './pages/ReservationHistory';
 import Maps from './pages/Maps';
 import MyPage from './pages/Mypage';
-import Signin from './login/Signin';
+import Signup from './login/Signup';
 import Login from './login/Login';
-import SigninDogInfo from './login/SigninDogInfo';
+import SignupDogInfo from './login/SignupDogInfo';
 import SearchAddress from './address/SearchAddress';
 import Reservation from './pages/Reservation';
 import Location from './address/Location';
@@ -21,8 +21,8 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/signin/doginfo' element={<SigninDogInfo />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/signup/doginfo' element={<SignupDogInfo />} />
         <Route path='/home' element={<Home />} />
         <Route path='/maps' element={<Maps />} />
         <Route path='/reservationHistory' element={<ReservationHistory />} />

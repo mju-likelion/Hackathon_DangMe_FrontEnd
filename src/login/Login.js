@@ -40,7 +40,7 @@ const Login = () => {
     navigate('/home');
   };
   const gotoSignIn = () => {
-    navigate('/signin');
+    navigate('/signup');
   };
   const onSubmit = (data) => {
     setUserId({
