@@ -81,7 +81,6 @@ const ReservationMain = () => {
       ...reservationInfo,
       date: day,
     });
-    console.log(day);
   };
 
   const today = new Date();

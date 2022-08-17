@@ -16,8 +16,6 @@ const ReservTime = ({ worktime }) => {
   const selectedTime = timeClicked.isTimeClicked;
   let resultDate;
 
-  useEffect(() => {}, []);
-
   const handleClick = () => {
     if (selectedTime && !isClicked) return;
     if (selectedTime === isClicked) {

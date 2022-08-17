@@ -135,7 +135,6 @@ export const ShopAddress = styled.p`
 export const ShopBox = styled.div`
   display: flex;
   border-top: 1px solid #f6f6f6;
-  flex-direction: row;
   background: #ffffff;
   width: 376px;
   height: 110px;

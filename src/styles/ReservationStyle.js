@@ -5,10 +5,6 @@ export const ReservationTopBox = styled.div`
   border-radius: 0px 0px 30px 30px;
   height: 102px;
   padding-top: 61px;
-  /* position: fixed;
-  left: 0;
-  top: 0;
-  right: 0; */
 `;
 
 export const ReservationPrevIcon = styled.img`
@@ -31,8 +27,7 @@ export const ShopInfoTopBoxText = styled(ReservationTopBoxText)`
 
 export const ReservSelectPetBox = styled.div`
   //padding-top: 58px;
-  margin-left: 26px;
-  margin-top: 40px;
+  margin: 40px 0 0 26px;
 `;
 
 export const ReservationDefaultText = styled.p`
@@ -43,8 +38,7 @@ export const ReservationDefaultText = styled.p`
 `;
 
 export const ReservSelectShopBox = styled.div`
-  margin-left: 26px;
-  margin-top: 40px;
+  margin: 40px 0 0 26px;
 `;
 
 export const ReservSelectShopTitleBox = styled.div``;
@@ -53,8 +47,7 @@ export const ReservSelectMap = styled.p`
   color: #000000;
   font-size: 16px;
   display: inline;
-  margin-left: 75px;
-  margin-right: 11px;
+  margin: 0 11px 0 75px;
 `;
 
 export const ReservSelectMapIcon = styled.img`
@@ -69,8 +62,7 @@ export const ReservNoneShop = styled.div`
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 20px;
-  padding-top: 44px;
-  padding-left: 20px;
+  padding: 44px 0 0 20px;
   font-size: 18px;
   color: #848484;
   margin: 20px 0 12px 0; //기능 작업 후에 margin-bottom 수정할 것
@@ -153,10 +145,7 @@ export const ReservOpenedToggleBox = styled.div`
   margin-bottom: 22px;
 `;
 
-export const ReservServiceTopBox = styled.div`
-  //border-bottom: 1px solid #dddddd;
-  //width: 376px;
-`;
+export const ReservServiceTopBox = styled.div``;
 
 export const ReservSerViceBox = styled.div`
   width: 376px;
@@ -175,6 +164,7 @@ export const ReservServiceName = styled.p`
   margin: 0;
   padding-left: 20px;
 `;
+
 export const ReservServicePrice = styled.p`
   font-size: 18px;
   color: #000000;

@@ -43,7 +43,6 @@ const Reservation = () => {
   };
   const goToNext = () => {
     navigate(`/reservation/${selectedShopInfo.id}/${reservationInfo.petId}`);
-    console.log(reservationInfo);
   };
 
   const selectedShopInfo = useRecoilValue(selectedShop);

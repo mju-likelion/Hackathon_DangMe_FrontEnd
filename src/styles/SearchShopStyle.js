@@ -36,7 +36,6 @@ export const UserLocationDiv = styled.div`
   width: 100%;
   text-align: right;
   display: flex;
-  flex-direction: row;
   padding-left: 50px;
 `;
 
