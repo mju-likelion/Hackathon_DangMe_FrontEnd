@@ -39,7 +39,7 @@ const Login = () => {
   const goToHome = () => {
     navigate('/home');
   };
-  const gotoSignIn = () => {
+  const gotoSignUp = () => {
     navigate('/signup');
   };
   const onSubmit = (data) => {
@@ -70,7 +70,7 @@ const Login = () => {
         />
         <LoginBtn disabled={isSubmitting}>로그인</LoginBtn>
       </FormStyled>
-      <SignInEmail onClick={gotoSignIn}>이메일로 회원가입</SignInEmail>
+      <SignInEmail onClick={gotoSignUp}>이메일로 회원가입</SignInEmail>
       <GoToHome onClick={goToHome}>
         <span>어플 둘러보기</span>
         <ArrowStyled alt='arrow' src={arrow} />
