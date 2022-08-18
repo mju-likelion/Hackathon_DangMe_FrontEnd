@@ -71,7 +71,7 @@ const Reservation = () => {
           {petlist.map((pet, index) => (
             <>
               <PetInfo
-                key={index}
+                key={index.toString()}
                 petid={pet.id}
                 petname={pet.petName}
                 petimg={pet.petImg}
