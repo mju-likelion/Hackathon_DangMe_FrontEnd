@@ -21,6 +21,7 @@
 ### _프로젝트 실행_
 
 ```
+yarn install <- 초기 실행 시
 yarn start
 ```
 
@@ -53,7 +54,7 @@ yarn start
 
 ---
 
-#### Commit Message Convention
+### Commit Message Convention
 
 - feat : 기능 추가
 - fix : 버그 수정
@@ -64,7 +65,9 @@ yarn start
 - rename: 파일명 변경
 - setting: 패키지 추가 및 변경
 
-#### 폴더 구조
+---
+
+### 폴더 구조
 
 ```
 📦src
