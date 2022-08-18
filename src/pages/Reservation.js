@@ -34,7 +34,11 @@ import { selectedShop } from '../atoms/ReservationAtom';
 import { petList } from '../atoms/ReservationAtom';
 import { isPetAtoms } from '../atoms/ClickedAtoms';
 const Reservation = () => {
+  const selectedShopInfo = useRecoilValue(selectedShop);
+  const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
+  const petlist = useRecoilValue(petList);
   const navigate = useNavigate();
+
   const goPrev = () => {
     navigate(-1);
   };
@@ -44,10 +48,6 @@ const Reservation = () => {
   const goToNext = () => {
     navigate(`/reservation/${selectedShopInfo.id}/${reservationInfo.petId}`);
   };
-
-  const selectedShopInfo = useRecoilValue(selectedShop);
-  const [reservationInfo, setReservationInfo] = useRecoilState(reservation);
-  const petlist = useRecoilValue(petList);
 
   useEffect(() => {
     setReservationInfo((prev) => {

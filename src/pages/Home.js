@@ -44,12 +44,14 @@ import { isPetAtoms } from '../atoms/ClickedAtoms';
 import { isServiceAtoms } from '../atoms/ClickedAtoms';
 import { isTimeAtoms } from '../atoms/ClickedAtoms';
 import { selectedShop } from '../atoms/ReservationAtom';
+import { format } from 'date-fns';
 
 const Home = () => {
   const navigate = useNavigate();
   const [userlocation] = useRecoilState(userLocation);
   const [shoplist, setShopList] = useRecoilState(shopList);
   const [petlist, setpetlist] = useRecoilState(petList);
+  const [userReservation] = useRecoilState(reservation);
   //예약하기 시 사용된 recoil reset
   const resetReservation = useResetRecoilState(reservation);
   const resetSelectShop = useResetRecoilState(selectedShop);
@@ -58,6 +60,7 @@ const Home = () => {
   const resetTimeClicked = useResetRecoilState(isTimeAtoms);
 
   useEffect(() => {
+    console.log(userReservation);
     const fetchPetShops = async () => {
       try {
         const response = await axios.get('api/coordinate');
@@ -76,7 +79,6 @@ const Home = () => {
     };
     fetchPetShops();
     fetchPetInfo();
-    resetReservation();
     resetSelectShop();
     resetPetClicked();
     resetServiceCicked();
