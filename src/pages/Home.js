@@ -94,8 +94,8 @@ const Home = () => {
     navigate('/reservation');
   };
 
-  const goToShopInfo = () => {
-    navigate('/ShopInfo');
+  const goToShopInfo = (id) => {
+    navigate(`/ShopDetail/${id}`);
   };
 
   return (
@@ -149,7 +149,12 @@ const Home = () => {
           <PetShopListTitle>우리동네 애견 미용샵</PetShopListTitle>
           <PetShopInfoListWrap>
             {shoplist.map((petShop, index) => (
-              <PetShopInfoBox onClick={goToShopInfo} key={index}>
+              <PetShopInfoBox
+                onClick={() => {
+                  goToShopInfo(petShop.id);
+                }}
+                key={index}
+              >
                 <PetShopInfoImg src={petShop.shopImg} alt='petshop' />
                 <PetShopInfoName>{petShop.shopName}</PetShopInfoName>
                 <PetShopInfoAddress>{petShop.address}</PetShopInfoAddress>
