@@ -60,7 +60,7 @@ export const HomeReservInfoBtn = styled.img`
 `;
 
 export const HomeReservInfoListWrap = styled.div`
-  justify-content: start;
+  display: flex;
   overflow-x: auto;
   margin-top: 20px;
 `;
