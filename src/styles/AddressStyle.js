@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const AddressPositionBox = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
-  height: 218px;
-  padding-top: 30.5px;
+  height: 174px;
+  padding-top: 17px;
 `;
 
 export const TopWrap = styled.div`

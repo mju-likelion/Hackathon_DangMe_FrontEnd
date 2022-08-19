@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ReservationTopBox = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
-  height: 102px;
-  padding-top: 61px;
+  height: 58px;
+  padding-top: 17px;
 `;
 
 export const ReservationPrevIcon = styled.img`

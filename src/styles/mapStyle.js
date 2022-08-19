@@ -10,7 +10,7 @@ export const ShopResImg = styled.img`
 export const SearchBarImg = styled.img`
   position: absolute;
   z-index: 2;
-  top: 122px;
+  top: 88px;
   width: 84%;
   right: 8%;
 `;
@@ -147,12 +147,12 @@ export const TextBox = styled.div`
 export const NearShop = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
-  height: 102px;
-  padding-top: 30.5px;
+  height: 58px;
+  padding-top: 17px;
 `;
 
 export const Topwrap = styled.div`
-  margin-top: 30px;
+  //margin-top: 30px;
 `;
 
 export const NearShopTitle = styled.p`
