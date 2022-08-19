@@ -133,7 +133,8 @@ export const ReservToggleTitle = styled.li`
 export const ReservToggleActive = styled.img`
   width: 10px;
   height: 5px;
-  margin-left: 130px;
+  position: absolute;
+  right: 34px;
 `;
 
 export const ReservToggleDateActive = styled(ReservToggleActive)`

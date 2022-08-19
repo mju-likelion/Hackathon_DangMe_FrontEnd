@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { AddressBox, AddressText, AddressBtn } from '../styles/AddressStyle';
+import {
+  AddressBox,
+  AddressText,
+  AddressBtn,
+  AddresTextBox,
+} from '../styles/AddressStyle';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 const { kakao } = window;
@@ -72,7 +77,9 @@ const Location = () => {
         )}
       </Map>
       <AddressBox>
-        <AddressText>{userGPS.address}</AddressText>
+        <AddresTextBox>
+          <AddressText>{userGPS.address}</AddressText>
+        </AddresTextBox>
         <AddressBtn onClick={goHome}>이 위치로 설정</AddressBtn>
       </AddressBox>
     </div>
