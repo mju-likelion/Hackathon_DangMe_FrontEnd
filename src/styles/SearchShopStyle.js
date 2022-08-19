@@ -20,7 +20,7 @@ export const SearchAddressInput = styled.input`
 export const SearchImgStyled = styled.img`
   //position: relative;
   margin-top: 32px;
-  top: 96px;
+  top: 85px;
   left: 52px;
   position: absolute;
   z-index: 2;
@@ -34,7 +34,6 @@ export const UserLocationDiv = styled.div`
   margin-top: 15px;
   padding-right: 15px;
   width: 100%;
-  text-align: right;
   display: flex;
   padding-left: 50px;
 `;
@@ -42,11 +41,13 @@ export const UserLocationDiv = styled.div`
 export const LocationImg = styled.img`
   margin-left: 22px;
   margin-right: 6px;
+  width: 14px;
+  height: 14px;
 `;
 
 export const LocationText = styled.p`
   color: white;
-  margin-right: 17px;
+  margin: 0 17px 0 0;
 `;
 
 export const MapArrow = styled.img`

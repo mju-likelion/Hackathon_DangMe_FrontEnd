@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AddressPositionBox = styled.div`
   background-color: #ffa724;
   border-radius: 0px 0px 30px 30px;
-  height: 174px;
+  height: 218px;
   padding-top: 17px;
 `;
 
@@ -62,7 +62,7 @@ export const LocationImg = styled.img`
 
 export const LocationText = styled.span`
   color: white;
-  margin-right: 17px;
+  margin-right: 15px;
 `;
 
 export const AddressBox = styled.div`
@@ -93,4 +93,9 @@ export const AddressText = styled.p`
   margin-top: 35px;
   font-weight: 600;
   font-size: 20px;
+`;
+
+export const AddresTextBox = styled.div`
+  text-align: left;
+  width: 360px;
 `;

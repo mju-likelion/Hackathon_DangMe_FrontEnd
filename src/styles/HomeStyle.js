@@ -5,12 +5,17 @@ export const UserPositionBox = styled.div`
   border-radius: 0px 0px 30px 30px;
   height: 76px;
   padding-top: 30.5px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-bottom: 12px;
 `;
 
 export const UserPositionIcon = styled.img`
   width: 14px;
   height: 20px;
   margin-left: 32px;
+  margin-right: 0px;
 `;
 
 export const UserPositionText = styled.p`
@@ -25,6 +30,7 @@ export const UserPositionText = styled.p`
 export const UserPositionSetBtn = styled.img`
   width: 10px;
   height: 5px;
+  margin-left: 0px;
 `;
 
 export const HomeMiddleBox = styled.div``;
@@ -54,8 +60,7 @@ export const HomeReservInfoBtn = styled.img`
 `;
 
 export const HomeReservInfoListWrap = styled.div`
-  display: flex;
-  flex-direction: row;
+  justify-content: start;
   overflow-x: auto;
   margin-top: 20px;
 `;

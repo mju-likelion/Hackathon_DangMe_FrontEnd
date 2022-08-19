@@ -10,7 +10,8 @@ import mypageClickIcon from './img/myClick.png';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { activeNavAtom } from './atoms/ActiveNav';
-
+import animationData from './lottie/Animation.json';
+import Lottie from 'react-lottie';
 const BottomNav = () => {
   const [activeNav, setActiveNav] = useRecoilState(activeNavAtom);
   const isNavActive = activeNav.isNavActive;

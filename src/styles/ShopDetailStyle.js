@@ -36,6 +36,7 @@ export const ShopDetailBox = styled.div`
 export const ShopImg = styled.img`
   width: 376px;
   height: 204px;
+  border-radius: 30px;
 `;
 
 export const ShopTitle = styled.p`
@@ -81,6 +82,7 @@ export const ShopMenuBar = styled.div`
     css`
       color: #ffa724;
       border-bottom: solid 2px #ffa724;
+      font-weight: 700;
     `}
 `;
 
@@ -102,6 +104,7 @@ export const PriceDetail = styled.div`
     css`
       color: #ffa724;
       border-bottom: solid 2px #ffa724;
+      font-weight: 700;
     `}
 `;
 
@@ -115,12 +118,17 @@ export const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  margin: 25px 0 107px 0;
+  align-items: center;
+  margin: 0 0 107px 0;
 `;
 
 export const InfoWrap = styled.div`
   text-align: left;
-  margin: 0 0 50px 40px;
+  height: 119px;
+  width: 376px;
+  padding-top: 30px;
+  border-radius: 3px;
+  border-bottom: solid 2px #f6f6f6;
 `;
 
 export const InfoTitle = styled.p`
