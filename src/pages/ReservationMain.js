@@ -46,6 +46,7 @@ import axios from 'axios';
 import { isPetAtoms } from '../atoms/ClickedAtoms';
 import { format } from 'date-fns';
 import { selectedShop } from '../atoms/ReservationAtom';
+import { add } from 'date-fns';
 
 const ReservationMain = () => {
   const navigate = useNavigate();
@@ -59,15 +60,18 @@ const ReservationMain = () => {
   const handleSubmmit = () => {
     setReservationInfo({ ...reservationInfo });
     console.log(reservationInfo);
-    navigate('/home');
     axios
-      .post(`/api/reserve/${selectedShopInfo.id}/${reservationInfo.petId}`, {
-        orderDate: reservationInfo.orderDate,
-        serviceName: reservationInfo.serviceName,
-        amount: reservationInfo.amount,
-      })
+      .post(
+        `/api/reserve/complete/${selectedShopInfo.id}/${reservationInfo.petId}`,
+        {
+          orderDate: reservationInfo.orderDate,
+          serviceName: reservationInfo.serviceName,
+          amount: reservationInfo.amount,
+        },
+      )
       .then(function (response) {
         alert(response.data);
+        console.log(response.data);
         navigate('/home');
       })
       .catch(function (error) {
@@ -81,6 +85,20 @@ const ReservationMain = () => {
       ...reservationInfo,
       date: day,
     });
+    const selectedMonth = day.getMonth() + 1;
+    const selectedDay = day.getDate();
+    console.log(selectedMonth, selectedDay);
+    axios
+      .post(`/api/reserve/${selectedShopInfo.id}/${reservationInfo.petId}`, {
+        month: selectedMonth,
+        day: selectedDay,
+      })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const today = new Date();
@@ -94,7 +112,7 @@ const ReservationMain = () => {
   const [isServiceClicked, setIsServiceClicked] = useState(false);
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [isTimeClicked, setIsTimeClicked] = useState(false);
-  const closedDay = ['월', '수'];
+  const closedDay = ['일'];
 
   const disabledDays = (date) => {
     const day = date.getDay();
@@ -144,7 +162,7 @@ const ReservationMain = () => {
               margin: '0 5px',
             }}
           >
-            {reservationInfo.service}
+            {reservationInfo.serviceName}
           </p>
           {isServiceClicked ? (
             <ReservToggleActive src={closeToggle} />

@@ -30,11 +30,14 @@ const ReservTime = ({ worktime }) => {
           hours: worktime.getHours(),
           minutes: worktime.getMinutes(),
         });
+        console.log(worktime);
+        console.log('시간 클릭됨');
       } else {
         setReservationInfo({ ...reservationInfo, time: null });
       }
     }
     setReservationInfo({ ...reservationInfo, orderDate: resultDate });
+    console.log(reservationInfo.time);
   };
 
   return (
