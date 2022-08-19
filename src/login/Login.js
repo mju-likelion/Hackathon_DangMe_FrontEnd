@@ -54,8 +54,12 @@ const Login = () => {
         axios.defaults.headers.common['Authorization'] = `${token}`;
         alert('로그인에 성공하였습니다.');
         goToHome();
+        console.log(response.data);
       })
-      .catch((error) => alert(error.response.data));
+      .catch((error) => {
+        alert(error.response.data);
+        console.log(error.response.data);
+      });
   };
   return (
     <LoginStyled>

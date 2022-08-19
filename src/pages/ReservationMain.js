@@ -91,7 +91,7 @@ const ReservationMain = () => {
     const selectedDay = day.getDate();
     console.log(selectedMonth, selectedDay);
     axios
-      .post(`/api/reserve/${selectedShopInfo.id}/${reservationInfo.petId}`, {
+      .get(`/api/time/${selectedShopInfo.id}/${reservationInfo.petId}`, {
         month: selectedMonth,
         day: selectedDay,
       })
