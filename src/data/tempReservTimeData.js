@@ -1,11 +1,9 @@
 export const tempReservTimeData = [
   {
-    id: 1,
     text: '오전',
     worktime: [new Date(0, 0, 0, 10), new Date(0, 0, 0, 11)],
   },
   {
-    id: 2,
     text: '오후',
     worktime: [
       new Date(0, 0, 0, 12),

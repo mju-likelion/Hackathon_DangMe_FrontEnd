@@ -1,12 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 const MyPage = () => {
   return (
     <div>
       <div>MyPage</div>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };

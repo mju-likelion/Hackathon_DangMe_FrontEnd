@@ -1,6 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import { userLocation } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
 
@@ -154,10 +153,7 @@ const Maps = () => {
           </NearShopListBox>
         </ShopListBox>
       )}
-
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };

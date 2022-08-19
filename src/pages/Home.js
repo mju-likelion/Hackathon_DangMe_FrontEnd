@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import {
   HomeReservTitleBox,
   HomeReservInfoBtn,
@@ -139,6 +139,7 @@ const Home = () => {
                       {pet.petName}
                     </HomeReservInfoName>
                     <HomeReservInfoShop>{pet.shopName}</HomeReservInfoShop>
+                    <HomeReservInfoDate>{pet.orderDate}</HomeReservInfoDate>
                   </>
                 )}
               </HomeReservInfoBox>
@@ -165,9 +166,7 @@ const Home = () => {
           </PetShopInfoListWrap>
         </PetShopListBox>
       </HomeMiddleBox>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </>
   );
 };

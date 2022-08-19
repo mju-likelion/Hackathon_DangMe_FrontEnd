@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import {
   ReservationPrevIcon,
   ReservationTopBox,
@@ -112,9 +112,7 @@ const Reservation = () => {
       >
         다음
       </ReservNextBtn>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </>
   );
 };
