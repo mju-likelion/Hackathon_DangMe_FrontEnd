@@ -60,8 +60,9 @@ const Home = () => {
   useEffect(() => {
     const fetchPetShops = async () => {
       try {
-        const response = await axios.get('api/coordinate');
-        setShopList(response.data.data);
+        await axios
+          .get('api/coordinate')
+          .then((res) => setShopList(res.data.data));
       } catch (e) {
         console.log(e);
       }

@@ -27,6 +27,8 @@ import {
   ShopResAddress,
   ShopResClosed,
   ShopResTime,
+  ImgBar,
+  BtnBox,
 } from '../styles/mapStyle';
 import SearchBar from '../img/searchBar.png';
 import prevIcon from '../img/arrow_prev_address.png';
@@ -84,9 +86,9 @@ const Maps = () => {
           <NearShopTitle>내 주변 미용샵</NearShopTitle>
         </Topwrap>
       </NearShop>
-
-      <SearchBarImg src={SearchBar} alt='searchBarImg' onClick={goSearch} />
-
+      <ImgBar>
+        <SearchBarImg src={SearchBar} alt='searchBarImg' onClick={goSearch} />
+      </ImgBar>
       <Map
         center={
           userlocation.coordinateX === undefined
@@ -127,7 +129,6 @@ const Maps = () => {
               <ShopResTime>{shoplist[selectMarker - 1].workTime}</ShopResTime>
             </ShopResText>
           </ShopResBox>
-
           <ShopDetailBtn
             onClick={() => goDetail(shoplist[selectMarker - 1].id)}
           >

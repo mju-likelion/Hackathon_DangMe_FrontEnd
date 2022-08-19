@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const LoginStyled = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const LogoStyled = styled.img`
@@ -9,7 +11,7 @@ export const LogoStyled = styled.img`
   height: 62px;
   margin-top: 151px;
   margin-bottom: 130px;
-  margin-right: 5%;
+  margin-left: 33%;
 `;
 export const FormStyled = styled.form``;
 
@@ -91,7 +93,8 @@ export const SimpleLoginNaver = styled.img`
 `; */
 
 export const GoToHome = styled.div`
-  margin-top: 176px;
+  position: absolute;
+  bottom: 7.5%;
   font-size: 16px;
   color: #848484;
 `;

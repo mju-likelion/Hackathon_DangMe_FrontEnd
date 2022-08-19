@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
 export const ShopResImg = styled.img`
-  margin-top: 26px;
-  margin-left: 20px;
+  margin: 26px 0 0 20px;
   width: 130px;
   height: 105px;
+  border-radius: 18px;
 `;
 
 export const SearchBarImg = styled.img`
   position: absolute;
   z-index: 2;
-  width: 360px;
-  right: 35px;
+  top: 122px;
+  width: 84%;
+  right: 8%;
 `;
 
 export const ListBarImg = styled.img`
@@ -73,9 +74,7 @@ export const ShopListBox = styled.div`
 `;
 
 export const ShopImg = styled.img`
-  margin-top: 12px;
-  margin-left: 12px;
-  margin-bottom: 12px;
+  margin: 12px 0px 12px 12px;
   width: 112px;
   height: 86px;
   border-radius: 10px;
@@ -88,18 +87,18 @@ export const ShopResTitle = styled.p`
 `;
 
 export const ShopDetailBtn = styled.button`
-  width: 154px;
+  width: 36%;
   height: 44px;
   border-radius: 30px;
   background-color: #3385ff;
   color: white;
   border: none;
-  left: 137px;
   font-size: 16px;
   font-weight: 700;
   position: absolute;
   z-index: 3;
-  bottom: 120px;
+  bottom: 11%;
+  margin-left: 32%;
 `;
 
 export const NearShopListBox = styled.div`
@@ -170,3 +169,9 @@ export const PrevImg = styled.img`
   width: 8px;
   height: 18px;
 `;
+
+export const ImgBar = styled.div`
+  text-align: center;
+`;
+
+export const BtnBox = styled.button``;

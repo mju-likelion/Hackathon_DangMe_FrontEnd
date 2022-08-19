@@ -54,7 +54,7 @@ export const EmailCheckBtn = styled.input`
   border: 1px solid #ffa724;
   background-color: #ffffff;
   color: #ffa724;
-  top: 168px;
+  top: 170px;
   &:active {
     color: #dddddd;
     border: 1px solid #dddddd;
@@ -158,6 +158,11 @@ export const SignupPetimgBtn = styled.button`
   margin-bottom: 20px;
 `;
 
+export const ErrorStyled = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-top: 12px;
+`;
 /* export const NextSignupPetBtn = styled.button`
   background-color: #ffffff;
   border: none;

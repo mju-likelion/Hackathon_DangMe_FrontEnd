@@ -29,12 +29,12 @@ const SearchAddress = () => {
         ...prev,
         coordinateX: position.coords.latitude,
         coordinateY: position.coords.longitude,
-        default: [
+        /*default: [
           {
             coordinateX: position.coords.latitude,
             coordinateY: position.coords.longitude,
           },
-        ],
+        ],*/
       };
     });
     navigate('/location/address');
@@ -65,7 +65,10 @@ const SearchAddress = () => {
             coordinateX: result[0].y,
             coordinateY: result[0].x,
           })
-          .then((res) => alert(res.data.data));
+          .then((res) => {
+            alert(res.data.data);
+            navigate('/home');
+          });
       }
     });
     setUserAddress((prevAddress) => {
@@ -75,7 +78,6 @@ const SearchAddress = () => {
       };
     });
     console.log(data.address);
-    navigate('/home');
   };
 
   return (

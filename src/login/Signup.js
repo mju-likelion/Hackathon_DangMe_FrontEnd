@@ -13,6 +13,7 @@ import {
   SignupNextBtn,
   PrevArrowImg,
   BarDiv,
+  ErrorStyled,
 } from '../styles/SignupStyle';
 import { userInfo } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
@@ -88,11 +89,7 @@ const Signup = () => {
         });
     }
   };
-  const errorStyled = {
-    position: 'absolute',
-    color: 'red',
-    fontSize: '14px',
-  };
+
   return (
     <div>
       <TopWrap>
@@ -128,15 +125,13 @@ const Signup = () => {
             value='중복확인'
             type='button'
           />
-          {errors.email && <p style={errorStyled}>{errors.email.message}</p>}
+          {errors.email && <ErrorStyled>{errors.email.message}</ErrorStyled>}
           <SignupUserInfoBox></SignupUserInfoBox>
           <SignupUserInfoBox>
             <SignupUserInfo>비밀번호</SignupUserInfo>
             <SignupUserInfoInput
               type='password'
               placeholder='6자 이상~14자 이하'
-              minLength={6}
-              maxLength={14}
               required
               onInvalid={(e) => {
                 e.target.setCustomValidity('비밀번호는 필수 입력입니다!');
@@ -151,7 +146,7 @@ const Signup = () => {
               })}
             />
             {errors.password && (
-              <p style={errorStyled}>영문, 숫자, 특수문자를 포함해주세요</p>
+              <ErrorStyled>영문, 숫자, 특수문자를 포함해주세요</ErrorStyled>
             )}
           </SignupUserInfoBox>
           <SignupUserInfoBox>
@@ -159,8 +154,6 @@ const Signup = () => {
             <SignupUserInfoInput
               type='password'
               placeholder='비밀번호 확인'
-              minLength={6}
-              maxLength={14}
               required
               onInvalid={(e) => {
                 e.target.setCustomValidity('비밀번호를 확인해주세요!');
@@ -173,7 +166,7 @@ const Signup = () => {
               })}
             />
             {errors.confirmPassword && (
-              <p style={errorStyled}>같은 비밀번호를 입력해주세요</p>
+              <ErrorStyled>같은 비밀번호를 입력해주세요</ErrorStyled>
             )}
           </SignupUserInfoBox>
           <SignupUserInfoBox>
@@ -195,7 +188,6 @@ const Signup = () => {
             <SignupUserInfoInput
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
-              maxLength={11}
               required
               onInvalid={(e) => {
                 e.target.setCustomValidity('이름은 필수 입력입니다!');
@@ -212,7 +204,7 @@ const Signup = () => {
               })}
             />
             {errors.phoneNum && (
-              <p style={errorStyled}>{errors.phoneNum.message}</p>
+              <ErrorStyled>{errors.phoneNum.message}</ErrorStyled>
             )}
           </SignupUserInfoBox>
         </SignupStyled>
