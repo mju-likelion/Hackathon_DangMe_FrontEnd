@@ -188,6 +188,7 @@ const Signup = () => {
             <SignupUserInfoInput
               onChange={handleChange}
               placeholder="핸드폰 번호 ('-'를 제외하고 입력해주세요.)"
+              maxLength={11}
               required
               onInvalid={(e) => {
                 e.target.setCustomValidity('이름은 필수 입력입니다!');

@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
 import BottomNav from '../BottomNav';
 import Lottie from 'react-lottie';
 import animationData from '../lottie/Animation.json';
 import { LottieBox, ReadyText } from '../styles/LottieStyle';
+
 const ReservationHistory = () => {
   const defaultOptions = {
     loop: true,
