@@ -61,6 +61,7 @@ export const HomeReservInfoBtn = styled.img`
 
 export const HomeReservInfoListWrap = styled.div`
   display: flex;
+  //test
   overflow-x: auto;
   margin-top: 20px;
 `;
