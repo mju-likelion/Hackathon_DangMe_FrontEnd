@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import { Route, Routes } from 'react-router-dom';
 import {
   AddressPositionBox,
@@ -96,9 +96,7 @@ const SearchShop = () => {
           </SearchDataBox>
         ))}
       </SearchData>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };

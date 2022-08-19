@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import { useState, useEffect } from 'react';
 import {
   ReservationTopBox,
@@ -57,6 +57,8 @@ const ReservationMain = () => {
   const [dateClicked, setDateClicked] = useState(false);
   const [isPetClicked, setIsPetClicked] = useRecoilState(isPetAtoms);
   const selectedShopInfo = useRecoilValue(selectedShop);
+  const [reservationTime, setReservationTime] = useState([]);
+
   const handleSubmmit = () => {
     setReservationInfo({ ...reservationInfo });
     console.log(reservationInfo);
@@ -94,7 +96,8 @@ const ReservationMain = () => {
         day: selectedDay,
       })
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data.data);
+        setReservationTime(response.data.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -143,11 +146,6 @@ const ReservationMain = () => {
       setIsTimeClicked(!isTimeClicked);
     }
   };
-
-  {
-    /* 만약 내가 클릭한 date랑 서버에 저장된 예약 date랑 같다면? -> 이 날짜의 특정 시간대엔 예약이 있구나를 확인
-     */
-  }
 
   const toggleMenu = [
     {
@@ -324,9 +322,7 @@ const ReservationMain = () => {
           예약 완료
         </ReservCompleteBtn>
       </div>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };

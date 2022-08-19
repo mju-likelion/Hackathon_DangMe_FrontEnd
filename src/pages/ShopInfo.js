@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import {
   ReservationTopBox,
   ShopInfoTopBoxText,
@@ -115,9 +115,7 @@ const ShopInfo = () => {
         </ShopInfoTabTitleBox>
         <div>{tabShopInfo[activeIndex].tabContent}</div>
       </ShopInfoBox>
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };

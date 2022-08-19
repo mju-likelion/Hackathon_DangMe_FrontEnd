@@ -25,7 +25,7 @@ import {
 } from '../styles/ShopDetailStyle';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ButtomNav from '../ButtomNav';
+import BottomNav from '../BottomNav';
 import Price from '../img/Price.png';
 import { shopList } from '../atoms/SigninAtom';
 import { useRecoilState } from 'recoil';
@@ -106,9 +106,7 @@ const ShopDetail = () => {
           </NoticeBox>
         </>
       )}
-      <Routes>
-        <Route path='/*' element={<ButtomNav />} />
-      </Routes>
+      <BottomNav />
     </div>
   );
 };
